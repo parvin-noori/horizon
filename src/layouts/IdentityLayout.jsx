@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router";
 import loginHeroImage from "/imgs/login-hero.png";
+import ThemeButton from "../features/theme/ThemeButton";
 
 export default function IdentityLayout() {
   const menuItem = [
@@ -10,13 +11,15 @@ export default function IdentityLayout() {
     { name: "marketPlace", link: "/marketPlace" },
   ];
   return (
-    <div className="grid lg:grid-cols-2 lg:h-auto h-svh place-content-center">
+    <div className="grid lg:grid-cols-2 h-svh md:place-content-center">
       <div className="flex justify-center">
         <Outlet />
       </div>
       <div className="relative lg:block hidden">
-        <img src={loginHeroImage} alt="Login Hero" className="size-full" />
-        <div className="flex gap-x-4 absolute bottom-5 justify-center items-center w-full">
+
+        <img src={loginHeroImage} alt="Login Hero" className="h-svh w-full object-cover" />
+        <div className="flex gap-x-4 absolute bottom-5 text-sm justify-center items-center w-full">
+        <ThemeButton/>
           {menuItem.map((item, index) => (
             <Link
               key={index}

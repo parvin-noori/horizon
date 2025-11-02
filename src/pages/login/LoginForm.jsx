@@ -1,13 +1,14 @@
 import { Button, Checkbox, Divider, Input } from "@heroui/react";
-import googleIcon from "/imgs/google-icon.svg";
+import { FcGoogle } from "react-icons/fc";
+
 import { Form, Link } from "react-router";
 
 export default function LoginForm() {
   return (
-    <div className="gap-y-10 flex flex-col">
+    <div className="gap-y-10 flex flex-col md:grow-0 grow">
       <div className="gap-y-10 flex flex-col">
         <div className="flex flex-col gap-y-3">
-          <span className="lg:text-5xl text-4xl font-semibold text-blue-950">
+          <span className="lg:text-5xl text-4xl font-semibold text-[#2B3674] dark:text-white">
             sign in
           </span>
           <p className="text-gray-400">
@@ -15,8 +16,8 @@ export default function LoginForm() {
           </p>
         </div>
         <Button
-          className="bg-blue-50 w-full capitalize text-blue-950"
-          startContent={googleIcon}
+          className="bg-blue-50 w-full capitalize text-blue-950 dark:bg-white/10 dark:text-white"
+          startContent={<FcGoogle/>}
           size="lg"
         >
           sign in with Google
@@ -46,12 +47,25 @@ export default function LoginForm() {
         />
         <div className="flex justify-between items-center">
           <Checkbox defaultSelected>keep my login</Checkbox>
-          <Link to="/forgot-password" className="text-primary hover:underline">
+          <Link
+            to="/forgot-password"
+            className="text-primary hover:underline dark:text-white"
+          >
             Forgot password?
           </Link>
         </div>
-        <Button size="lg" color="primary">sign in</Button>
-        <p className="capitalize gap-x-3">not register yet? <Link to="register" className="text-primary">create an account</Link></p>
+        <Button size="lg" color="primary">
+          sign in
+        </Button>
+        <p className="capitalize gap-x-3 dark:text-gray-400">
+          not register yet?{" "}
+          <Link
+            to="register"
+            className="text-primary hover:underline dark:text-white"
+          >
+            create an account
+          </Link>
+        </p>
       </Form>
     </div>
   );
