@@ -1,9 +1,12 @@
 import { Listbox, ListboxItem } from "@heroui/react";
-import { BsFillBarChartFill } from "react-icons/bs";
-import { FaUserLarge } from "react-icons/fa6";
-import { HiMiniSquares2X2 } from "react-icons/hi2";
-import { IoLockClosed } from "react-icons/io5";
-import { MdHome, MdOutlineShoppingCart } from "react-icons/md";
+import {
+  MdBarChart,
+  MdGridView,
+  MdHome,
+  MdLock,
+  MdOutlineShoppingCart,
+  MdPerson,
+} from "react-icons/md";
 import { NavLink, Outlet } from "react-router";
 import getPro from "/imgs/GetPRO.svg";
 
@@ -11,24 +14,24 @@ const sidebarItems = [
   {
     name: "dashboard",
     key: "dashboard",
-    to: "dashboard",
+    to: "/dashboard",
     icon: <MdHome />,
   },
   {
     name: "NFT marketplace",
     key: "nft-marketplace",
-    to: "marketPlace",
+    to: "/marketPlace",
     icon: <MdOutlineShoppingCart />,
   },
   {
     name: "tables",
     key: "tables",
-    to: "tables",
-    icon: <BsFillBarChartFill />,
+    to: "/tables",
+    icon: <MdBarChart />,
   },
-  { name: "kanban", key: "kanban", to: "kanban", icon: <HiMiniSquares2X2 /> },
-  { name: "profile", key: "profile", to: "profile", icon: <FaUserLarge /> },
-  { name: "sign in", key: "sign-in", to: "sign-in", icon: <IoLockClosed /> },
+  { name: "kanban", key: "kanban", to: "/kanban", icon: <MdGridView /> },
+  { name: "profile", key: "profile", to: "/profile", icon: <MdPerson /> },
+  { name: "sign in", key: "sign-in", to: "/sign-in", icon: <MdLock /> },
 ];
 
 export default function MainLayout() {
@@ -42,29 +45,52 @@ export default function MainLayout() {
           </span>
         </div>
         <div className="sider-body capitalize grow overflow-y-auto">
-          {/* <Listbox
+          <Listbox
             aria-label="Listbox Variants"
             color={"primary"}
             variant={"light"}
-          > */}
-          <ul>
+            className="px-0 py-4"
+          >
+            {/* <ul> */}
             {sidebarItems.map((item) => (
-              <li key={item.key}>
-                <NavLink
-                  to={item.to}
-                  className={(isActive) => {
-                    `text-xl ${isActive ? "text-primary" : "text-gray-700"}`;
-                  }}
-                >
-                  {item.name}
+              <ListboxItem
+                key={item.key}
+                textValue={item.name}
+                className="px-0"
+              >
+                <NavLink to={item.to}>
+                  {({ isActive }) => (
+                    <div
+                      className={`flex items-center gap-x-5 py-1.5 px-5 group ${
+                        isActive
+                          ? "text-primary border-e-3 border-primary"
+                          : "text-slate-400"
+                      }`}
+                    >
+                      <span
+                        className={`text-2xl transition-all duration-200 ${
+                          isActive ? "text-primary" : "text-slate-400 group-hover:text-primary"
+                        }`}
+                      >
+                        {item.icon}
+                      </span>
+                      <span
+                        className={`transition-all duration-200 ${
+                          isActive ? "text-[#2B3674]" : "text-slate-400 group-hover:text-primary"
+                        }`}
+                      >
+                        {item.name}
+                      </span>
+                    </div>
+                  )}
                 </NavLink>
-              </li>
+              </ListboxItem>
             ))}
-            </ul>
-          {/* </Listbox> */}
+            {/* </ul> */}
+          </Listbox>
         </div>
         <div className="sider-footer mt-0">
-          <img src={getPro} alt="Get Pro" className="mx-auto mt-20" />
+          <img src={getPro} alt="Get Pro" className="mx-auto" />
         </div>
       </div>
       <Outlet />
