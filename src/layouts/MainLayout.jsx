@@ -51,9 +51,9 @@ export default function MainLayout() {
   const location = useLocation();
   const lastSegment = location.pathname.split("/").pop();
   return (
-    <div className="bg-secondary dark:bg-background h-svh flex">
+    <div className="bg-secondary dark:bg-background h-full flex lg:items-stretch relative">
       {/* sidebar */}
-      <div className="sidebar bg-white dark:bg-secondary  h-full flex flex-col py-2 min-w-[250px]">
+      <div className="sidebar bg-white dark:bg-secondary  h-full fixed lg:sticky lg:translate-x-0 -translate-x-full  top-0 flex flex-col py-2 min-w-[250px]">
         <div className="sider-header p-12 border-b border-secondary dark:border-slate-800">
           <span className="text-[#2B3674] dark:text-white uppercase text-2xl">
             <b>horizon </b>
@@ -113,8 +113,8 @@ export default function MainLayout() {
           <img src={getPro} alt="Get Pro" className="mx-auto" />
         </div>
       </div>
-      <div className="p-4 flex flex-col gap-y-4 py-16 w-full">
-        <header className="flex justify-between items-center w-full">
+      <div className="p-4 flex flex-col gap-y-4 w-full">
+        <header className="flex lg:flex-row flex-col gap-3 lg:justify-between lg:items-center w-full lg:py-12 py-1">
           <div className="flex flex-col gap-y-2 capitalize text-[#2B3674]">
             <Breadcrumbs
               itemClasses={{
