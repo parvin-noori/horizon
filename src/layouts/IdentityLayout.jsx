@@ -19,7 +19,7 @@ export default function IdentityLayout() {
 
         <img src={loginHeroImage} alt="Login Hero" className="h-svh w-full object-cover" />
         <div className="flex gap-x-4 absolute bottom-5 text-sm justify-center items-center w-full">
-        <ThemeButton/>
+        <ThemeButton className={"absolute hover:bg-white/30 transition-color duration-300 bottom-0 cursor-pointer end-5 text-white size-12 bg-white/20 dark:bg-background/20 backdrop-blur-md grid place-content-center rounded-full"}/>
           {menuItem.map((item, index) => (
             <Link
               key={index}

@@ -1,4 +1,5 @@
 import {
+  Avatar,
   BreadcrumbItem,
   Breadcrumbs,
   Button,
@@ -16,8 +17,11 @@ import {
   MdOutlineShoppingCart,
   MdPerson,
 } from "react-icons/md";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { NavLink, Outlet, useLocation } from "react-router";
 import getPro from "/imgs/GetPRO.svg";
+import user from "/imgs/user.png";
+import ThemeButton from "../features/theme/ThemeButton";
 
 const sidebarItems = [
   {
@@ -47,11 +51,11 @@ export default function MainLayout() {
   const location = useLocation();
   const lastSegment = location.pathname.split("/").pop();
   return (
-    <div className="bg-secondary h-svh flex">
+    <div className="bg-secondary dark:bg-background h-svh flex">
       {/* sidebar */}
-      <div className="sidebar bg-white  h-full flex flex-col py-2">
-        <div className="sider-header p-12 border-b border-secondary">
-          <span className="text-[#2B3674] uppercase text-2xl">
+      <div className="sidebar bg-white dark:bg-secondary  h-full flex flex-col py-2 min-w-[250px]">
+        <div className="sider-header p-12 border-b border-secondary dark:border-slate-800">
+          <span className="text-[#2B3674] dark:text-white uppercase text-2xl">
             <b>horizon </b>
             free
           </span>
@@ -75,15 +79,15 @@ export default function MainLayout() {
                     <div
                       className={`flex items-center gap-x-5 py-1.5 px-5 group ${
                         isActive
-                          ? "text-primary border-e-3 border-primary"
-                          : "text-slate-400"
+                          ? "text-primary dark:text-white border-e-3 border-primary"
+                          : "text-slate-400 dark:text-white"
                       }`}
                     >
                       <span
                         className={`text-2xl transition-all duration-200 ${
                           isActive
-                            ? "text-primary"
-                            : "text-slate-400 group-hover:text-primary"
+                            ? "text-primary dark:text-white"
+                            : "text-slate-400 dark:text-white group-hover:text-primary"
                         }`}
                       >
                         {item.icon}
@@ -91,8 +95,8 @@ export default function MainLayout() {
                       <span
                         className={`transition-all duration-200 ${
                           isActive
-                            ? "text-[#2B3674]"
-                            : "text-slate-400 group-hover:text-primary"
+                            ? "text-[#2B3674] dark:text-white"
+                            : "text-slate-400 dark:text-white group-hover:text-primary"
                         }`}
                       >
                         {item.name}
@@ -109,8 +113,8 @@ export default function MainLayout() {
           <img src={getPro} alt="Get Pro" className="mx-auto" />
         </div>
       </div>
-      <div className="p-4 flex flex-col gap-y-4 py-16">
-        <header className="flex items-center justify-between">
+      <div className="p-4 flex flex-col gap-y-4 py-16 w-full">
+        <header className="flex justify-between items-center w-full">
           <div className="flex flex-col gap-y-2 capitalize text-[#2B3674]">
             <Breadcrumbs
               itemClasses={{
@@ -121,20 +125,25 @@ export default function MainLayout() {
               <BreadcrumbItem>pages</BreadcrumbItem>
               <BreadcrumbItem>{lastSegment}</BreadcrumbItem>
             </Breadcrumbs>
-            <span className=" text-2xl font-semibold">{lastSegment}</span>
+            <span className=" text-2xl font-semibold dark:text-white">{lastSegment}</span>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center gap-x-2 bg-white dark:bg-secondary rounded-full p-2">
             <Input
               startContent={<FiSearch />}
-              color="white"
+              color="white dark:bg-background"
               placeholder="search"
               size="md"
               type="email"
               radius="full"
             />
-            <Button isOnlyIcon variant="light" radius="full">
-              <LuBell />
+            <Button isOnlyIcon variant="light" radius="full" className="!min-w-auto shrink-0 p-0 !aspect-square">
+              <LuBell className="text-lg"/>
             </Button>
+            <ThemeButton className={'!min-w-auto shrink-0 p-0 !aspect-square'}/>
+            <Button isOnlyIcon variant="light" radius="full" className="!min-w-auto shrink-0 p-0 !aspect-square">
+              <AiOutlineExclamationCircle className="text-lg"/>
+            </Button>
+            <Avatar showFallback src={user} name="user" className="!shrink-0"/>
           </div>
         </header>
         <Outlet />

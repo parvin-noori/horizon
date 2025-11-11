@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // primaryText:"#2B3674"
+        primary: "#4318FF",
       },
     },
   },
@@ -17,16 +17,13 @@ module.exports = {
       themes: {
         light: {
           colors: {
-            primary: {
-              DEFAULT: "#4318FF",
-            },
-
             secondary: "#F4F7FE",
             background: "#FFFFFF",
           },
         },
         dark: {
           colors: {
+            secondary: "#111C44",
             background: "#0B1437",
           },
         },

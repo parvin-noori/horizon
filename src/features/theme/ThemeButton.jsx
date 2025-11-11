@@ -4,8 +4,9 @@ import { MdWbSunny } from "react-icons/md";
 
 import { useDispatch, useSelector } from "react-redux";
 import { changeTheme } from "./ThemeSlice";
+import { Button } from "@heroui/react";
 
-export default function ThemeButton() {
+export default function ThemeButton({className}) {
   const theme = useSelector((state) => state.theme.theme);
   const dispatch = useDispatch();
 
@@ -18,14 +19,12 @@ export default function ThemeButton() {
     }
   }, [theme]);
   return (
-    <button
-      type="button"
-      onClick={() =>
+     <Button isOnlyIcon variant="light" radius="full" className={`!min-w-auto shrink-0 p-0 !aspect-square ${className}`}
+      onPress={() =>
         dispatch(changeTheme(theme === "light" ? "dark" : "light"))
       }
-      className="absolute hover:bg-white/30 transition-color duration-300 bottom-0 cursor-pointer end-5 text-white size-12 bg-white/20 dark:bg-background/20 backdrop-blur-md grid place-content-center rounded-full"
     >
       {theme === "light" ? <IoMdMoon className="text-lg" /> : <MdWbSunny />}
-    </button>
+    </Button>
   );
 }
