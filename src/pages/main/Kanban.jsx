@@ -94,6 +94,8 @@ export default function Kanban() {
         return "warning";
       case "updates":
         return "primary";
+      case "errors":
+        return "danger";
       default:
         return "success";
     }
@@ -108,72 +110,10 @@ export default function Kanban() {
   const [features, setFeatures] = useState(kanbanItems);
   return (
     <div className="kanban">
-      {/* {status.map((section) => (
-        <div
-          className="bg-white dark:bg-secondary rounded-2xl p-3 space-y-4"
-          key={section.id}
-        >
-          <div className="flex items-center justify-between">
-            <span className="capitalize text-xl text-[#2B3674] dark:text-white font-semibold">
-              {section.title}
-            </span>
-            <Button
-              isOnlyIcon
-              variant="light"
-              className="bg-secondary text-primary"
-            >
-              <FiPlus />
-            </Button>
-          </div>
-          {section.items.map((item) => {
-            const background = getButtonBackground(item.status);
-            return (
-              <Card
-                shadow="none"
-                className="!border-0 dark:bg-background shadow-lg"
-                key={item.id}
-              >
-                <CardHeader className="font-semibold ">
-                  <div className="flex items-center justify-between gap-x-5">
-                    <span className="capitalize text-[#2B3674] dark:text-white  line-clamp-1 text-lg">
-                      {item.title}
-                    </span>
-                    <Button
-                      isOnlyIcon
-                      variant="light"
-                      className="p-0 !shrink-0 min-w-auto text-slate-400"
-                    >
-                      <AiOutlineEdit />
-                    </Button>
-                  </div>
-                </CardHeader>
-                <CardBody className="flex flex-col text-slate-400">
-                  {item.cover && <Image src={item.cover} alt={item.title} />}
-                  {item.desc}
-                </CardBody>
-                <CardFooter className="flex items-center gap-x-2 justify-between">
-                  <AvatarGroup>
-                    {item?.members?.map((member) => (
-                      <Avatar src={member} />
-                    ))}
-                  </AvatarGroup>
-                  <Chip
-                    radius="sm"
-                    color={background}
-                    className="uppercase text-white"
-                  >
-                    {item.status ? item.status : "done"}
-                  </Chip>
-                </CardFooter>
-              </Card>
-            );
-          })}
-        </div>
-      ))} */}
       <KanbanProvider columns={columns} data={features}>
         {(column) => (
           <KanbanBoard
-            className="bg-white shadow-none border-0 p-2"
+            className="bg-white shadow-none border-0 p-2 dark:bg-secondary"
             id={column.id}
             key={column.id}
             onDataChange={setFeatures}
@@ -186,7 +126,7 @@ export default function Kanban() {
                 <Button
                   isOnlyIcon
                   variant="light"
-                  className="bg-secondary text-primary"
+                  className="bg-secondary text-primary dark:text-white dark:bg-white/5"
                 >
                   <FiPlus />
                 </Button>
@@ -197,7 +137,7 @@ export default function Kanban() {
                 const background = getButtonBackground(feature.status);
                 return (
                   <KanbanCard
-                    className="shadow-lg border-0"
+                    className="shadow-lg border-0 bg-white dark:bg-white/5"
                     column={column.name}
                     id={feature.id}
                     key={feature.id}
@@ -210,16 +150,16 @@ export default function Kanban() {
                       <Button
                         isOnlyIcon
                         variant="light"
-                        className="p-0 !shrink-0 min-w-auto text-slate-400"
+                        className="p-0 !shrink-0 min-w-auto !size-8 rounded-lg text-slate-400"
                       >
                         <AiOutlineEdit />
                       </Button>
                     </div>
-                    <div className="flex flex-col text-slate-400">
+                    <div className="flex flex-col text-slate-400 space-y-3">
                       {feature.cover && (
                         <Image src={feature.cover} alt={feature.title} />
                       )}
-                      {feature.desc}
+                      <p>{feature.desc}</p>
                     </div>
                     <div className="flex items-center gap-x-2 justify-between">
                       <AvatarGroup>

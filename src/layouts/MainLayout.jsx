@@ -7,6 +7,7 @@ import {
   Listbox,
   ListboxItem,
 } from "@heroui/react";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { LuBell } from "react-icons/lu";
 import {
@@ -17,11 +18,10 @@ import {
   MdOutlineShoppingCart,
   MdPerson,
 } from "react-icons/md";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { NavLink, Outlet, useLocation } from "react-router";
+import ThemeButton from "../features/theme/ThemeButton";
 import getPro from "/imgs/GetPRO.svg";
 import user from "/imgs/user.png";
-import ThemeButton from "../features/theme/ThemeButton";
 
 const sidebarItems = [
   {
@@ -125,25 +125,61 @@ export default function MainLayout() {
               <BreadcrumbItem>pages</BreadcrumbItem>
               <BreadcrumbItem>{lastSegment}</BreadcrumbItem>
             </Breadcrumbs>
-            <span className=" text-2xl font-semibold dark:text-white">{lastSegment}</span>
+            <span className=" text-2xl font-semibold dark:text-white">
+              {lastSegment}
+            </span>
           </div>
           <div className="flex items-center gap-x-2 bg-white dark:bg-secondary rounded-full p-2">
             <Input
+              isClearable
               startContent={<FiSearch />}
-              color="white dark:bg-background"
+              color="white"
               placeholder="search"
               size="md"
-              type="email"
+              type="text"
               radius="full"
+              classNames={{
+                label: "text-black/50 dark:text-white/90",
+                input: [
+                  "bg-transparent",
+                  "text-black/90 dark:text-white/90",
+                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                ],
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                  "shadow-sm",
+                  "bg-secondary",
+                  "dark:bg-default/60",
+                  "backdrop-blur-xl",
+                  "backdrop-saturate-200",
+                  "hover:bg-secondary/70",
+                  "dark:hover:bg-default/70",
+                  "group-data-[focus=true]:bg-default-200/50",
+                  "dark:group-data-[focus=true]:bg-default/60",
+                  "cursor-text!",
+                ],
+              }}
             />
-            <Button isOnlyIcon variant="light" radius="full" className="!min-w-auto shrink-0 p-0 !aspect-square">
-              <LuBell className="text-lg"/>
+            <Button
+              isOnlyIcon
+              variant="light"
+              radius="full"
+              className="!min-w-auto shrink-0 p-0 !aspect-square"
+            >
+              <LuBell className="text-lg" />
             </Button>
-            <ThemeButton className={'!min-w-auto shrink-0 p-0 !aspect-square'}/>
-            <Button isOnlyIcon variant="light" radius="full" className="!min-w-auto shrink-0 p-0 !aspect-square">
-              <AiOutlineExclamationCircle className="text-lg"/>
+            <ThemeButton
+              className={"!min-w-auto shrink-0 p-0 !aspect-square"}
+            />
+            <Button
+              isOnlyIcon
+              variant="light"
+              radius="full"
+              className="!min-w-auto shrink-0 p-0 !aspect-square"
+            >
+              <AiOutlineExclamationCircle className="text-lg" />
             </Button>
-            <Avatar showFallback src={user} name="user" className="!shrink-0"/>
+            <Avatar showFallback src={user} name="user" className="!shrink-0" />
           </div>
         </header>
         <Outlet />
