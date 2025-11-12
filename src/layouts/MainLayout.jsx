@@ -7,6 +7,7 @@ import {
   Listbox,
   ListboxItem,
 } from "@heroui/react";
+import { useEffect, useState,useRef } from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { LuBell } from "react-icons/lu";
@@ -15,9 +16,11 @@ import {
   MdGridView,
   MdHome,
   MdLock,
+  MdMenuOpen,
   MdOutlineShoppingCart,
   MdPerson,
 } from "react-icons/md";
+import { RiMenuFold4Line } from "react-icons/ri";
 import { NavLink, Outlet, useLocation } from "react-router";
 import ThemeButton from "../features/theme/ThemeButton";
 import getPro from "/imgs/GetPRO.svg";
@@ -48,12 +51,39 @@ const sidebarItems = [
 ];
 
 export default function MainLayout() {
+  const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const lastSegment = location.pathname.split("/").pop();
+  const sidebarRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setCollapsed(false);
+      }
+    }
+    if (collapsed) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [collapsed]);
   return (
     <div className="bg-secondary dark:bg-background h-full flex lg:items-stretch relative">
       {/* sidebar */}
-      <div className="sidebar bg-white dark:bg-secondary  h-full fixed lg:sticky lg:translate-x-0 -translate-x-full  top-0 flex flex-col py-2 min-w-[250px]">
+      <div
+        className={`bg-black/70 fixed  inset-0 z-20 ${
+          collapsed ? "block" : "hidden"
+        }`}
+      ></div>
+      <div
+        ref={sidebarRef}
+        className={`sidebar bg-white dark:bg-secondary  h-full fixed lg:sticky lg:translate-x-0 z-30 lg:z-0  top-0 flex flex-col py-2 min-w-[250px] ${
+          collapsed ? "translate-x-0" : "-translate-x-full"
+        }  lg:translate-x-0 transition-transform duration-300`}
+      >
         <div className="sider-header p-12 border-b border-secondary dark:border-slate-800">
           <span className="text-[#2B3674] dark:text-white uppercase text-2xl">
             <b>horizon </b>
@@ -74,7 +104,7 @@ export default function MainLayout() {
                 textValue={item.name}
                 className="px-0"
               >
-                <NavLink to={item.to}>
+                <NavLink to={item.to} onClick={()=>setCollapsed(false)}>
                   {({ isActive }) => (
                     <div
                       className={`flex items-center gap-x-5 py-1.5 px-5 group ${
@@ -125,9 +155,19 @@ export default function MainLayout() {
               <BreadcrumbItem>pages</BreadcrumbItem>
               <BreadcrumbItem>{lastSegment}</BreadcrumbItem>
             </Breadcrumbs>
-            <span className=" text-2xl font-semibold dark:text-white">
-              {lastSegment}
-            </span>
+            <div className="flex items-center gap-3">
+              <Button
+                isOnlyIcon
+                onPress={() => setCollapsed(!collapsed)}
+                variant="light"
+                className="bg-secondary lg:hidden size-9 aspect-square min-w-auto shrink-0 p-0 text-primary dark:text-white dark:bg-white/5"
+              >
+                {collapsed ? <MdMenuOpen /> : <RiMenuFold4Line />}
+              </Button>
+              <span className=" text-2xl font-semibold dark:text-white">
+                {lastSegment}
+              </span>
+            </div>
           </div>
           <div className="flex items-center gap-x-2 bg-white dark:bg-secondary rounded-full p-2">
             <Input
