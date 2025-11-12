@@ -3,7 +3,7 @@ import IdentityLayout from "./layouts/IdentityLayout";
 import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/login/Login";
 import Dashboard from "./pages/main/Dashboard";
-import Kanban from "./pages/main/Kanban";
+import Kanban from "./features/kanban/Kanban";
 import MarketPlace from "./pages/main/Marketplace";
 import Profile from "./pages/main/Profile";
 import Tables from "./pages/main/Tables";
