@@ -83,8 +83,16 @@ const kanbanSlice = createSlice({
     addKanban: (state, action) => {
       state.items.unshift(action.payload);
     },
+    editKanban: (state, action) => {
+      let newItems = state.items.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, ...action.payload }
+          : item
+      );
+      return { ...state, items: newItems };
+    },
   },
 });
 
-export const { addKanban } = kanbanSlice.actions;
+export const { addKanban, editKanban } = kanbanSlice.actions;
 export default kanbanSlice.reducer;
