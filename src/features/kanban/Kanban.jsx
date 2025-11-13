@@ -10,9 +10,11 @@ import {
 } from "../../components/ui/shadcn-io/kanban";
 import { addKanban } from "./kanbanSlice";
 
+import { useState } from "react";
 import KanbanItem from "./KanbanItem";
 
 export default function Kanban() {
+  const [editngId, setEditngId] = useState(false);
   const kanbanItems = useSelector((state) => state.kanban.items);
   const dispatch = useDispatch();
 
@@ -22,14 +24,15 @@ export default function Kanban() {
     { id: 3, name: "Done", color: "#10B981" },
   ];
 
-  function handleAdd() {
+  function handleAdd(columnId) {
+    const newId = uuidv4();
+    setEditngId(newId);
     dispatch(
       addKanban({
-        id: uuidv4(),
-        title: "new",
-        desc: "desc",
-        column: 1,
-        cover: "Avatar2",
+        id: newId,
+        title: "",
+        desc: "",
+        column: columnId,
       })
     );
   }
@@ -51,7 +54,7 @@ export default function Kanban() {
                 </span>
                 <Button
                   type="button"
-                  onPress={handleAdd}
+                  onPress={() => handleAdd(column.id)}
                   isOnlyIcon
                   variant="light"
                   className="bg-secondary text-primary dark:text-white dark:bg-white/5"
@@ -67,6 +70,8 @@ export default function Kanban() {
                   key={feature.id}
                   feature={feature}
                   column={column}
+                  isEditng={editngId === feature.id}
+                  setEditngId={setEditngId}
                 />
               )}
             </KanbanCards>

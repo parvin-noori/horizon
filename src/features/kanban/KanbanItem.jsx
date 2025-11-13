@@ -17,9 +17,16 @@ import { editKanban } from "./kanbanSlice";
 import Avatar1 from "/imgs/Avatar1.png";
 import Avatar2 from "/imgs/Avatar2.png";
 import Avatar3 from "/imgs/Avatar3.png";
+
 export default function KanbanItem(props) {
-  const { feature, column } = props;
+  const { feature, column, isEditng, setEditngId } = props;
+  const [title, setTitle] = useState(feature.title);
+  const [status, setStatus] = useState(feature.status);
+  const [desc, setDesc] = useState(feature.desc);
+  const inputRef = useRef(null);
+  const dispatch = useDispatch();
   const background = getButtonBackground(feature.status);
+
   const avatarMap = {
     Avatar1,
     Avatar2,
@@ -39,12 +46,6 @@ export default function KanbanItem(props) {
     }
   }
 
-  const [editable, setEditable] = useState(false);
-  const [title, setTitle] = useState(feature.title);
-  const [status, setStatus] = useState(feature.status);
-  const [desc, setDesc] = useState(feature.desc);
-  const inputRef = useRef(null);
-  const dispatch = useDispatch();
   const statusKanban = [
     { key: "pending", label: "pending" },
     { key: "updates", label: "updates" },
@@ -53,14 +54,13 @@ export default function KanbanItem(props) {
   ];
 
   useEffect(() => {
-    if (editable) {
+    if (isEditng) {
       inputRef.current?.focus();
     }
-  }, [editable]);
+  }, [isEditng]);
 
   const handleSaveEdit = (id) => {
-    setEditable(false);
-    console.log(id);
+    setEditngId(null);
     dispatch(editKanban({ id: id, title: title, desc: desc, status: status }));
   };
   return (
@@ -72,7 +72,7 @@ export default function KanbanItem(props) {
       name={feature.title}
     >
       <div className="flex items-center justify-between gap-x-5">
-        {editable ? (
+        {isEditng ? (
           <Input
             ref={inputRef}
             variant="bordered"
@@ -86,7 +86,7 @@ export default function KanbanItem(props) {
               {feature.title}
             </span>
             <Button
-              onPress={() => setEditable(true)}
+              onPress={() => setEditngId(feature.id)}
               isOnlyIcon
               variant="light"
               className="p-0 !shrink-0 min-w-auto !size-8 rounded-lg text-slate-400"
@@ -98,7 +98,7 @@ export default function KanbanItem(props) {
       </div>
       <div className="flex flex-col text-slate-400 space-y-3">
         {feature.cover && <Image src={feature.cover} alt={feature.title} />}
-        {editable ? (
+        {isEditng ? (
           <Textarea
             variant="bordered"
             value={desc}
@@ -110,7 +110,7 @@ export default function KanbanItem(props) {
         )}
       </div>
 
-      {editable ? (
+      {isEditng ? (
         <>
           <Select
             variant="bordered"
