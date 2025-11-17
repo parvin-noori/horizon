@@ -1,0 +1,87 @@
+import { BiSolidUpArrow } from "react-icons/bi";
+import { Bar, BarChart, XAxis } from "recharts";
+
+const data = [
+  {
+    name: "00",
+    pv: 1400,
+  },
+  {
+    name: "04",
+    pv: 9398,
+  },
+  {
+    name: "08",
+    pv: 9800,
+  },
+  {
+    name: "12",
+    pv: 3908,
+  },
+  {
+    name: "14",
+    pv: 7800,
+  },
+  {
+    name: "16",
+    pv: 9800,
+  },
+  {
+    name: "18",
+    pv: 10000,
+  },
+];
+
+export default function DailyTraffic() {
+  return (
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
+      <div className="capitalize text-slate-400 justify-between  text-sm flex items-start gap-3">
+        <div className="flex flex-col gap-2">
+          <span>daily traffic</span>
+          <div className="flex items-center gap-1">
+            <span className="text-3xl text-[#2B3674] dark:text-white text-bold">
+              2.579
+            </span>{" "}
+            visitors
+          </div>
+        </div>
+        <span className="text-green-500 capitalize flex items-center gap-2">
+          <BiSolidUpArrow />
+          +2.45%
+        </span>
+      </div>
+      <BarChart
+        barCategoryGap={10}
+        style={{
+          width: "100%",
+          maxHeight: "100%",
+          aspectRatio: 1.8,
+          fontSize: "small",
+        }}
+        responsive
+        data={data}
+        margin={{
+          top: 20,
+          right: 0,
+          left: 0,
+          bottom: 5,
+        }}
+      >
+        <defs>
+          <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#8884d8" stopOpacity={1} />
+            <stop offset="100%" stopColor="white" stopOpacity={0.16} />
+          </linearGradient>
+        </defs>
+        <XAxis dataKey="name" axisLine={false} />
+        <Bar
+          dataKey="pv"
+          stackId="a"
+          fill="url(#colorPv)"
+          barSize={15}
+          radius={[12, 12, 0, 0]}
+        />
+      </BarChart>
+    </div>
+  );
+}

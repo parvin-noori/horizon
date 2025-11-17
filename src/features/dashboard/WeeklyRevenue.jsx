@@ -58,8 +58,8 @@ const data = [
 ];
 export default function WeeklyRevenue() {
   return (
-    <div className="bg-white rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
-      <span className="text-2xl text-[#2B3674] text-bold capitalize">weekly revenue</span>
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
+      <span className="text-2xl text-[#2B3674] dark:text-white text-bold capitalize">weekly revenue</span>
       <BarChart
         barCategoryGap={10}
         style={{

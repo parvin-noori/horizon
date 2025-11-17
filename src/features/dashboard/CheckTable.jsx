@@ -68,8 +68,8 @@ const columns = [
 export default function CheckTable() {
   const [selectedKeys, setSelectedKeys] = useState(["2", "3", "4"]);
   return (
-    <div className="bg-white rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
-      <span className="text-2xl text-[#2B3674] text-bold capitalize">
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
+      <span className="text-2xl text-[#2B3674] dark:text-white text-bold capitalize">
         check table
       </span>
 

@@ -44,17 +44,17 @@ const data = [
 
 export default function WeeklySummary() {
   return (
-    <div className="bg-white rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="flex items-center">
-        <div className="bg-secondary py-2 capitalize px-4 rounded-md flex items-center gap-2 text-slate-400 text-sm">
+        <div className="bg-secondary dark:bg-white/5 py-2 capitalize px-4 rounded-md flex items-center gap-2 text-slate-400 text-sm">
           <FaRegCalendar />
           <span>this month</span>
         </div>
       </div>
       <div className="grid grid-cols-4 gap-5">
         <div className="col-span-1 flex flex-col space-y-1">
-          <span className="text-3xl text-[#2B3674] text-bold">$37.5k</span>
-          <p className="capitalize text-slate-400 text-sm flex items-center gap-3">
+          <span className="text-3xl text-[#2B3674] dark:text-white text-bold">$37.5k</span>
+          <p className="capitalize text-slate-400  text-sm flex items-center gap-3">
             total spent{" "}
             <span className="text-green-500 capitalize flex items-center gap-2">
               <BiSolidUpArrow />

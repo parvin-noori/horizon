@@ -2,10 +2,12 @@ import { IoIosCopy } from "react-icons/io";
 import { MdAddTask, MdBarChart } from "react-icons/md";
 import { PiCurrencyDollarSimpleBold } from "react-icons/pi";
 import { v4 as uuidv4 } from "uuid";
-import DashboardStats from "./DashboardStats";
-import WeeklySummary from "./WeeklySummary";
-import WeeklyRevenue from "./WeeklyRevenue";
 import CheckTable from "./CheckTable";
+import DailyTraffic from "./DailyTraffic";
+import DashboardStats from "./DashboardStats";
+import PieCharts from "./PieCharts";
+import WeeklyRevenue from "./WeeklyRevenue";
+import WeeklySummary from "./WeeklySummary";
 
 const dashboardStats = [
   {
@@ -62,8 +64,12 @@ export default function Dashboard() {
       <DashboardStats items={dashboardStats} />
       <div className="grid xl:grid-cols-2 gap-5">
         <WeeklySummary />
-        <WeeklyRevenue/>
-        <CheckTable/>
+        <WeeklyRevenue />
+        <CheckTable />
+        <div className="grid lg:grid-cols-2 gap-5">
+          <DailyTraffic />
+          <PieCharts />
+        </div>
       </div>
     </>
   );
