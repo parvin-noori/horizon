@@ -47,7 +47,7 @@ const sidebarItems = [
   },
   { name: "kanban", key: "kanban", to: "/kanban", icon: <MdGridView /> },
   { name: "profile", key: "profile", to: "/profile", icon: <MdPerson /> },
-  { name: "sign in", key: "sign-in", to: "/sign-in", icon: <MdLock /> },
+  { name: "sign in", key: "sign-in", to: "/", icon: <MdLock /> },
 ];
 
 export default function MainLayout() {
@@ -71,7 +71,7 @@ export default function MainLayout() {
     };
   }, [collapsed]);
   return (
-    <div className="bg-secondary dark:bg-background h-full flex lg:items-stretch relative">
+    <div className="bg-secondary dark:bg-background h-full flex lg:items-stretch relative ">
       {/* sidebar */}
       <div
         className={`bg-black/70 fixed  inset-0 z-20 ${
@@ -143,7 +143,7 @@ export default function MainLayout() {
           <img src={getPro} alt="Get Pro" className="mx-auto" />
         </div>
       </div>
-      <div className="p-4 flex flex-col gap-y-4 w-full">
+      <div className="p-4 flex flex-col gap-y-4 w-full overflow-x-hidden">
         <header className="flex lg:flex-row flex-col gap-3 lg:justify-between lg:items-center w-full lg:py-12 py-1">
           <div className="flex flex-col gap-y-2 capitalize text-[#2B3674]">
             <Breadcrumbs
