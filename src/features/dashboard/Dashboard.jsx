@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import DashboardStats from "./DashboardStats";
 import WeeklySummary from "./WeeklySummary";
 import WeeklyRevenue from "./WeeklyRevenue";
+import CheckTable from "./CheckTable";
 
 const dashboardStats = [
   {
@@ -59,9 +60,10 @@ export default function Dashboard() {
   return (
     <>
       <DashboardStats items={dashboardStats} />
-      <div className="grid lg:grid-cols-2 gap-5">
+      <div className="grid xl:grid-cols-2 gap-5">
         <WeeklySummary />
         <WeeklyRevenue/>
+        <CheckTable/>
       </div>
     </>
   );
