@@ -54,7 +54,7 @@ export default function DailyTraffic() {
         barCategoryGap={10}
         style={{
           width: "100%",
-          maxHeight: "100%",
+          height: "100%",
           aspectRatio: 1.8,
           fontSize: "small",
         }}

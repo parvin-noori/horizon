@@ -38,6 +38,7 @@ export default function PieCharts() {
           width: "100%",
           maxWidth: "500px",
           maxHeight: "80vh",
+          margin:"0 auto",
           aspectRatio: 1,
         }}
         responsive
