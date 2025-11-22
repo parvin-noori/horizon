@@ -1,4 +1,5 @@
 import { BiSolidUpArrow } from "react-icons/bi";
+import { useSelector } from "react-redux";
 import { Bar, BarChart, XAxis } from "recharts";
 
 const data = [
@@ -33,6 +34,8 @@ const data = [
 ];
 
 export default function DailyTraffic() {
+  const theme = useSelector((state) => state.theme.theme);
+  const whiteStopOpacity = theme === "dark" ? 1 : 0.16;
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="capitalize text-slate-400 justify-between  text-sm flex items-start gap-3">
@@ -70,7 +73,7 @@ export default function DailyTraffic() {
         <defs>
           <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#8884d8" stopOpacity={1} />
-            <stop offset="100%" stopColor="white" stopOpacity={0.16} />
+            <stop offset="100%" stopColor="white" stopOpacity={whiteStopOpacity} />
           </linearGradient>
         </defs>
         <XAxis dataKey="name" axisLine={false} />
