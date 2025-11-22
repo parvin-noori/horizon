@@ -1,6 +1,6 @@
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Link } from "react-router";
-import LoginForm from "./loginForm";
+import LoginForm from "./LoginForm";
 
 export default function Login() {
   return (
