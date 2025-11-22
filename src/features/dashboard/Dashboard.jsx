@@ -8,6 +8,7 @@ import DashboardStats from "./DashboardStats";
 import PieCharts from "./PieCharts";
 import WeeklyRevenue from "./WeeklyRevenue";
 import WeeklySummary from "./WeeklySummary";
+import ComplexTable from "./ComplexTable";
 
 const dashboardStats = [
   {
@@ -70,6 +71,7 @@ export default function Dashboard() {
           <DailyTraffic />
           <PieCharts />
         </div>
+        <ComplexTable />
       </div>
     </>
   );
