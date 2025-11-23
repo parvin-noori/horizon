@@ -9,7 +9,7 @@ import DailyTraffic from "./DailyTraffic";
 import DashboardStats from "./DashboardStats";
 import DatePick from "./DatePick";
 import PieCharts from "./PieCharts";
-import Tasks from "./Tasks";
+import TasksList from "./TasksList";
 import WeeklyRevenue from "./WeeklyRevenue";
 import WeeklySummary from "./WeeklySummary";
 
@@ -76,7 +76,7 @@ export default function Dashboard() {
         </div>
         <ComplexTable />
         <div className="grid lg:grid-cols-2 gap-5">
-          <Tasks />
+          <TasksList />
           <DatePick />
         </div>
         <div className="grid lg:grid-cols-2 gap-5">

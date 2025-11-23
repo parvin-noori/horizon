@@ -64,7 +64,6 @@ const columns = [
 
 export default function ComplexTable() {
   const renderCell = useCallback((item, columnKey) => {
-    const cellValue = item[columnKey];
 
     switch (columnKey) {
       case "name":
