@@ -12,6 +12,7 @@ import PieCharts from "./PieCharts";
 import TasksList from "./TasksList";
 import WeeklyRevenue from "./WeeklyRevenue";
 import WeeklySummary from "./WeeklySummary";
+import TeamMembers from "./TeamMembers";
 
 const dashboardStats = [
   {
@@ -81,6 +82,7 @@ export default function Dashboard() {
         </div>
         <div className="grid lg:grid-cols-2 gap-5">
           <BusinessDesign />
+          <TeamMembers />
         </div>
       </div>
     </>
