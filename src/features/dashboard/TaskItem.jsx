@@ -23,7 +23,7 @@ export default function TaskItem(props) {
       <Checkbox
         classNames={{
           base: cn(
-            "inline-flex max-w-full w-full bg-content1 m-0 ",
+            "inline-flex max-w-full w-full  m-0 ",
             "items-center justify-start p-0",
             "cursor-pointer rounded-lg",
           ),

@@ -1,6 +1,13 @@
+import { Avatar, AvatarGroup, Button } from "@heroui/react";
 import { MdSlowMotionVideo } from "react-icons/md";
+import { RiTimerLine } from "react-icons/ri";
 import { TbFlameFilled } from "react-icons/tb";
-// import { RiTimerLine } from "react-icons/tb";
+
+const members = [
+  { id: 1, img: "/imgs/Avatar1.png", name: "user 1" },
+  { id: 1, img: "/imgs/Avatar2.png", name: "user 2" },
+  { id: 1, img: "/imgs/Avatar3.png", name: "user 3" },
+];
 
 export default function BusinessDesign() {
   return (
@@ -22,13 +29,23 @@ export default function BusinessDesign() {
       </p>
       <div className="flex items-center gap-5 text-[#2B3674] text-xs">
         <span className="flex items-center gap-2">
-          {/* <RiTimerLine className="text-green-400" /> */}
+          <RiTimerLine className="text-green-400" />
           85 mins
         </span>
         <span className="flex items-center gap-2">
           <MdSlowMotionVideo className="text-red-400 text-lg" />
           video format
         </span>
+      </div>
+      <div className="flex items-center justify-between gap-4">
+        <AvatarGroup max={2}>
+          {members?.map((member) => (
+            <Avatar src={member.img} size="sm" />
+          ))}
+        </AvatarGroup>
+        <Button className="capitalize bg-primary rounded-xl px-6 text-white">
+          get started
+        </Button>
       </div>
     </div>
   );
