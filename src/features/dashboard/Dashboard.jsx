@@ -13,6 +13,7 @@ import TasksList from "./TasksList";
 import WeeklyRevenue from "./WeeklyRevenue";
 import WeeklySummary from "./WeeklySummary";
 import TeamMembers from "./TeamMembers";
+import Cards from "./Cards";
 
 const dashboardStats = [
   {
@@ -83,6 +84,9 @@ export default function Dashboard() {
         <div className="grid lg:grid-cols-2 gap-5">
           <BusinessDesign />
           <TeamMembers />
+        </div>
+        <div className="grid lg:grid-cols-2 gap-5">
+          <Cards/>
         </div>
       </div>
     </>
