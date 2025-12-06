@@ -3,7 +3,7 @@ import Creators from "./Creators";
 import History from "./History";
 import MarketPlaceItems from "./MarketPlaceItems";
 
-let trendignItems = [
+const trendignItems = [
   {
     id: 1,
     title: "abstract colors",
@@ -26,7 +26,7 @@ let trendignItems = [
     bid: 0.56,
   },
 ];
-let recentlyItems = [
+const recentlyItems = [
   {
     id: 1,
     title: "swipe circles",
@@ -50,6 +50,9 @@ let recentlyItems = [
   },
 ];
 
+
+const allItems=[...trendignItems,...recentlyItems];
+
 export default function MarketPlace() {
   return (
     <div className="grid lg:grid-cols-7 grid-cols-1 lg:gap-x-5 gap-y-5 lg:gap-y-0">
@@ -58,9 +61,9 @@ export default function MarketPlace() {
         <MarketPlaceItems title="Trending NFTs" items={trendignItems} />
         <MarketPlaceItems title="Recently added" items={recentlyItems} />
       </div>
-      <div className="lg:col-span-2 flex flex-col sapce-y-3">
+      <div className="lg:col-span-2 flex flex-col space-y-5">
         <Creators />
-        <History />
+        <History items={allItems}/>
       </div>
     </div>
   );
