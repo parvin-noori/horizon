@@ -14,6 +14,7 @@ import WeeklyRevenue from "./WeeklyRevenue";
 import WeeklySummary from "./WeeklySummary";
 import TeamMembers from "./TeamMembers";
 import Cards from "./Cards";
+import Ads from "./Ads";
 
 const dashboardStats = [
   {
@@ -87,6 +88,7 @@ export default function Dashboard() {
         </div>
         <div className="grid lg:grid-cols-2 gap-5">
           <Cards/>
+          <Ads/>
         </div>
       </div>
     </>
