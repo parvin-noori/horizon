@@ -13,7 +13,7 @@ export default function GeneralInfo(props) {
         give others a hand. we get our heart broken by people we love, even that
         we them all...
       </p>
-      <ul className="grid grid-cols-2 mt-5 gap-5">
+      <ul className="grid xl:grid-cols-2 lg:grid-cols-1 sm:grid-cols-2 mt-5 gap-5">
         {entries.map(([key, value]) => (
           <li className="capitalize shadow-md dark:bg-white/5 dark:shadow-none p-5 flex flex-col rounded-lg">
             <span className="text-slate-400 text-sm">{key}</span>
