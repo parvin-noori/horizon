@@ -6,7 +6,7 @@ import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/login/Login";
 import MarketPlace from "./features/MarketPlace/MarketPlace";
 import Profile from "./pages/main/Profile";
-import Tables from "./pages/main/Tables";
+import Tables from "./features/tables/Tables";
 
 export const router = createBrowserRouter([
   {

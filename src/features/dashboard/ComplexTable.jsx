@@ -12,7 +12,7 @@ import { FcApproval } from "react-icons/fc";
 import { MdError } from "react-icons/md";
 import { RxCrossCircled } from "react-icons/rx";
 
-const rows = [
+ const rows = [
   {
     key: "1",
     name: "horizon UI pro",

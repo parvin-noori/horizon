@@ -1,0 +1,76 @@
+import {
+  Progress,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from "@heroui/react";
+import { useCallback } from "react";
+import { DiAndroid } from "react-icons/di";
+import { FaApple } from "react-icons/fa";
+import { IoLogoWindows } from "react-icons/io5";
+import { devTableColumns, devTableRows } from "./data";
+
+export default function DevTable() {
+  const systemIcon = {
+    ios: <FaApple />,
+    android: <DiAndroid />,
+    windows: <IoLogoWindows />,
+  };
+
+  const renderCell = useCallback((item, columnKey) => {
+    switch (columnKey) {
+      case "name":
+        return <span className="capitalize">{item.name}</span>;
+      case "systems":
+        return (
+          <div className="flex items-center gap-2">
+            {item.systems.split(",").map((item) => (
+              <span key={item.key} className="text-slate-300">
+                {systemIcon[item]}
+              </span>
+            ))}
+          </div>
+        );
+      case "date":
+        return <span>{item.date}</span>;
+      case "progress":
+        return (
+          <div className="flex items-center gap-2">
+            <span>{item.progress}%</span>
+            <Progress size="sm" value={item.progress} />
+          </div>
+        );
+    }
+  });
+
+  return (
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
+      <span className="text-2xl text-[#2B3674] dark:text-white text-bold capitalize">
+        development table
+      </span>
+      <div className="overflow-x-auto">
+        <Table removeWrapper>
+          <TableHeader columns={devTableColumns}>
+            {(column) => (
+              <TableColumn key={column.key}>{column.label}</TableColumn>
+            )}
+          </TableHeader>
+          <TableBody items={devTableRows}>
+            {(item) => (
+              <TableRow key={item.key}>
+                {(columnKey) => (
+                  <TableCell className="capitalize">
+                    {renderCell(item, columnKey)}
+                  </TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+  );
+}
