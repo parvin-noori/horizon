@@ -51,8 +51,8 @@ export default function WeeklySummary() {
           <span>this month</span>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-5">
-        <div className="col-span-1 flex flex-col space-y-1">
+      <div className="grid md:grid-cols-4 gap-5">
+        <div className="md:col-span-1 flex flex-col space-y-1">
           <span className="text-3xl text-[#2B3674] dark:text-white text-bold">$37.5k</span>
           <p className="capitalize text-slate-400  text-sm flex items-center gap-3">
             total spent{" "}
@@ -65,7 +65,7 @@ export default function WeeklySummary() {
             <SiTicktick /> on track
           </p>
         </div>
-        <div className="col-span-3">
+        <div className="md:col-span-3">
           <LineChart
             style={{
               width: "100%",

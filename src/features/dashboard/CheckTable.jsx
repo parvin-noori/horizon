@@ -75,8 +75,6 @@ export default function CheckTable() {
 
       <Table
         // color="transparent"
-        removeWrapper
-        aria-label="Controlled table example with dynamic content"
         selectedKeys={selectedKeys}
         selectionMode="multiple"
         onSelectionChange={setSelectedKeys}

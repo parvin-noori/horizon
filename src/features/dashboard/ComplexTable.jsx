@@ -64,7 +64,6 @@ const columns = [
 
 export default function ComplexTable() {
   const renderCell = useCallback((item, columnKey) => {
-
     switch (columnKey) {
       case "name":
         return <span className="capitalize">{item.name}</span>;
@@ -84,7 +83,7 @@ export default function ComplexTable() {
   const statusIcon = {
     approved: <FcApproval />,
     disable: <RxCrossCircled className="text-red-500" />,
-    error: <MdError className="text-yellow-500"/>,
+    error: <MdError className="text-yellow-500" />,
   };
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
@@ -93,8 +92,9 @@ export default function ComplexTable() {
       </span>
 
       <Table
+        isCompact
         // color="transparent"
-        removeWrapper
+        // removeWrapper
         aria-label="Controlled table example with dynamic content"
       >
         <TableHeader columns={columns}>

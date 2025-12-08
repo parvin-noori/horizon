@@ -69,7 +69,7 @@ export default function Dashboard() {
   return (
     <>
       <DashboardStats items={dashboardStats} />
-      <div className="grid xl:grid-cols-2 gap-5">
+      <div className="grid xl:grid-cols-2 grid-cols-1 gap-5">
         <WeeklySummary />
         <WeeklyRevenue />
         <CheckTable />
