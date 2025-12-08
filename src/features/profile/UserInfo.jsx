@@ -8,7 +8,7 @@ export default function UserInfo(props) {
   return (
     <div className="bg-white dark:bg-secondary p-5 rounded-xl space-y-15">
       <div className="relative">
-        <Image src={banner} alt="banner" />
+        <Image src={banner} alt="banner" width="100%"/>
         <Avatar
           isBordered
           color="white"

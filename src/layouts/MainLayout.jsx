@@ -71,7 +71,7 @@ export default function MainLayout() {
     };
   }, [collapsed]);
   return (
-    <div className="bg-secondary dark:bg-background h-full flex lg:items-stretch relative ">
+    <div className="bg-secondary dark:bg-background text-[#2B3674] dark:text-white h-full flex lg:items-stretch relative ">
       {/* sidebar */}
       <div
         className={`bg-black/70 fixed  inset-0 z-20 ${
