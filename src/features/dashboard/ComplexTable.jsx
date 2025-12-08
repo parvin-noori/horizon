@@ -90,30 +90,31 @@ export default function ComplexTable() {
       <span className="text-2xl text-[#2B3674] dark:text-white text-bold capitalize">
         complex table
       </span>
-
-      <Table
-        isCompact
-        // color="transparent"
-        // removeWrapper
-        aria-label="Controlled table example with dynamic content"
-      >
-        <TableHeader columns={columns}>
-          {(column) => (
-            <TableColumn key={column.key}>{column.label}</TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={rows}>
-          {(item) => (
-            <TableRow key={item.key}>
-              {(columnKey) => (
-                <TableCell className="capitalize">
-                  {renderCell(item, columnKey)}
-                </TableCell>
-              )}
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+      <div className="overflow-x-auto">
+        <Table
+          isCompact
+          // color="transparent"
+          removeWrapper
+          aria-label="Controlled table example with dynamic content"
+        >
+          <TableHeader columns={columns}>
+            {(column) => (
+              <TableColumn key={column.key}>{column.label}</TableColumn>
+            )}
+          </TableHeader>
+          <TableBody items={rows}>
+            {(item) => (
+              <TableRow key={item.key}>
+                {(columnKey) => (
+                  <TableCell className="capitalize">
+                    {renderCell(item, columnKey)}
+                  </TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }

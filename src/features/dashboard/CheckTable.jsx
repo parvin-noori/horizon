@@ -72,28 +72,30 @@ export default function CheckTable() {
       <span className="text-2xl text-[#2B3674] dark:text-white text-bold capitalize">
         check table
       </span>
-
-      <Table
-        // color="transparent"
-        selectedKeys={selectedKeys}
-        selectionMode="multiple"
-        onSelectionChange={setSelectedKeys}
-      >
-        <TableHeader columns={columns}>
-          {(column) => (
-            <TableColumn key={column.key}>{column.label}</TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={rows}>
-          {(item) => (
-            <TableRow key={item.key}>
-              {(columnKey) => (
-                <TableCell>{getKeyValue(item, columnKey)}</TableCell>
-              )}
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+      <div className="overflow-x-auto">
+        <Table
+          // color="transparent"
+          removeWrapper
+          selectedKeys={selectedKeys}
+          selectionMode="multiple"
+          onSelectionChange={setSelectedKeys}
+        >
+          <TableHeader columns={columns}>
+            {(column) => (
+              <TableColumn key={column.key}>{column.label}</TableColumn>
+            )}
+          </TableHeader>
+          <TableBody items={rows}>
+            {(item) => (
+              <TableRow key={item.key}>
+                {(columnKey) => (
+                  <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }
