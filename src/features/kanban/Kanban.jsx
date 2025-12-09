@@ -1,22 +1,19 @@
-import { Button } from "@heroui/react";
+import { DndContext } from "@dnd-kit/core";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { arrayMove, SortableContext } from "@dnd-kit/sortable";
+import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import {
-  KanbanBoard,
-  KanbanCards,
-  KanbanHeader,
-  KanbanProvider,
-} from "../../components/ui/shadcn-io/kanban";
-import { addKanban } from "./kanbanSlice";
-
-import { useState } from "react";
 import KanbanItem from "./KanbanItem";
+import { addKanban } from "./kanbanSlice";
+import { Button } from "@heroui/react";
 
 export default function Kanban() {
   const [editngId, setEditngId] = useState(false);
   const kanbanItems = useSelector((state) => state.kanban.items);
   const dispatch = useDispatch();
+  const [items, setItems] = useState(kanbanItems);
 
   const columns = [
     { id: 1, name: "backlog", color: "#6B7280" },
@@ -37,47 +34,60 @@ export default function Kanban() {
     );
   }
 
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      setItems((items) => {
+        const oldIndex = items.findIndex((item) => item.id === active.id);
+        const newIndex = items.findIndex((item) => item.id === over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
+
   return (
     <div className="kanban">
-      <KanbanProvider columns={columns} data={kanbanItems}>
-        {(column) => (
-          <KanbanBoard
-            className="bg-white shadow-none border-0 p-2 dark:bg-secondary"
-            id={column.id}
-            key={column.id}
-            // onDataChange={setFeatures}
-          >
-            <KanbanHeader className="border-0">
-              <div className="flex items-center justify-between">
-                <span className="capitalize text-xl  font-semibold">
-                  {column.name}
-                </span>
-                <Button
-                  type="button"
-                  onPress={() => handleAdd(column.id)}
-                  isOnlyIcon
-                  variant="light"
-                  className="bg-secondary text-primary dark:text-white dark:bg-white/5"
-                >
-                  <FiPlus />
-                </Button>
-                {/* {console.log(features)} */}
+      <DndContext
+        onDragEnd={handleDragEnd}
+        modifiers={[restrictToVerticalAxis]}
+      >
+        <div className="grid grid-cols-3 gap-5 text-[#2B3674] dark:text-white">
+          {columns.map((col) => (
+            <SortableContext
+              key={col.id}
+              items={items.filter((i) => i.column === col.id).map((i) => i.id)}
+            >
+              <div className="bg-white rounded-xl p-5 space-y-10 flex flex-col">
+                <div className="flex items-center justify-between">
+                  <span className="capitalize text-xl font-semibold">{col.name}</span>
+                  <Button
+                    type="button"
+                    onPress={() => handleAdd(col.id)}
+                    isOnlyIcon
+                    variant="light"
+                    className="bg-secondary text-primary dark:text-white dark:bg-white/5"
+                  >
+                    <FiPlus />
+                  </Button>
+                </div>
+                <ul className="space-y-5">
+                  {items
+                    .filter((item) => item.column === col.id)
+                    .map((item) => (
+                      <KanbanItem
+                        key={item.id}
+                        feature={item}
+                        isEditng={editngId === item.id}
+                        setEditngId={setEditngId}
+                      />
+                    ))}
+                </ul>
               </div>
-            </KanbanHeader>
-            <KanbanCards id={column.id} className="space-y-2">
-              {(feature) => (
-                <KanbanItem
-                  key={feature.id}
-                  feature={feature}
-                  column={column}
-                  isEditng={editngId === feature.id}
-                  setEditngId={setEditngId}
-                />
-              )}
-            </KanbanCards>
-          </KanbanBoard>
-        )}
-      </KanbanProvider>
+            </SortableContext>
+          ))}
+        </div>
+      </DndContext>
     </div>
   );
 }

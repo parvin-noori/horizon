@@ -16,7 +16,7 @@ export default function Login() {
         </Link>
         <ThemeButton
           className={
-            " hover:bg-primary lg:hidden hover:text-white transition-color duration-300 cursor-pointer  text-primary size-10 bg-secondary dark:bg-white/5 dark:text-white backdrop-blur-md grid place-content-center rounded-full"
+            " hover:bg-primary lg:hidden hover:text-white transition-color duration-300 cursor-pointer  text-primary size-10 bg-secondary dark:bg-secondary dark:text-white backdrop-blur-md grid place-content-center rounded-full"
           }
         />
       </div>

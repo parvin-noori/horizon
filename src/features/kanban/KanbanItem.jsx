@@ -1,3 +1,5 @@
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import {
   Avatar,
   AvatarGroup,
@@ -12,18 +14,25 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { KanbanCard } from "../../components/ui/shadcn-io/kanban";
 import { editKanban } from "./kanbanSlice";
 import Avatar1 from "/imgs/Avatar1.png";
 import Avatar2 from "/imgs/Avatar2.png";
 import Avatar3 from "/imgs/Avatar3.png";
 
 export default function KanbanItem(props) {
-  const { feature, column, isEditng, setEditngId } = props;
+  const { feature, isEditng, setEditngId } = props;
   const [title, setTitle] = useState(feature.title);
+  const { id } = feature;
   const [status, setStatus] = useState(feature.status);
   const [desc, setDesc] = useState(feature.desc);
   const inputRef = useRef(null);
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
   const dispatch = useDispatch();
   const background = getButtonBackground(feature.status);
 
@@ -60,16 +69,18 @@ export default function KanbanItem(props) {
   }, [isEditng]);
 
   const handleSaveEdit = (id) => {
+    console.log(id)
     setEditngId(null);
     dispatch(editKanban({ id: id, title: title, desc: desc, status: status }));
   };
   return (
-    <KanbanCard
-      className="shadow-lg border-0 bg-white dark:bg-white/5"
-      column={column.name}
-      id={feature.id}
-      key={feature.id}
-      name={feature.title}
+    <div
+      className="shadow-lg border-0 bg-white dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col"
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      aria-label={`Drag handle for ${title}`}
     >
       <div className="flex items-center justify-between gap-x-5">
         {isEditng ? (
@@ -82,11 +93,11 @@ export default function KanbanItem(props) {
           />
         ) : (
           <>
-            <span className="capitalize   line-clamp-1 text-lg">
+            <span className="capitalize line-clamp-1 text-lg ">
               {feature.title}
             </span>
             <Button
-              onPress={() => setEditngId(feature.id)}
+              onPress={() => setEditngId(id)}
               isOnlyIcon
               variant="light"
               className="p-0 !shrink-0 min-w-auto !size-8 rounded-lg text-slate-400"
@@ -106,7 +117,7 @@ export default function KanbanItem(props) {
             // isClearable
           />
         ) : (
-          <p>{feature.desc}</p>
+          <p className="text-sm">{feature.desc}</p>
         )}
       </div>
 
@@ -122,7 +133,7 @@ export default function KanbanItem(props) {
           >
             {(status) => <SelectItem>{status.label}</SelectItem>}
           </Select>
-          <Button color="primary" onPress={() => handleSaveEdit(feature.id)}>
+          <Button color="primary" onPress={() => handleSaveEdit(id)}>
             save
           </Button>
         </>
@@ -138,6 +149,6 @@ export default function KanbanItem(props) {
           </Chip>
         </div>
       )}
-    </KanbanCard>
+    </div>
   );
 }
