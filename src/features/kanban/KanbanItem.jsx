@@ -82,7 +82,7 @@ export default function KanbanItem(props) {
           />
         ) : (
           <>
-            <span className="capitalize text-[#2B3674] dark:text-white  line-clamp-1 text-lg">
+            <span className="capitalize   line-clamp-1 text-lg">
               {feature.title}
             </span>
             <Button

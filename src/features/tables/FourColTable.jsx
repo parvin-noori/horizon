@@ -17,9 +17,7 @@ export default function FourColTable() {
 
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
-      <span className="text-2xl text-[#2B3674] dark:text-white text-bold capitalize">
-        4-Column table
-      </span>
+      <span className="text-2xl  text-bold capitalize">4-Column table</span>
       <div className="overflow-x-auto">
         <Table removeWrapper>
           <TableHeader columns={fourColTableColumns}>

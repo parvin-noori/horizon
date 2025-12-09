@@ -49,7 +49,7 @@ export default function Kanban() {
           >
             <KanbanHeader className="border-0">
               <div className="flex items-center justify-between">
-                <span className="capitalize text-xl text-[#2B3674] dark:text-white font-semibold">
+                <span className="capitalize text-xl  font-semibold">
                   {column.name}
                 </span>
                 <Button

@@ -53,7 +53,7 @@ export default function WeeklySummary() {
       </div>
       <div className="grid md:grid-cols-4 gap-5">
         <div className="md:col-span-1 flex flex-col space-y-1">
-          <span className="text-3xl text-[#2B3674] dark:text-white text-bold">$37.5k</span>
+          <span className="text-3xl  text-bold">$37.5k</span>
           <p className="capitalize text-slate-400  text-sm flex items-center gap-3">
             total spent{" "}
             <span className="text-green-500 capitalize flex items-center gap-2">
@@ -74,7 +74,7 @@ export default function WeeklySummary() {
             responsive
             data={data}
           >
-            <XAxis dataKey="name"  axisLine={false} />
+            <XAxis dataKey="name" axisLine={false} />
             <Line
               type="monotone"
               dataKey="pv"

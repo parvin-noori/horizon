@@ -12,7 +12,7 @@ import { FcApproval } from "react-icons/fc";
 import { MdError } from "react-icons/md";
 import { RxCrossCircled } from "react-icons/rx";
 
- const rows = [
+const rows = [
   {
     key: "1",
     name: "horizon UI pro",
@@ -87,9 +87,7 @@ export default function ComplexTable() {
   };
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
-      <span className="text-2xl text-[#2B3674] dark:text-white text-bold capitalize">
-        complex table
-      </span>
+      <span className="text-2xl  text-bold capitalize">complex table</span>
       <div className="overflow-x-auto">
         <Table
           isCompact

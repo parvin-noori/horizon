@@ -8,16 +8,14 @@ export default function LoginForm() {
     <div className="gap-y-10 flex flex-col md:grow-0 grow">
       <div className="gap-y-10 flex flex-col">
         <div className="flex flex-col gap-y-3">
-          <span className="lg:text-5xl text-4xl font-semibold text-[#2B3674] dark:text-white">
-            sign in
-          </span>
+          <span className="lg:text-5xl text-4xl font-semibold ">sign in</span>
           <p className="text-gray-400">
             Enter your email and password to sign in!
           </p>
         </div>
         <Button
           className="bg-blue-50 w-full capitalize text-blue-950 dark:bg-white/10 dark:text-white"
-          startContent={<FcGoogle/>}
+          startContent={<FcGoogle />}
           size="lg"
         >
           sign in with Google

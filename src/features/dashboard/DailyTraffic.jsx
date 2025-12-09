@@ -42,10 +42,7 @@ export default function DailyTraffic() {
         <div className="flex flex-col gap-2">
           <span>daily traffic</span>
           <div className="flex items-center gap-1">
-            <span className="text-3xl text-[#2B3674] dark:text-white text-bold">
-              2.579
-            </span>{" "}
-            visitors
+            <span className="text-3xl  text-bold">2.579</span> visitors
           </div>
         </div>
         <span className="text-green-500 capitalize flex items-center gap-2">
@@ -73,7 +70,11 @@ export default function DailyTraffic() {
         <defs>
           <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#8884d8" stopOpacity={1} />
-            <stop offset="100%" stopColor="white" stopOpacity={whiteStopOpacity} />
+            <stop
+              offset="100%"
+              stopColor="white"
+              stopOpacity={whiteStopOpacity}
+            />
           </linearGradient>
         </defs>
         <XAxis dataKey="name" axisLine={false} />

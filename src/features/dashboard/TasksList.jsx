@@ -65,9 +65,7 @@ export default function TasksList() {
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="flex items-center gap-2">
         <Checkbox onChange={toggleSelection} checked={isAllSelected}>
-          <span className="text-[#2B3674] dark:text-white capitalize font-bold">
-            tasks
-          </span>
+          <span className=" capitalize font-bold">tasks</span>
         </Checkbox>
       </div>
 

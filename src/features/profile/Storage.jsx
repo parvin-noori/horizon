@@ -8,9 +8,7 @@ export default function Storage() {
         <span className="bg-secondary dark:bg-white/5 size-20 rounded-full items-center flex justify-center">
           <BsCloudCheck className="text-primary text-4xl" />
         </span>
-        <span className="text-[#2B3674] dark:text-white text-xl font-semibold">
-          Your storage
-        </span>
+        <span className=" text-xl font-semibold">Your storage</span>
         <p className="text-slate-400 text-sm">
           supervise your device space in the easiest way
         </p>
@@ -25,7 +23,7 @@ export default function Storage() {
         value={25.6}
         maxValue={50}
         color="primary"
-        showValueLabel={false} 
+        showValueLabel={false}
       />
     </div>
   );

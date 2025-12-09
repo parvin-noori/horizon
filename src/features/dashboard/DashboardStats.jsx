@@ -5,7 +5,11 @@ export default function DashboardStats(props) {
   return (
     <div className="grid grid-flow-col overflow-x-auto auto-cols-[183px] gap-3 w-full max-w-full whitespace-nowrap">
       {items.map((item) => (
-        <Card shadow="none" key={item.id} className="shadow-md p-3 mb-2 dark:bg-secondary">
+        <Card
+          shadow="none"
+          key={item.id}
+          className="shadow-md p-3 mb-2 dark:bg-secondary"
+        >
           <div className="flex items-center gap-3 h-full">
             {item.icon && (
               <div className="bg-secondary dark:bg-white/5 text-primary size-10 flex items-center justify-center rounded-full text-xl">
@@ -16,7 +20,7 @@ export default function DashboardStats(props) {
               <span className="text-slate-400 text-sm capitalize">
                 {item.title}
               </span>
-              <span className="text-[#2B3674] dark:text-white font-semibold">{item.value}</span>
+              <span className=" font-semibold">{item.value}</span>
               {item.change != null && item.change !== 0 && (
                 <p className="text-slate-400 text-sm mt-1">
                   <span

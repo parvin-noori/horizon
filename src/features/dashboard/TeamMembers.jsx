@@ -1,4 +1,4 @@
-import { Avatar,Button } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import { IoMdMore } from "react-icons/io";
 
 const teamMembers = [
@@ -22,9 +22,7 @@ const teamMembers = [
 export default function TeamMembers() {
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
-      <span className="text-lg text-[#2B3674] dark:text-white text-bold capitalize">
-        team members
-      </span>
+      <span className="text-lg  text-bold capitalize">team members</span>
       <ul className="flex flex-col space-y-3">
         {teamMembers.map((member, index) => (
           <li
@@ -33,7 +31,7 @@ export default function TeamMembers() {
           >
             <Avatar src={member.avatar} alt={member.name} />
             <div>
-              <span className="text-sm font-semibold text-[#2B3674] dark:text-white capitalize">
+              <span className="text-sm font-semibold  capitalize">
                 {member.name}
               </span>
               <p className="text-xs text-slate-400 dark:text-gray-400 capitalize">

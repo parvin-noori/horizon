@@ -56,14 +56,12 @@ const notifItems = [
 export default function Notifications() {
   return (
     <div className="bg-white dark:bg-secondary p-5 rounded-xl flex flex-col space-y-6">
-      <span className="text-[#2B3674] dark:text-white text-xl font-semibold capitalize">
-        notifications
-      </span>
+      <span className=" text-xl font-semibold capitalize">notifications</span>
       <ul className="space-y-3">
         {notifItems.map((item, index) => (
           <li key={index}>
             <Switch size="sm" defaultSelected={item.status === "enabled"}>
-              {item.title}
+              <span className="text-[#2B3674] dark:text-white">{item.title}</span>
             </Switch>
           </li>
         ))}

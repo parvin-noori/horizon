@@ -23,7 +23,7 @@ export default function Ads() {
           <FaRegClock />
         </Chip>
         <Image
-         height={50}
+          height={50}
           width={50}
           radius="full"
           src={StarBucksLogo}
@@ -31,9 +31,7 @@ export default function Ads() {
         />
       </div>
       <div className="flex flex-col items-start gap-1">
-        <b className="capitalize text-[#2B3674] dark:text-white text-2xl">
-          starbucks
-        </b>
+        <b className="capitalize text-2xl">starbucks</b>
         <p className="flex items-center gap-x-2 text-slate-400">
           <IoFastFoodSharp />
           10% cashback & off

@@ -18,17 +18,15 @@ export default function BusinessDesign() {
         </span>
         <div className="flex flex-col capitalize font-bold">
           <span className="text-xs text-slate-400">business design</span>
-          <span className="text-[#2B3674] text-sm dark:text-white ">
-            new lession is available
-          </span>
+          <span className=" text-sm  ">new lession is available</span>
         </div>
       </div>
 
-      <p className="text-[#2B3674] dark:text-white text-lg  px-6 grow">
+      <p className=" text-lg  px-6 grow">
         what do you need to know to create better products?
       </p>
       <div className="flex flex-col bg-secondary dark:bg-white/5   px-6">
-        <div className="flex items-center gap-5 text-[#2B3674] dark:text-white text-xs py-5">
+        <div className="flex items-center gap-5  text-xs py-5">
           <span className="flex items-center gap-2">
             <RiTimerLine className="text-green-400" />
             85 mins

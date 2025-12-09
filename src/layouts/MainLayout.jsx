@@ -7,7 +7,7 @@ import {
   Listbox,
   ListboxItem,
 } from "@heroui/react";
-import { useEffect, useState,useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { LuBell } from "react-icons/lu";
@@ -71,7 +71,7 @@ export default function MainLayout() {
     };
   }, [collapsed]);
   return (
-    <div className="bg-secondary dark:bg-background text-[#2B3674] dark:text-white h-full flex lg:items-stretch relative ">
+    <div className="bg-secondary dark:bg-background  h-full flex lg:items-stretch relative ">
       {/* sidebar */}
       <div
         className={`bg-black/70 fixed  inset-0 z-20 ${
@@ -85,7 +85,7 @@ export default function MainLayout() {
         }  lg:translate-x-0 transition-transform duration-300`}
       >
         <div className="sider-header p-12 border-b border-secondary dark:border-slate-800">
-          <span className="text-[#2B3674] dark:text-white uppercase text-2xl">
+          <span className=" uppercase text-2xl">
             <b>horizon </b>
             free
           </span>
@@ -104,7 +104,7 @@ export default function MainLayout() {
                 textValue={item.name}
                 className="px-0"
               >
-                <NavLink to={item.to} onClick={()=>setCollapsed(false)}>
+                <NavLink to={item.to} onClick={() => setCollapsed(false)}>
                   {({ isActive }) => (
                     <div
                       className={`flex items-center gap-x-5 py-1.5 px-5 group ${
@@ -125,7 +125,7 @@ export default function MainLayout() {
                       <span
                         className={`transition-all duration-200 ${
                           isActive
-                            ? "text-[#2B3674] dark:text-white"
+                            ? ""
                             : "text-slate-400 dark:text-white group-hover:text-primary"
                         }`}
                       >

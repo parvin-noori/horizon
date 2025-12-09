@@ -1,9 +1,9 @@
 export default function GeneralInfo(props) {
   const { info } = props;
-  const entries = Object.entries(info); 
+  const entries = Object.entries(info);
   return (
     <div className="bg-white dark:bg-secondary p-5 rounded-xl flex flex-col space-y-4">
-      <span className="text-[#2B3674] dark:text-white text-xl font-semibold capitalize">
+      <span className=" text-xl font-semibold capitalize">
         general information
       </span>
       <p class="text-slate-400 text-sm">
@@ -17,7 +17,8 @@ export default function GeneralInfo(props) {
         {entries.map(([key, value]) => (
           <li className="capitalize shadow-md dark:bg-white/5 dark:shadow-none p-5 flex flex-col rounded-lg">
             <span className="text-slate-400 text-sm">{key}</span>
-            {value}</li>
+            {value}
+          </li>
         ))}
       </ul>
     </div>

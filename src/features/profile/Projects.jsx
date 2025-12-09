@@ -1,14 +1,11 @@
-import { Avatar, Button } from "@heroui/react";
+import { Avatar, Button, Link } from "@heroui/react";
 import { FaPen } from "react-icons/fa6";
-import { Link } from "react-router";
 
 export default function Projects(props) {
   const { projects } = props;
   return (
     <div className="bg-white dark:bg-secondary p-5 rounded-xl flex flex-col space-y-4">
-      <span className="text-[#2B3674] dark:text-white text-xl font-semibold capitalize">
-        all projects{" "}
-      </span>
+      <span className=" text-xl font-semibold capitalize">all projects </span>
       <p class="text-slate-400 text-sm">
         here you can find more details about your projects. keep you user
         engaged by providing meaningful inforamtion
@@ -26,20 +23,25 @@ export default function Projects(props) {
               alt={project.name}
             />
             <div className="flex flex-col gap-3">
-              <span className="text-sm font-semibold text-[#2B3674] dark:text-white capitalize line-clamp-1">
+              <span className="text-sm font-semibold  capitalize line-clamp-1">
                 {project.name}
               </span>
               <p className="text-xs text-slate-400 dark:text-gray-400 capitalize">
                 project #{index + 1} .{" "}
                 <Link to="#">
-                  <span className="underline text-primary">
+                  <Link
+                    color="primary"
+                    underline="always"
+                    size="sm"
+                    className="cursor-pointer"
+                  >
                     See project detail
-                  </span>
+                  </Link>
                 </Link>
               </p>
             </div>
             <Button className="ms-auto !p-0 !min-w-fit" variant="fade">
-              <FaPen className="text-slate-400"/>
+              <FaPen className="text-slate-400" />
             </Button>
           </li>
         ))}

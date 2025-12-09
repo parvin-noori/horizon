@@ -19,9 +19,7 @@ export default function PieCharts() {
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="flex items-center justify-between">
-        <span className="text-[#2B3674] dark:text-white capitalize font-bold">
-          your pie chart
-        </span>
+        <span className=" capitalize font-bold">your pie chart</span>
         <Select
           size="sm"
           variant="underlined"
@@ -38,7 +36,7 @@ export default function PieCharts() {
           width: "100%",
           maxWidth: "500px",
           maxHeight: "80vh",
-          margin:"0 auto",
+          margin: "0 auto",
           aspectRatio: 1,
         }}
         responsive

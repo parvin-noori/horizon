@@ -59,7 +59,7 @@ const data = [
 export default function WeeklyRevenue() {
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
-      <span className="text-2xl text-[#2B3674] dark:text-white text-bold capitalize">weekly revenue</span>
+      <span className="text-2xl  text-bold capitalize">weekly revenue</span>
       <BarChart
         barCategoryGap={10}
         style={{
@@ -83,9 +83,9 @@ export default function WeeklyRevenue() {
         {/* <YAxis width="auto" /> */}
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" stackId="a" fill="#8884d8"  barSize={15}/>
+        <Bar dataKey="pv" stackId="a" fill="#8884d8" barSize={15} />
         <Bar dataKey="uv" stackId="a" fill="#39B8FF" />
-        <Bar dataKey="amt" stackId="a" fill="#dddddd"  radius={[12, 12, 0, 0]}/>
+        <Bar dataKey="amt" stackId="a" fill="#dddddd" radius={[12, 12, 0, 0]} />
       </BarChart>
     </div>
   );
