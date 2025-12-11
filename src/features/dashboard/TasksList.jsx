@@ -1,4 +1,10 @@
-import { DndContext } from "@dnd-kit/core";
+import {
+  DndContext,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { Checkbox, CheckboxGroup } from "@heroui/react";
@@ -29,6 +35,18 @@ const tasksData = [
 ];
 export default function TasksList() {
   const [items, setItems] = useState(tasksData);
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 150,
+      tolerance: 5,
+    },
+  });
+  const mouseSensor = useSensor(MouseSensor, {
+    activationConstraint: {
+      distance: 5,
+    },
+  });
+  const sensors = useSensors(touchSensor, mouseSensor);
 
   const allTitles = items.map((task) => task.title);
   const [selected, setSelected] = useState([
@@ -70,6 +88,7 @@ export default function TasksList() {
       </div>
 
       <DndContext
+        sensors={sensors}
         onDragEnd={handleDragEnd}
         modifiers={[restrictToVerticalAxis]}
       >

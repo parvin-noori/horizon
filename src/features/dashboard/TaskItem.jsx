@@ -6,6 +6,7 @@ import { MdOutlineDragIndicator } from "react-icons/md";
 export default function TaskItem(props) {
   const { item } = props;
   const { id, title } = item;
+
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -25,9 +26,9 @@ export default function TaskItem(props) {
           base: cn(
             "inline-flex max-w-full w-full  m-0 ",
             "items-center justify-start p-0",
-            "cursor-pointer rounded-lg",
+            "cursor-pointer rounded-lg"
           ),
-        //   label: cn("w-full text-slate-400", "peer-checked:text-blue-500"),
+          //   label: cn("w-full text-slate-400", "peer-checked:text-blue-500"),
         }}
         value={title}
       >
