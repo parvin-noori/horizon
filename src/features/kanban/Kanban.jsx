@@ -13,7 +13,7 @@ import { FiPlus } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import KanbanItem from "./KanbanItem";
-import { addKanban } from "./kanbanSlice";
+import { addKanban, editKanban } from "./kanbanSlice";
 
 export default function Kanban() {
   const [editngId, setEditngId] = useState(false);
@@ -53,14 +53,34 @@ export default function Kanban() {
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
+    if (!over) return;
 
-    if (over && active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
+    const activeId = active.id;
+    const activeItem = items.find((item) => item.id === activeId);
+    const overItem = items.find((item) => item.id === over.id);
+    const newColumn = overItem?.column;
+
+    setItems((prev) => {
+      let newList = [...prev];
+
+      if (newColumn && activeItem.column !== newColumn) {
+        newList = newList.map((item) =>
+          item.id === activeId ? { ...item, column: newColumn } : item
+        );
+      }
+
+      const activeIndex = newList.findIndex((item) => item.id === activeId);
+      const overIndex = newList.findIndex((item) => item.id === over.id);
+
+      return arrayMove(newList, activeIndex, overIndex);
+    });
+    dispatch(editKanban({ id: activeId, column: newColumn }));
+
+    // setItems((items) => {
+    //   const oldIndex = items.findIndex((item) => item.id === active.id);
+    //   const newIndex = items.findIndex((item) => item.id === over.id);
+    //   return arrayMove(items, oldIndex, newIndex);
+    // });
   };
 
   return (
@@ -68,7 +88,7 @@ export default function Kanban() {
       <DndContext
         sensors={sensor}
         onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis]}
+        // modifiers={[restrictToVerticalAxis]}
       >
         <div
           className="flex lg:grid 
@@ -82,7 +102,7 @@ export default function Kanban() {
               key={col.id}
               items={items.filter((i) => i.column === col.id).map((i) => i.id)}
             >
-              <div className="bg-white lg:w-full md:w-1/2 sm:w-[70%] w-[80%] rounded-xl p-5 space-y-10 flex flex-col">
+              <div className="bg-white dark:bg-secondary lg:w-full md:w-1/2 sm:w-[70%] w-[80%] rounded-xl p-5 space-y-10 flex flex-col">
                 <div className="flex items-center justify-between">
                   <span className="capitalize text-xl font-semibold">
                     {col.name}

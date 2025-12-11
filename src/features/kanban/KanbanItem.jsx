@@ -15,7 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import { IoMdTrash } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { editKanban, removeTask } from "./kanbanSlice";
+import { editKanban, removeKanban } from "./kanbanSlice";
 import Avatar1 from "/imgs/Avatar1.png";
 import Avatar2 from "/imgs/Avatar2.png";
 import Avatar3 from "/imgs/Avatar3.png";
@@ -44,7 +44,7 @@ export default function KanbanItem(props) {
   };
 
   const handleDelete = (id) => {
-    dispatch(removeTask({ id: id }));
+    dispatch(removeKanban({ id: id }));
   };
 
   function getButtonBackground(status) {
@@ -97,7 +97,7 @@ export default function KanbanItem(props) {
             type="text"
           />
         ) : (
-          <div className="flex items-center lg:gap-x-3 gap-x-1">
+          <div className="flex items-center lg:gap-x-3 gap-x-3">
             <span className="capitalize lg:line-clamp-1 line-clamp-2 text-lg ">
               {feature.title}
             </span>
