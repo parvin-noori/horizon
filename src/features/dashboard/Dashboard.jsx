@@ -73,20 +73,20 @@ export default function Dashboard() {
         <WeeklySummary />
         <WeeklyRevenue />
         <CheckTable />
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
           <DailyTraffic />
           <PieCharts />
         </div>
         <ComplexTable />
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
           <TasksList />
           <DatePick />
         </div>
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
           <BusinessDesign />
           <TeamMembers />
         </div>
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
           <Cards/>
           <Ads/>
         </div>
