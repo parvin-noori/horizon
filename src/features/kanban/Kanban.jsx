@@ -8,7 +8,7 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { Button } from "@heroui/react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
@@ -18,17 +18,25 @@ import { addKanban } from "./kanbanSlice";
 export default function Kanban() {
   const [editngId, setEditngId] = useState(false);
   const kanbanItems = useSelector((state) => state.kanban.items);
-  const dispatch = useDispatch();
   const [items, setItems] = useState(kanbanItems);
+  const dispatch = useDispatch();
   const touchSensor = useSensor(TouchSensor);
   const mouseSensor = useSensor(MouseSensor);
   const sensor = useSensors(touchSensor, mouseSensor);
 
-  const columns = [
-    { id: 1, name: "backlog", color: "#6B7280" },
-    { id: 2, name: "In Progress", color: "#F59E0B" },
-    { id: 3, name: "Done", color: "#10B981" },
-  ];
+  // sync local items with redux changes (edit / add)
+  useEffect(() => {
+    setItems(kanbanItems);
+  }, [kanbanItems]);
+
+  const columns = useMemo(
+    () => [
+      { id: 1, name: "backlog", color: "#6B7280" },
+      { id: 2, name: "In Progress", color: "#F59E0B" },
+      { id: 3, name: "Done", color: "#10B981" },
+    ],
+    []
+  );
 
   function handleAdd(columnId) {
     const newId = uuidv4();

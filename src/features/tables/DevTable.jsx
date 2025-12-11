@@ -23,7 +23,7 @@ export default function DevTable() {
   const renderCell = useCallback((item, columnKey) => {
     switch (columnKey) {
       case "name":
-        return <span className="capitalize">{item.name}</span>;
+        return <span className="capitalize text-nowrap">{item.name}</span>;
       case "systems":
         return (
           <div className="flex items-center gap-2">

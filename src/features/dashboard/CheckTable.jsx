@@ -72,7 +72,6 @@ export default function CheckTable() {
       <span className="text-2xl  text-bold capitalize">check table</span>
       <div className="overflow-x-auto">
         <Table
-          // color="transparent"
           removeWrapper
           selectedKeys={selectedKeys}
           selectionMode="multiple"
@@ -87,7 +86,9 @@ export default function CheckTable() {
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (
-                  <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+                  <TableCell className="text-nowrap">
+                    {getKeyValue(item, columnKey)}
+                  </TableCell>
                 )}
               </TableRow>
             )}

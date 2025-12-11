@@ -13,8 +13,9 @@ import {
 } from "@heroui/react";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
+import { IoMdTrash } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { editKanban } from "./kanbanSlice";
+import { editKanban, removeTask } from "./kanbanSlice";
 import Avatar1 from "/imgs/Avatar1.png";
 import Avatar2 from "/imgs/Avatar2.png";
 import Avatar3 from "/imgs/Avatar3.png";
@@ -23,6 +24,7 @@ export default function KanbanItem(props) {
   const { feature, isEditng, setEditngId } = props;
   const [title, setTitle] = useState(feature.title);
   const { id } = feature;
+  const dispatch = useDispatch();
   const [status, setStatus] = useState(feature.status);
   const [desc, setDesc] = useState(feature.desc);
   const inputRef = useRef(null);
@@ -33,13 +35,16 @@ export default function KanbanItem(props) {
     transform: CSS.Transform.toString(transform),
     transition,
   };
-  const dispatch = useDispatch();
   const background = getButtonBackground(feature.status);
 
   const avatarMap = {
     Avatar1,
     Avatar2,
     Avatar3,
+  };
+
+  const handleDelete = (id) => {
+    dispatch(removeTask({ id: id }));
   };
 
   function getButtonBackground(status) {
@@ -69,7 +74,7 @@ export default function KanbanItem(props) {
   }, [isEditng]);
 
   const handleSaveEdit = (id) => {
-    console.log(id)
+    console.log(id);
     setEditngId(null);
     dispatch(editKanban({ id: id, title: title, desc: desc, status: status }));
   };
@@ -92,10 +97,18 @@ export default function KanbanItem(props) {
             type="text"
           />
         ) : (
-          <>
-            <span className="capitalize line-clamp-1 text-lg ">
+          <div className="flex items-center lg:gap-x-3 gap-x-1">
+            <span className="capitalize lg:line-clamp-1 line-clamp-2 text-lg ">
               {feature.title}
             </span>
+            <Button
+              onPress={() => handleDelete(id)}
+              isOnlyIcon
+              variant="light"
+              className="p-0 !shrink-0 ms-auto min-w-auto !size-8 rounded-lg text-slate-400"
+            >
+              <IoMdTrash />
+            </Button>
             <Button
               onPress={() => setEditngId(id)}
               isOnlyIcon
@@ -104,7 +117,7 @@ export default function KanbanItem(props) {
             >
               <AiOutlineEdit />
             </Button>
-          </>
+          </div>
         )}
       </div>
       <div className="flex flex-col text-slate-400 space-y-3">
@@ -117,7 +130,7 @@ export default function KanbanItem(props) {
             // isClearable
           />
         ) : (
-          <p className="text-sm">{feature.desc}</p>
+          <p className="text-sm line-clamp-5">{feature.desc}</p>
         )}
       </div>
 
@@ -140,8 +153,8 @@ export default function KanbanItem(props) {
       ) : (
         <div className="flex items-center gap-x-2 justify-between">
           <AvatarGroup>
-            {feature?.members?.map((member) => (
-              <Avatar src={avatarMap[member]} />
+            {feature?.members?.map((member, index) => (
+              <Avatar src={avatarMap[member]} key={index} />
             ))}
           </AvatarGroup>
           <Chip radius="sm" color={background} className="uppercase text-white">

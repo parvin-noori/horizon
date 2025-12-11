@@ -85,14 +85,18 @@ const kanbanSlice = createSlice({
     },
     editKanban: (state, action) => {
       let newItems = state.items.map((item) =>
-        item.id === action.payload.id
-          ? { ...item, ...action.payload }
-          : item
+        item.id === action.payload.id ? { ...item, ...action.payload } : item
+      );
+      return { ...state, items: newItems };
+    },
+    removeTask: (state, action) => {
+      let newItems = state.items.filter(
+        (item) => item.id !== action.payload.id
       );
       return { ...state, items: newItems };
     },
   },
 });
 
-export const { addKanban, editKanban } = kanbanSlice.actions;
+export const { addKanban, editKanban,removeTask } = kanbanSlice.actions;
 export default kanbanSlice.reducer;
