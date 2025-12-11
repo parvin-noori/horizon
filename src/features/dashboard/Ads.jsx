@@ -9,10 +9,11 @@ export default function Ads() {
     <div className="bg-white dark:bg-secondary rounded-2xl shadow p-5 space-y-10">
       <div className="relative">
         <Image
-          className="object-cover"
+          className="object-cover w-full"
           height={150}
-          width={300}
+          // width={300}
           radius="lg"
+          removeWrapper
           shadow="sm"
           src={StarBucks}
         />

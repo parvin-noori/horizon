@@ -23,13 +23,13 @@ export default function TeamMembers() {
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <span className="text-lg  text-bold capitalize">team members</span>
-      <ul className="flex flex-col space-y-3">
+      <ul className="flex flex-col space-y-5">
         {teamMembers.map((member, index) => (
           <li
             key={index}
-            className="flex items-center space-x-3 shadow rounded-xl px-3 py-2 dark:bg-white/5"
+            className="flex items-center space-x-3 shadow-md rounded-xl px-3 py-2 dark:bg-white/5"
           >
-            <Avatar src={member.avatar} alt={member.name} />
+            <Avatar src={member.avatar} alt={member.name} size="lg"/>
             <div>
               <span className="text-sm font-semibold  capitalize">
                 {member.name}
@@ -39,7 +39,7 @@ export default function TeamMembers() {
               </p>
             </div>
             <Button className="ms-auto !p-0 !min-w-fit" variant="fade">
-              <IoMdMore />
+              <IoMdMore className="text-xl text-slate-400"/>
             </Button>
           </li>
         ))}

@@ -46,7 +46,7 @@ export default function TasksList() {
       distance: 5,
     },
   });
-  const sensors = useSensors(touchSensor, mouseSensor);
+   const sensors = useSensors(touchSensor, mouseSensor);
 
   const allTitles = items.map((task) => task.title);
   const [selected, setSelected] = useState([

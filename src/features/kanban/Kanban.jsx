@@ -1,19 +1,28 @@
-import { DndContext } from "@dnd-kit/core";
+import {
+  DndContext,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
+import { Button } from "@heroui/react";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import KanbanItem from "./KanbanItem";
 import { addKanban } from "./kanbanSlice";
-import { Button } from "@heroui/react";
 
 export default function Kanban() {
   const [editngId, setEditngId] = useState(false);
   const kanbanItems = useSelector((state) => state.kanban.items);
   const dispatch = useDispatch();
   const [items, setItems] = useState(kanbanItems);
+  const touchSensor = useSensor(TouchSensor);
+  const mouseSensor = useSensor(MouseSensor);
+  const sensor = useSensors(touchSensor, mouseSensor);
 
   const columns = [
     { id: 1, name: "backlog", color: "#6B7280" },
@@ -49,6 +58,7 @@ export default function Kanban() {
   return (
     <div className="kanban">
       <DndContext
+        sensors={sensor}
         onDragEnd={handleDragEnd}
         modifiers={[restrictToVerticalAxis]}
       >
@@ -60,7 +70,9 @@ export default function Kanban() {
             >
               <div className="bg-white rounded-xl p-5 space-y-10 flex flex-col">
                 <div className="flex items-center justify-between">
-                  <span className="capitalize text-xl font-semibold">{col.name}</span>
+                  <span className="capitalize text-xl font-semibold">
+                    {col.name}
+                  </span>
                   <Button
                     type="button"
                     onPress={() => handleAdd(col.id)}
