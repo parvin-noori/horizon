@@ -62,13 +62,19 @@ export default function Kanban() {
         onDragEnd={handleDragEnd}
         modifiers={[restrictToVerticalAxis]}
       >
-        <div className="grid grid-cols-3 gap-5 text-[#2B3674] dark:text-white">
+        <div
+          className="flex lg:grid 
+          lg:grid-cols-3 
+          gap-5 
+          overflow-x-auto 
+          no-scrollbar text-[#2B3674] dark:text-white"
+        >
           {columns.map((col) => (
             <SortableContext
               key={col.id}
               items={items.filter((i) => i.column === col.id).map((i) => i.id)}
             >
-              <div className="bg-white rounded-xl p-5 space-y-10 flex flex-col">
+              <div className="bg-white lg:w-full md:w-1/2 sm:w-[70%] w-[80%] rounded-xl p-5 space-y-10 flex flex-col">
                 <div className="flex items-center justify-between">
                   <span className="capitalize text-xl font-semibold">
                     {col.name}

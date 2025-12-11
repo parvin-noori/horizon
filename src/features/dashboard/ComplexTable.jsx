@@ -66,7 +66,7 @@ export default function ComplexTable() {
   const renderCell = useCallback((item, columnKey) => {
     switch (columnKey) {
       case "name":
-        return <span className="capitalize">{item.name}</span>;
+        return <span className="capitalize text-nowrap">{item.name}</span>;
       case "status":
         return (
           <div className="flex items-center gap-2">
@@ -75,7 +75,7 @@ export default function ComplexTable() {
           </div>
         );
       case "date":
-        return <span>{item.date}</span>;
+        return <span className="text-nowrap">{item.date}</span>;
       case "progress":
         return <Progress size="sm" value={item.progress} />;
     }
