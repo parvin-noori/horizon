@@ -97,7 +97,7 @@ export default function KanbanItem(props) {
             type="text"
           />
         ) : (
-          <div className="flex items-center lg:gap-x-3 gap-x-3">
+          <div className="flex items-center lg:gap-x-3 gap-x-3 w-full">
             <span className="capitalize lg:line-clamp-1 line-clamp-2 text-lg ">
               {feature.title}
             </span>

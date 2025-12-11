@@ -8,3 +8,8 @@ export const store = configureStore({
     kanban: kanbanReducer,
   },
 });
+
+store.subscribe(() => {
+  const state = store.getState();
+  localStorage.setItem("kanbanItems", JSON.stringify(state.kanban.items));
+});
