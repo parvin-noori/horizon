@@ -107,7 +107,7 @@ export default function MainLayout() {
                 <NavLink to={item.to} onClick={() => setCollapsed(false)}>
                   {({ isActive }) => (
                     <div
-                      className={`flex items-center gap-x-5 py-1.5 px-5 group ${
+                      className={`flex items-center gap-x-5 py-1.5 px-5 group outline-0 ${
                         isActive
                           ? "text-primary dark:text-white border-e-3 border-primary"
                           : "text-slate-400 dark:text-white"
