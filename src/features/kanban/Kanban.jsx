@@ -124,6 +124,7 @@ export default function Kanban() {
                       <KanbanItem
                         key={item.id}
                         feature={item}
+                        features={items}
                         isEditng={editngId === item.id}
                         setEditngId={setEditngId}
                       />
