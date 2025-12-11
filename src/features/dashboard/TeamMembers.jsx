@@ -27,7 +27,7 @@ export default function TeamMembers() {
         {teamMembers.map((member, index) => (
           <li
             key={index}
-            className="flex items-center space-x-3 shadow-md rounded-xl px-3 py-2 dark:bg-white/5"
+            className="flex items-center space-x-3 shadow-md rounded-xl px-3 py-2 "
           >
             <Avatar src={member.avatar} alt={member.name} size="lg"/>
             <div>

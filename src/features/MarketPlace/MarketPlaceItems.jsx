@@ -24,14 +24,14 @@ export default function MarketPlaceItems(props) {
     <div className="flex flex-col space-y-5">
       <h3 className=" font-semibold capitalize text-2xl">{title}</h3>
       <Swiper
-        slidesPerView={1.5}
+        slidesPerView={1.2}
         spaceBetween={10}
         pagination={{
           clickable: true,
         }}
         breakpoints={{
           640: {
-            slidesPerView: 2,
+            slidesPerView: 1.2,
           },
           768: {
             slidesPerView: 3,
