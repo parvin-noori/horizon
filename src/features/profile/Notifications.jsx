@@ -1,4 +1,4 @@
-import { Switch } from "@heroui/react";
+import { cn, Switch } from "@heroui/react";
 
 const notifItems = [
   {
@@ -60,8 +60,12 @@ export default function Notifications() {
       <ul className="space-y-3">
         {notifItems.map((item, index) => (
           <li key={index}>
-            <Switch size="sm" defaultSelected={item.status === "enabled"}>
-              <span className="text-[#2B3674] dark:text-white">{item.title}</span>
+            <Switch
+              classNames={{ label: cn("!text-inherit capitalize") }}
+              size="sm"
+              defaultSelected={item.status === "enabled"}
+            >
+              <span>{item.title}</span>
             </Switch>
           </li>
         ))}

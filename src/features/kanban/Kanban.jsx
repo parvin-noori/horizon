@@ -5,7 +5,6 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { Button } from "@heroui/react";
 import { useEffect, useMemo, useState } from "react";
@@ -75,12 +74,6 @@ export default function Kanban() {
       return arrayMove(newList, activeIndex, overIndex);
     });
     dispatch(editKanban({ id: activeId, column: newColumn }));
-
-    // setItems((items) => {
-    //   const oldIndex = items.findIndex((item) => item.id === active.id);
-    //   const newIndex = items.findIndex((item) => item.id === over.id);
-    //   return arrayMove(items, oldIndex, newIndex);
-    // });
   };
 
   return (
@@ -88,14 +81,13 @@ export default function Kanban() {
       <DndContext
         sensors={sensor}
         onDragEnd={handleDragEnd}
-        // modifiers={[restrictToVerticalAxis]}
       >
         <div
           className="flex lg:grid 
           lg:grid-cols-3 
           gap-5 
           overflow-x-auto 
-          no-scrollbar text-[#2B3674] dark:text-white"
+          no-scrollbar"
         >
           {columns.map((col) => (
             <SortableContext

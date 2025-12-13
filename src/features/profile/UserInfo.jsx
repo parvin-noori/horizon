@@ -24,18 +24,18 @@ export default function UserInfo(props) {
           <h3 className=" text-xl font-semibold">{name}</h3>
           <span className="text-slate-400 text-sm ">{jobPosition}</span>
         </div>
-        <div className="flex items-center gap-x-5">
-          <div className="flex flex-col items-center text-slate-400 text-sm">
-            <span className=" text-xl font-semibold">{posts}</span>
-            posts
+        <div className="flex items-end gap-x-5">
+          <div className="flex flex-col items-center text-sm">
+            <span className="text-xl font-semibold">{posts}</span>
+            <span className="text-slate-400">posts</span>
           </div>
-          <div className="flex flex-col items-center text-slate-400 text-sm">
+          <div className="flex flex-col items-center text-sm">
             <span className=" text-xl font-semibold">{followers}</span>
-            followers
+            <span className="text-slate-400">followers</span>
           </div>
-          <div className="flex flex-col items-center text-slate-400 text-sm">
+          <div className="flex flex-col items-center text-sm">
             <span className=" text-xl font-semibold">{following}</span>
-            following
+            <span className="text-slate-400">following</span>
           </div>
         </div>
       </div>

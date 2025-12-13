@@ -47,10 +47,18 @@ export default function DevTable() {
   });
 
   return (
-    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
-      <span className="text-2xl  text-bold capitalize">development table</span>
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow  flex flex-col space-y-5">
+      <span className="text-2xl  text-bold capitalize pt-5 px-6">
+        development table
+      </span>
       <div className="overflow-x-auto">
-        <Table removeWrapper>
+        <Table
+          removeWrapper
+          classNames={{
+            th: "bg-transparent border-b border-slate-200 text-slate-300",
+            tr: "px-6",
+          }}
+        >
           <TableHeader columns={devTableColumns}>
             {(column) => (
               <TableColumn key={column.key}>{column.label}</TableColumn>

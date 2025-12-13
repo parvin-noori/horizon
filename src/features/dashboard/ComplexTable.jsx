@@ -95,7 +95,7 @@ export default function ComplexTable() {
           isCompact
           removeWrapper
           classNames={{
-            th: "bg-transparent text-slate-400 border-b border-slate-200 px-6",
+            th: "bg-transparent border-slate-200 text-slate-300 px-6",
             td: "px-6 py-3",
           }}
           aria-label="Controlled table example with dynamic content"

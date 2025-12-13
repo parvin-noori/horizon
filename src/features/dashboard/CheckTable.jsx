@@ -77,7 +77,7 @@ export default function CheckTable() {
           selectionMode="multiple"
           onSelectionChange={setSelectedKeys}
           classNames={{
-            th: "bg-transparent text-slate-400",
+            th: "bg-transparent text-slate-300",
             tr: "capitalize",
             td: "data-[selected=true]:before:!opacity-0 !text-inherit",
           }}
