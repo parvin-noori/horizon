@@ -85,7 +85,7 @@ export default function MainLayout() {
         }  lg:translate-x-0 transition-transform duration-300`}
       >
         <div className="sider-header p-12 border-b border-secondary dark:border-slate-800">
-          <span className=" uppercase text-2xl">
+          <span className=" uppercase text-2xl text-[#2B3674] dark:text-white">
             <b>horizon </b>
             free
           </span>
