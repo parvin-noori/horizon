@@ -76,6 +76,11 @@ export default function CheckTable() {
           selectedKeys={selectedKeys}
           selectionMode="multiple"
           onSelectionChange={setSelectedKeys}
+          classNames={{
+            th: "bg-transparent text-slate-400",
+            tr: "capitalize",
+            td: "data-[selected=true]:before:!opacity-0 !text-inherit",
+          }}
         >
           <TableHeader columns={columns}>
             {(column) => (

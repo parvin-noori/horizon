@@ -23,7 +23,8 @@ export default function PieCharts() {
         <Select
           size="sm"
           variant="underlined"
-          className="max-w-[100px] text-sm text-slate-400"
+          className="max-w-[100px]"
+          classNames={{ base: "!text-slate-400", value: "!text-slate-400" }}
           defaultSelectedKeys={["monthly"]}
         >
           {selectItems.map((item) => (

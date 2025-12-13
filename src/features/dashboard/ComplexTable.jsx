@@ -86,13 +86,18 @@ export default function ComplexTable() {
     error: <MdError className="text-yellow-500" />,
   };
   return (
-    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
-      <span className="text-2xl  text-bold capitalize">complex table</span>
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow flex flex-col space-y-5">
+      <span className="text-2xl  text-bold capitalize px-6 pt-5">
+        complex table
+      </span>
       <div className="overflow-x-auto">
         <Table
           isCompact
-          // color="transparent"
           removeWrapper
+          classNames={{
+            th: "bg-transparent text-slate-400 border-b border-slate-200 px-6",
+            td: "px-6 py-3",
+          }}
           aria-label="Controlled table example with dynamic content"
         >
           <TableHeader columns={columns}>

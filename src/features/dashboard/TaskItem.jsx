@@ -24,11 +24,12 @@ export default function TaskItem(props) {
       <Checkbox
         classNames={{
           base: cn(
-            "inline-flex max-w-full w-full  m-0 ",
-            "items-center justify-start p-0",
-            "cursor-pointer rounded-lg"
+            "inline-flex max-w-full w-full m-0 cursor-pointer rounded-lg items-center justify-start p-0"
           ),
-          //   label: cn("w-full text-slate-400", "peer-checked:text-blue-500"),
+          label: cn(
+            "w-full text-slate-400 capitalize",
+            "group-data-[selected=true]:text-inherit"
+          ),
         }}
         value={title}
       >

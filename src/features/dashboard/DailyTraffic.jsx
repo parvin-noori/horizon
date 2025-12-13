@@ -35,14 +35,14 @@ const data = [
 
 export default function DailyTraffic() {
   const theme = useSelector((state) => state.theme.theme);
-  const whiteStopOpacity = theme === "dark" ? 1 : 0.16;
+  const whiteStopOpacity = theme === "dark" ? 1 : 0.1;
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="capitalize text-slate-400 justify-between  text-sm flex items-start gap-3">
         <div className="flex flex-col gap-2">
           <span>daily traffic</span>
           <div className="flex items-center gap-1">
-            <span className="text-3xl  text-bold">2.579</span> visitors
+            <span className="text-3xl  text-bold text-[#2B3674] dark:text-white">2.579</span> visitors
           </div>
         </div>
         <span className="text-green-500 capitalize flex items-center gap-2">

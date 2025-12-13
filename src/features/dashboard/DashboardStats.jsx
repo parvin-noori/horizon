@@ -8,7 +8,7 @@ export default function DashboardStats(props) {
         <Card
           shadow="none"
           key={item.id}
-          className="shadow-md p-3 mb-2 dark:bg-secondary"
+          className="shadow-md p-3 mb-2 dark:bg-secondary text-inherit"
         >
           <div className="flex items-center gap-3 h-full">
             {item.icon && (

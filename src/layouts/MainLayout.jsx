@@ -143,9 +143,9 @@ export default function MainLayout() {
           <img src={getPro} alt="Get Pro" className="mx-auto" />
         </div>
       </div>
-      <div className="p-4 flex flex-col gap-y-4 w-full overflow-x-hidden">
+      <div className="p-4 flex flex-col gap-y-4 w-full overflow-x-hidden text-[#2B3674] dark:text-white">
         <header className="flex lg:flex-row flex-col gap-3 lg:justify-between lg:items-center w-full lg:py-12 py-1">
-          <div className="flex flex-col gap-y-2 capitalize text-[#2B3674]">
+          <div className="flex flex-col gap-y-2 capitalize">
             <Breadcrumbs
               itemClasses={{
                 separator: "px-2",

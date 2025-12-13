@@ -7,7 +7,7 @@ import {
 } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
-import { Checkbox, CheckboxGroup } from "@heroui/react";
+import { Checkbox, CheckboxGroup, cn } from "@heroui/react";
 import { useState } from "react";
 import TaskItem from "./TaskItem";
 
@@ -33,7 +33,7 @@ const tasksData = [
     title: "promotional LP",
   },
 ];
-export default function TasksList() {
+export default function Tasks() {
   const [items, setItems] = useState(tasksData);
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
@@ -46,7 +46,7 @@ export default function TasksList() {
       distance: 5,
     },
   });
-   const sensors = useSensors(touchSensor, mouseSensor);
+  const sensors = useSensors(touchSensor, mouseSensor);
 
   const allTitles = items.map((task) => task.title);
   const [selected, setSelected] = useState([
@@ -82,8 +82,15 @@ export default function TasksList() {
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="flex items-center gap-2">
-        <Checkbox onChange={toggleSelection} checked={isAllSelected}>
-          <span className=" capitalize font-bold">tasks</span>
+        <Checkbox
+          classNames={{
+            label: cn("w-full text-inherit capitalize"),
+          }}
+          onChange={toggleSelection}
+          checked={isAllSelected}
+          value="tasks"
+        >
+          <span className="capitalize font-bold ">tasks</span>
         </Checkbox>
       </div>
 

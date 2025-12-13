@@ -7,9 +7,9 @@ import CheckTable from "./CheckTable";
 import ComplexTable from "./ComplexTable";
 import DailyTraffic from "./DailyTraffic";
 import DashboardStats from "./DashboardStats";
-import DatePick from "./DatePick";
+import Calender from "./Calender";
 import PieCharts from "./PieCharts";
-import TasksList from "./TasksList";
+import Tasks from "./Tasks";
 import WeeklyRevenue from "./WeeklyRevenue";
 import WeeklySummary from "./WeeklySummary";
 import TeamMembers from "./TeamMembers";
@@ -79,8 +79,8 @@ export default function Dashboard() {
         </div>
         <ComplexTable />
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-          <TasksList />
-          <DatePick />
+          <Tasks />
+          <Calender />
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
           <BusinessDesign />
