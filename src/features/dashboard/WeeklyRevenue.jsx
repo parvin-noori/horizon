@@ -81,7 +81,7 @@ export default function WeeklyRevenue() {
         {/* <CartesianGrid strokeDasharray="3 3" /> */}
         <XAxis dataKey="name" axisLine={false} />
         {/* <YAxis width="auto" /> */}
-        <Tooltip />
+        <Tooltip cursor={false}/>
         <Legend />
         <Bar dataKey="pv" stackId="a" fill="#8884d8" barSize={15} />
         <Bar dataKey="uv" stackId="a" fill="#39B8FF" />
