@@ -58,7 +58,7 @@ const data = [
 ];
 export default function WeeklyRevenue() {
   return (
-    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5 [&_.recharts-surface:focus]:outline-none">
       <span className="text-2xl  text-bold capitalize">weekly revenue</span>
       <BarChart
         barCategoryGap={10}
@@ -81,7 +81,7 @@ export default function WeeklyRevenue() {
         {/* <CartesianGrid strokeDasharray="3 3" /> */}
         <XAxis dataKey="name" axisLine={false} />
         {/* <YAxis width="auto" /> */}
-        <Tooltip cursor={false}/>
+        <Tooltip cursor={false} />
         <Legend />
         <Bar dataKey="pv" stackId="a" fill="#8884d8" barSize={15} />
         <Bar dataKey="uv" stackId="a" fill="#39B8FF" />

@@ -8,7 +8,7 @@ export default function History(props) {
       <div className="flex items-center justify-between">
         <span className=" text-xl capitalize font-semibold">history</span>
         <Button
-          className="bg-secondary dark:bg-white/5 text-primary"
+          className="bg-secondary dark:bg-white/5 text-primary dark:text-white"
           radius="full"
         >
           See all{" "}

@@ -70,7 +70,7 @@ export default function MarketPlaceItems(props) {
                 </div>
               </CardBody>
               <CardFooter className="flex items-center justify-between gap-x-3">
-                <span className="text-sm text-primary capitalize line-clamp-2">
+                <span className="text-sm text-primary dark:text-slate-400 capitalize line-clamp-2">
                   current bid :{item.bid} ETH
                 </span>
                 <Button color="primary" radius="full" className="px-5">

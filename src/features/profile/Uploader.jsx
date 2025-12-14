@@ -9,8 +9,8 @@ export default function Uploader() {
         className="bg-secondary dark:bg-white/5 border cursor-pointer border-dashed border-slate-300 justify-center p-3 rounded-lg h-full flex flex-col items-center text-center gap-3"
       >
         <input type="file" id="uploader" placeholder="" className="hidden" />
-        <HiUpload className="text-primary text-5xl" />
-        <span className="capitalize text-primary text-xl font-semibold">
+        <HiUpload className="text-primary dark:text-white text-5xl" />
+        <span className="capitalize text-primary dark:text-white text-xl font-semibold">
           upload files
         </span>
         <p className="text-slate-400 text-sm">

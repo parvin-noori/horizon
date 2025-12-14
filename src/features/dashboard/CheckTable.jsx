@@ -78,8 +78,8 @@ export default function CheckTable() {
           onSelectionChange={setSelectedKeys}
           classNames={{
             th: "bg-transparent text-slate-300",
-            tr: "capitalize",
-            td: "data-[selected=true]:before:!opacity-0 !text-inherit",
+            tr: "capitalize text-nowrap",
+            td: "data-[selected=true]:before:!opacity-0 !text-inherit [&>span]:whitespace-nowrap",
           }}
         >
           <TableHeader columns={columns}>
@@ -91,9 +91,7 @@ export default function CheckTable() {
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (
-                  <TableCell className="text-nowrap">
-                    {getKeyValue(item, columnKey)}
-                  </TableCell>
+                  <TableCell>{getKeyValue(item, columnKey)}</TableCell>
                 )}
               </TableRow>
             )}

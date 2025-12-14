@@ -19,8 +19,18 @@ export default function Kanban() {
   const kanbanItems = useSelector((state) => state.kanban.items);
   const [items, setItems] = useState(kanbanItems);
   const dispatch = useDispatch();
-  const touchSensor = useSensor(TouchSensor);
-  const mouseSensor = useSensor(MouseSensor);
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 150,
+      tolerance: 5,
+    },
+  });
+  const mouseSensor = useSensor(MouseSensor, {
+    activationConstraint: {
+      delay: 150,
+      tolerance: 5,
+    },
+  });
   const sensor = useSensors(touchSensor, mouseSensor);
 
   // sync local items with redux changes (edit / add)
@@ -78,10 +88,7 @@ export default function Kanban() {
 
   return (
     <div className="kanban">
-      <DndContext
-        sensors={sensor}
-        onDragEnd={handleDragEnd}
-      >
+      <DndContext sensors={sensor} onDragEnd={handleDragEnd}>
         <div
           className="flex lg:grid 
           lg:grid-cols-3 

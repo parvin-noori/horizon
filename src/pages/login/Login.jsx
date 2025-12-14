@@ -21,7 +21,7 @@ export default function Login() {
         />
       </div>
       <LoginForm />
-      <p className="text-gray-400 text-sm dark:text-white">
+      <p className="text-gray-400 text-sm">
         © 2022 Horizon UI. All Rights Reserved. Made with love by Simmmple!
       </p>
     </div>

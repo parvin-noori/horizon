@@ -92,7 +92,7 @@ export default function Creators() {
       <div className="flex items-center justify-between">
         <span className=" text-xl capitalize font-semibold">top creators</span>
         <Button
-          className="bg-secondary dark:bg-white/5 text-primary"
+          className="bg-secondary dark:bg-white/5 text-primary dark:text-white"
           radius="full"
         >
           See all{" "}
@@ -100,6 +100,7 @@ export default function Creators() {
       </div>
       <div className="overflow-x-auto">
         <Table
+          classNames={{ th: "bg-transparent" }}
           removeWrapper
           aria-label="Controlled table example with dynamic content"
         >
