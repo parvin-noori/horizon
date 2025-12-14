@@ -1,69 +1,17 @@
-import { IoIosCopy } from "react-icons/io";
-import { MdAddTask, MdBarChart } from "react-icons/md";
-import { PiCurrencyDollarSimpleBold } from "react-icons/pi";
-import { v4 as uuidv4 } from "uuid";
+import Ads from "./Ads";
 import BusinessDesign from "./BusinessDesign";
+import Calender from "./Calender";
+import Cards from "./Cards";
 import CheckTable from "./CheckTable";
 import ComplexTable from "./ComplexTable";
 import DailyTraffic from "./DailyTraffic";
 import DashboardStats from "./DashboardStats";
-import Calender from "./Calender";
+import { dashboardStats } from "./data";
 import PieCharts from "./PieCharts";
 import Tasks from "./Tasks";
+import TeamMembers from "./TeamMembers";
 import WeeklyRevenue from "./WeeklyRevenue";
 import WeeklySummary from "./WeeklySummary";
-import TeamMembers from "./TeamMembers";
-import Cards from "./Cards";
-import Ads from "./Ads";
-
-const dashboardStats = [
-  {
-    id: uuidv4(),
-    title: "earning",
-    value: "$350.4",
-    icon: <MdBarChart />,
-    change: 0,
-    trend: "none",
-  },
-  {
-    id: uuidv4(),
-    title: "Spend this month",
-    value: "$642.39",
-    icon: <PiCurrencyDollarSimpleBold />,
-    change: 0,
-    trend: "none",
-  },
-  {
-    id: uuidv4(),
-    title: "Sales",
-    value: "$574.34",
-    change: 23,
-    trend: "up",
-  },
-  {
-    id: uuidv4(),
-    title: "your balance",
-    value: "$1,000",
-    change: 0,
-    trend: "none",
-  },
-  {
-    id: uuidv4(),
-    title: "New Tasks",
-    value: "154",
-    change: null,
-    trend: "none",
-    icon: <MdAddTask />,
-  },
-  {
-    id: uuidv4(),
-    title: "Total Projects",
-    value: "2935",
-    change: null,
-    trend: "none",
-    icon: <IoIosCopy />,
-  },
-];
 
 export default function Dashboard() {
   return (
@@ -87,8 +35,8 @@ export default function Dashboard() {
           <TeamMembers />
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-          <Cards/>
-          <Ads/>
+          <Cards />
+          <Ads />
         </div>
       </div>
     </>

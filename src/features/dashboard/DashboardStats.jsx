@@ -4,40 +4,43 @@ export default function DashboardStats(props) {
   const { items } = props;
   return (
     <div className="grid grid-flow-col overflow-x-auto auto-cols-[183px] gap-3 w-full max-w-full whitespace-nowrap">
-      {items.map((item) => (
-        <Card
-          shadow="none"
-          key={item.id}
-          className="shadow-md p-3 mb-2 dark:bg-secondary text-inherit"
-        >
-          <div className="flex items-center gap-3 h-full">
-            {item.icon && (
-              <div className="bg-secondary dark:bg-white/5 text-primary size-10 flex items-center justify-center rounded-full text-xl">
-                {item?.icon}
-              </div>
-            )}
-            <div className="flex flex-col">
-              <span className="text-slate-400 text-sm capitalize">
-                {item.title}
-              </span>
-              <span className=" font-semibold">{item.value}</span>
-              {item.change != null && item.change !== 0 && (
-                <p className="text-slate-400 text-sm mt-1">
-                  <span
-                    className={`${
-                      item.change > 0 ? "text-green-500" : "text-red-500"
-                    }`}
-                  >
-                    {item.change > 0 ? "+" : "-"}
-                    {item.change}%{" "}
-                  </span>
-                  since last month
-                </p>
+      {items.map((item) => {
+        const Icon = item.icon;
+        return (
+          <Card
+            shadow="none"
+            key={item.id}
+            className="shadow-md p-3 mb-2 dark:bg-secondary text-inherit"
+          >
+            <div className="flex items-center gap-3 h-full">
+              {item.icon && (
+                <div className="bg-secondary dark:bg-white/5 text-primary size-10 flex items-center justify-center rounded-full text-xl">
+                  <Icon />
+                </div>
               )}
+              <div className="flex flex-col">
+                <span className="text-slate-400 text-sm capitalize">
+                  {item.title}
+                </span>
+                <span className=" font-semibold">{item.value}</span>
+                {item.change != null && item.change !== 0 && (
+                  <p className="text-slate-400 text-sm mt-1">
+                    <span
+                      className={`${
+                        item.change > 0 ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      {item.change > 0 ? "+" : "-"}
+                      {item.change}%{" "}
+                    </span>
+                    since last month
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
-        </Card>
-      ))}
+          </Card>
+        );
+      })}
     </div>
   );
 }
