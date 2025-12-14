@@ -1,12 +1,3 @@
-import {
-  getKeyValue,
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@heroui/react";
 import { useState } from "react";
 import { useCheckTable } from "../../hooks/useCheckTable";
 
@@ -29,14 +20,18 @@ const columns = [
   },
 ];
 export default function CheckTable() {
-  const { data: rows } = useCheckTable();
-  
+  const { data, isLoading, error } = useCheckTable();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading data</div>;
+
   const [selectedKeys, setSelectedKeys] = useState(["2", "3", "4"]);
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <span className="text-2xl  text-bold capitalize">check table</span>
       <div className="overflow-x-auto">
-        <Table
+        {console.log(data)}
+        {/* <Table
           removeWrapper
           selectedKeys={selectedKeys}
           selectionMode="multiple"
@@ -52,7 +47,7 @@ export default function CheckTable() {
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={rows}>
+          <TableBody items={rows}  isLoading={isLoading}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (
@@ -61,7 +56,7 @@ export default function CheckTable() {
               </TableRow>
             )}
           </TableBody>
-        </Table>
+        </Table> */}
       </div>
     </div>
   );
