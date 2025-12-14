@@ -2,47 +2,10 @@ import { BiSolidUpArrow } from "react-icons/bi";
 import { FaRegCalendar } from "react-icons/fa6";
 import { SiTicktick } from "react-icons/si";
 import { Line, LineChart, XAxis } from "recharts";
-
-const data = [
-  {
-    name: "feb",
-    uv: 3000,
-    pv: 3398,
-    amt: 2210,
-  },
-  {
-    name: "jan",
-    uv: 2000,
-    pv: 5800,
-    amt: 2290,
-  },
-  {
-    name: "dec",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "nov",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "oct",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "sep",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+import { useWeeklySummary } from "../../hooks/useWeeklySummary";
 
 export default function WeeklySummary() {
+  const { data, isLoading, error } = useWeeklySummary();
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="flex items-center">
@@ -74,7 +37,7 @@ export default function WeeklySummary() {
             responsive
             data={data}
           >
-            <XAxis dataKey="name" axisLine={false} />
+            <XAxis dataKey="month" axisLine={false} />
             <Line
               type="monotone"
               dataKey="pv"

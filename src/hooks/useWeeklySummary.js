@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import httpService from "../core/http-service";
 
-export const useDashboardStats = () => {
+export const useWeeklySummary = () => {
   return useQuery({
-    queryKey: ["dashboardStats"],
+    queryKey: ["weeklySummary"],
     queryFn: async () => {
-      const { data } = await httpService.get("/dashboardStats.json");
+      const { data } = await httpService.get("/weeklySummary.json");
       return data;
     },
   });
