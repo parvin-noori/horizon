@@ -16,8 +16,8 @@ export default function Calender() {
         base: "!size-full bg-white dark:bg-secondary grid place-content-center",
         gridWrapper: "w-full px-3",
         gridHeader: "!shadow-none",
-        header: "bg-secondary dark:bg-white/5 text-primary",
-        title: "text-primary",
+        header: "bg-secondary dark:bg-white/5 text-primary dark:text-white",
+        title: "text-primary dark:text-white",
         headerWrapper: "pb-6 bg-transparent",
         gridBody: "text-sm",
         gridHeader: "bg-transparent",
@@ -26,6 +26,8 @@ export default function Calender() {
         cell: "w-full",
         cellButton: "w-full",
         pickerItem: "text-slate-400",
+        prevButton:"dark:text-white",
+        nextButton:"dark:text-white"
       }}
       showMonthAndYearPickers
       aria-label="Date (Show Month and Year Picker)"
