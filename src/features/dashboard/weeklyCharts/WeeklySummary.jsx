@@ -2,10 +2,11 @@ import { BiSolidUpArrow } from "react-icons/bi";
 import { FaRegCalendar } from "react-icons/fa6";
 import { SiTicktick } from "react-icons/si";
 import { Line, LineChart, XAxis } from "recharts";
-import { useWeeklySummary } from "./useWeeklySummary";
+import { useGetData } from "../../../hooks/useGetData";
 
 export default function WeeklySummary() {
-  const { data, isLoading, error } = useWeeklySummary();
+  const { data, isLoading, error } = useGetData();
+  const { weeklySummary } = data ?? [];
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="flex items-center">
@@ -35,7 +36,7 @@ export default function WeeklySummary() {
               aspectRatio: 2,
             }}
             responsive
-            data={data}
+            data={weeklySummary}
           >
             <XAxis dataKey="month" axisLine={false} />
             <Line

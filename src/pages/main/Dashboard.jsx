@@ -19,24 +19,24 @@ export default function Dashboard() {
       <DashboardStats items={dashboardStats} />
       <div className="grid xl:grid-cols-2 grid-cols-1 gap-5">
         <WeeklySummary />
-        <WeeklyRevenue />
-        <CheckTable />
+        {/* <WeeklyRevenue /> */}
+        {/* <CheckTable /> */}
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-          <DailyTraffic />
-          <PieCharts />
+          {/* <DailyTraffic /> */}
+          {/* <PieCharts /> */}
         </div>
-        <ComplexTable />
+        {/* <ComplexTable /> */}
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-          <Tasks />
-          <Calender />
-        </div>
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-          <BusinessDesign />
-          <TeamMembers />
+          {/* <Tasks /> */}
+          {/* <Calender /> */}
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-          <Cards />
-          <Ads />
+          {/* <BusinessDesign /> */}
+          {/* <TeamMembers /> */}
+        </div>
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
+          {/* <Cards /> */}
+          {/* <Ads /> */}
         </div>
       </div>
     </>

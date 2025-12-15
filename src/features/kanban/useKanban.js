@@ -5,7 +5,7 @@ export const useKanban = () => {
   return useQuery({
     queryKey: ["kanban"],
     queryFn: async () => {
-      const { data } = await httpService.get("/kanban");
+      const { data } = await httpService.get("/kanban.json");
       return data;
     },
   });

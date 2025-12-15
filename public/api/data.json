@@ -1,0 +1,452 @@
+{
+  "checkTable": [
+    {
+      "key": "1",
+      "name": "horizon UI pro",
+      "progress": 17.5,
+      "quantity": 2.458,
+      "date": "24.jan.2021"
+    },
+    {
+      "key": "2",
+      "name": "horizon UI free",
+      "progress": 10.8,
+      "quantity": 1.485,
+      "date": "12.jun.2021"
+    },
+    {
+      "key": "3",
+      "name": "weekly up dates",
+      "progress": 21.3,
+      "quantity": 1.024,
+      "date": "5.jan.2021"
+    },
+    {
+      "key": "4",
+      "name": "venus 3D asset",
+      "progress": 31.5,
+      "quantity": 858,
+      "date": "7.mar.2021"
+    },
+    {
+      "key": "5",
+      "name": "marketplace",
+      "progress": 12.2,
+      "quantity": 258,
+      "date": "17.dec.2021"
+    }
+  ],
+  "complexTable": [
+    {
+      "key": "1",
+      "name": "horizon UI pro",
+      "status": "approved",
+      "date": "18 Apr 2021",
+      "progress": 80
+    },
+    {
+      "key": "2",
+      "name": "horizon UI free",
+      "progress": 30,
+      "status": "disable",
+      "date": "18 Apr 2021"
+    },
+    {
+      "key": "3",
+      "name": "marketplace",
+      "progress": 90,
+      "status": "error",
+      "date": "20 May 2021"
+    },
+    {
+      "key": "4",
+      "name": "weekly updates",
+      "progress": 40,
+      "status": "approved",
+      "date": "12 Jul 2021"
+    }
+  ],
+  "dailyTraffic": [
+    {
+      "name": "00",
+      "pv": 1400
+    },
+    {
+      "name": "04",
+      "pv": 9398
+    },
+    {
+      "name": "08",
+      "pv": 9800
+    },
+    {
+      "name": "12",
+      "pv": 3908
+    },
+    {
+      "name": "14",
+      "pv": 7800
+    },
+    {
+      "name": "16",
+      "pv": 9800
+    },
+    {
+      "name": "18",
+      "pv": 10000
+    }
+  ],
+  "dashboardStats": [
+    {
+      "title": "earning",
+      "value": "$350.4",
+      "icon": "MdBarChart",
+      "change": 0,
+      "trend": "none"
+    },
+    {
+      "title": "Spend this month",
+      "value": "$642.39",
+      "icon": "PiCurrencyDollarSimpleBold",
+      "change": 0,
+      "trend": "none"
+    },
+    {
+      "title": "Sales",
+      "value": "$574.34",
+      "change": 23,
+      "trend": "up"
+    },
+    {
+      "title": "your balance",
+      "value": "$1,000",
+      "change": 0,
+      "trend": "none"
+    },
+    {
+      "title": "New Tasks",
+      "value": "154",
+      "change": null,
+      "trend": "none",
+      "icon": "MdAddTask"
+    },
+    {
+      "title": "Total Projects",
+      "value": "2935",
+      "change": null,
+      "trend": "none",
+      "icon": "IoIosCopy"
+    }
+  ],
+  "devTable": [
+    {
+      "key": "1",
+      "name": "marketPlace",
+      "systems": "ios,android,windows",
+      "date": "12.Jan.2021",
+      "progress": 75.5
+    },
+    {
+      "key": "2",
+      "name": "Venus DB Pro",
+      "systems": "ios",
+      "date": "12.Feb.2021",
+      "progress": 35.4
+    },
+    {
+      "key": "3",
+      "name": "Venus DS",
+      "systems": "ios,android,windows",
+      "date": "13.Mar.2021",
+      "progress": 25
+    },
+    {
+      "key": "4",
+      "name": "Venus 3D Asset",
+      "systems": "ios,windows",
+      "date": "24.Jan.2021",
+      "progress": 100
+    },
+    {
+      "key": "5",
+      "name": "Uranus",
+      "systems": "android,windows",
+      "date": "21.Sep.2021",
+      "progress": 12.2
+    },
+    {
+      "key": "6",
+      "name": "Uranus",
+      "systems": "android,windows",
+      "date": "21.Sep.2021",
+      "progress": 12.2
+    },
+    {
+      "key": "7",
+      "name": "Uranus",
+      "systems": "android,windows",
+      "date": "21.Sep.2021",
+      "progress": 12.2
+    },
+    {
+      "key": "8",
+      "name": "Uranus",
+      "systems": "android,windows",
+      "date": "21.Sep.2021",
+      "progress": 12.2
+    },
+    {
+      "key": "9",
+      "name": "Uranus",
+      "systems": "android,windows",
+      "date": "21.Sep.2021",
+      "progress": 12.2
+    },
+    {
+      "key": "10",
+      "name": "Uranus",
+      "systems": "android,windows",
+      "date": "21.Sep.2021",
+      "progress": 12.2
+    }
+  ],
+  "fourColTable": [
+    {
+      "key": "1",
+      "name": "marketplace",
+      "progress": 17.5,
+      "quantity": 2.458,
+      "date": "24.Jan.2021"
+    },
+    {
+      "key": "2",
+      "name": "venus Pro",
+      "progress": 10.8,
+      "quantity": 1.485,
+      "date": "12.Jun.2021"
+    },
+    {
+      "key": "3",
+      "name": "uranus Kit",
+      "progress": 21.3,
+      "quantity": 1.024,
+      "date": "5.Jan.2021"
+    },
+    {
+      "key": "4",
+      "name": "venus DS",
+      "progress": 31.5,
+      "quantity": 858,
+      "date": "7.Mar.2021"
+    },
+    {
+      "key": "5",
+      "name": "venus 3D Asset",
+      "progress": 12.2,
+      "quantity": 258,
+      "date": "17.Des.2021"
+    }
+  ],
+  "kanban": [
+    {
+      "id": 1,
+      "title": "option to 'use local/server version' feature",
+      "desc": "It usually displays this message when you close an unsaved page when you do it on purpose, and it's getting frustrated to see this every time.",
+      "status": "updates",
+      "members": ["Avatar2", "Avatar1"],
+      "column": 1
+    },
+    {
+      "id": 2,
+      "cover": "/imgs/cover1.png",
+      "title": "add/modify your own CSS/Selectors",
+      "desc": "Website Design: The ability to add/modify your own CSS-Selectors like its done in Venus.",
+      "status": "pending",
+      "members": ["Avatar2", "Avatar1", "Avatar3"],
+      "column": 1
+    },
+    {
+      "id": 3,
+      "title": "Shortcode for templates to display correctly",
+      "desc": "When you save some sections as a template and then paste a shortcode to a new page, the layout is broken, some styles are missing - in the editor.",
+      "status": "errors",
+      "members": ["Avatar2"],
+      "column": 1
+    },
+    {
+      "id": 4,
+      "title": "general ideas to improve 'edit' workflow",
+      "desc": "Currently, I have a few templates in the Local Library and when I want to add them I'm always presented (by default).",
+      "status": "pending",
+      "members": ["Avatar2", "Avatar1", "Avatar3"],
+      "column": 2
+    },
+    {
+      "id": 5,
+      "title": "shortcuts for templates to display correctly",
+      "desc": "When you save some sections as a template and then paste a shortcode to a new page, the layout is broken, some styles are missing - in the editor.",
+      "status": "updates",
+      "members": ["Avatar2"],
+      "column": 2
+    },
+    {
+      "id": 6,
+      "title": "[UX Design]- set the default library tab",
+      "cover": "/imgs/cover2.png",
+      "desc": "I want to be able to set the default Library tab (or a way to remember the last active tab), especially when I already...",
+      "status": "errors",
+      "memebers": ["Avatar2", "Avatar1"],
+      "column": 2
+    },
+    {
+      "id": 7,
+      "title": "copy/paste elements between pages",
+      "desc": "We can only copy/paste elements (or group of elements) in the same page, which is quite limited.",
+      "members": ["Avatar2"],
+      "column": 3
+    },
+    {
+      "id": 8,
+      "title": "Remove Extra DIV for each container added",
+      "desc": "I still hope there won't have an extra div for each container we added. It should be something for better styling...",
+      "members": ["Avatar2", "Avatar3", "Avatar1"],
+      "column": 3
+    },
+    {
+      "id": 9,
+      "title": "Add Figma files for the Library design blocks",
+      "desc": "I want to present my clients the Figma files first, so it would be great if you add those as well, more manual downloads...",
+      "members": ["Avatar2", "Avatar3", "Avatar1"],
+      "column": 3
+    }
+  ],
+  "recentlyItems": [
+    {
+      "id": 1,
+      "title": "swipe circles",
+      "banner": "/imgs/recentlyItem1.png",
+      "by": "petter will",
+      "bid": 2.3
+    },
+    {
+      "id": 2,
+      "title": "colorful heaven",
+      "banner": "/imgs/recentlyItem2.png",
+      "by": "mark benjamin",
+      "bid": 1.3
+    },
+    {
+      "id": 3,
+      "title": "3D cubes art",
+      "banner": "/imgs/recentlyItem3.png",
+      "by": "manny gates",
+      "bid": 6.58
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "landing page design"
+    },
+    {
+      "id": 2,
+      "title": "dashboard builder"
+    },
+    {
+      "id": 3,
+      "title": "mobile app design"
+    },
+    {
+      "id": 4,
+      "title": "illustration"
+    },
+    {
+      "id": 5,
+      "title": "promotional LP"
+    }
+  ],
+  "teamMembers": [
+    {
+      "name": "adela parkson",
+      "role": "creative director",
+      "avatar": "/imgs/Avatar1.png"
+    },
+    {
+      "name": "christian mad",
+      "role": "product designer",
+      "avatar": "/imgs/Avatar2.png"
+    },
+    {
+      "name": "jason statham",
+      "role": "junior graphic designer",
+      "avatar": "/imgs/Avatar3.png"
+    }
+  ],
+  "trendingItems": [
+    {
+      "id": 1,
+      "title": "abstract colors",
+      "banner": "/imgs/trendingItem1.png",
+      "by": "esthera jackson",
+      "bid": 0.91
+    },
+    {
+      "id": 2,
+      "title": "ETH AI Brain",
+      "banner": "/imgs/trendingItem2.png",
+      "by": "nick wilson",
+      "bid": 2.82
+    },
+    {
+      "id": 3,
+      "title": "mesh gradients",
+      "banner": "/imgs/trendingItem3.png",
+      "by": "will smith",
+      "bid": 0.56
+    }
+  ],
+  "weeklySummary": [
+    {
+      "month": "feb",
+      "name": "18",
+      "uv": 3000,
+      "pv": 3398,
+      "amt": 2210
+    },
+    {
+      "month": "jan",
+      "name": "18",
+      "uv": 2000,
+      "pv": 5800,
+      "amt": 2290
+    },
+    {
+      "month": "dec",
+      "name": "19",
+      "uv": 2780,
+      "pv": 3908,
+      "amt": 2000
+    },
+    {
+      "month": "nov",
+      "name": "20",
+      "uv": 1890,
+      "pv": 4800,
+      "amt": 2181
+    },
+    {
+      "month": "oct",
+      "name": "21",
+      "uv": 2390,
+      "pv": 3800,
+      "amt": 2500
+    },
+    {
+      "month": "sep",
+      "name": "22",
+      "uv": 3490,
+      "pv": 4300,
+      "amt": 2100
+    }
+  ]
+}
