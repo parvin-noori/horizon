@@ -11,9 +11,30 @@ import { useCallback } from "react";
 import { DiAndroid } from "react-icons/di";
 import { FaApple } from "react-icons/fa";
 import { IoLogoWindows } from "react-icons/io5";
-import { devTableColumns, devTableRows } from "./data";
+import { useDevTable } from "../../hooks/useDevTable";
+
+ const columns = [
+  {
+    key: "name",
+    label: "Name",
+  },
+  {
+    key: "systems",
+    label: "SYSTEMS",
+  },
+  {
+    key: "date",
+    label: "DATE",
+  },
+  {
+    key: "progress",
+    label: "PROGRESS",
+  },
+];
 
 export default function DevTable() {
+  const { data, isLoading } = useDevTable();
+  
   const systemIcon = {
     ios: <FaApple />,
     android: <DiAndroid />,
@@ -59,12 +80,12 @@ export default function DevTable() {
             tr: "px-6",
           }}
         >
-          <TableHeader columns={devTableColumns}>
+          <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={devTableRows}>
+          <TableBody items={data} isLoading={isLoading}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (

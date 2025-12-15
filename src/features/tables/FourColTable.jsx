@@ -7,10 +7,30 @@ import {
   TableRow,
   getKeyValue,
 } from "@heroui/react";
-import { fourColTableColumns, fourColTableRows } from "./data";
+import { useFourColTable } from "../../hooks/useFourColTable";
+
+const columns = [
+  {
+    key: "name",
+    label: "Name",
+  },
+  {
+    key: "progress",
+    label: "PROGRESS",
+  },
+  {
+    key: "quantity",
+    label: "QUANTITY",
+  },
+  {
+    key: "date",
+    label: "DATE",
+  },
+];
 
 export default function FourColTable() {
-  const rowsWithPercent = fourColTableRows.map((item) => ({
+  const { data, isLoading } = useFourColTable();
+  const rowsWithPercent = data.map((item) => ({
     ...item,
     progress: `${item.progress}%`,
   }));
@@ -28,12 +48,12 @@ export default function FourColTable() {
             tr: "px-6",
           }}
         >
-          <TableHeader columns={fourColTableColumns}>
+          <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={rowsWithPercent}>
+          <TableBody items={data} isLoading={isLoading}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (
