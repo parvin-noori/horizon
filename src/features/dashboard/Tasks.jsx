@@ -9,32 +9,13 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { Checkbox, CheckboxGroup, cn } from "@heroui/react";
 import { useState } from "react";
+import { useTasks } from "../../hooks/useTasks";
 import TaskItem from "./TaskItem";
 
-const tasksData = [
-  {
-    id: 1,
-    title: "landing page design",
-  },
-  {
-    id: 2,
-    title: "dashboard builder",
-  },
-  {
-    id: 3,
-    title: "mobile app design",
-  },
-  {
-    id: 4,
-    title: "illustration",
-  },
-  {
-    id: 5,
-    title: "promotional LP",
-  },
-];
+
 export default function Tasks() {
-  const [items, setItems] = useState(tasksData);
+  const{data,isLoading,error}=useTasks()
+  const [items, setItems] = useState(data);
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
       delay: 150,
@@ -78,6 +59,9 @@ export default function Tasks() {
       });
     }
   };
+
+  if(isLoading) return <span>is loading</span>
+  if(error) {console.log(error)}
 
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">

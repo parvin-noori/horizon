@@ -11,8 +11,7 @@ import { useCallback } from "react";
 import { FcApproval } from "react-icons/fc";
 import { MdError } from "react-icons/md";
 import { RxCrossCircled } from "react-icons/rx";
-
-
+import { useComplexTableData } from "../../hooks/useComplexTableData";
 
 const columns = [
   {
@@ -56,6 +55,12 @@ export default function ComplexTable() {
     disable: <RxCrossCircled className="text-red-500" />,
     error: <MdError className="text-yellow-500" />,
   };
+
+  const { data, isLoading, error } = useComplexTableData();
+  if (isLoading) return <span>is loading...</span>;
+  if (error) {
+    console.log(error);
+  }
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow flex flex-col space-y-5">
       <span className="text-2xl  text-bold capitalize px-6 pt-5">
@@ -76,7 +81,7 @@ export default function ComplexTable() {
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={rows}>
+          <TableBody items={data}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (
