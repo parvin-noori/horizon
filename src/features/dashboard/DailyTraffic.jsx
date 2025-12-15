@@ -1,11 +1,11 @@
 import { BiSolidUpArrow } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { Bar, BarChart, XAxis } from "recharts";
-
-
+import { useDailyTraffic } from "../../hooks/useDailyTraffic";
 
 export default function DailyTraffic() {
   const theme = useSelector((state) => state.theme.theme);
+  const { data, isLoading, error } = useDailyTraffic();
   const whiteStopOpacity = theme === "dark" ? 1 : 0.1;
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
@@ -13,7 +13,10 @@ export default function DailyTraffic() {
         <div className="flex flex-col gap-2">
           <span>daily traffic</span>
           <div className="flex items-center gap-1">
-            <span className="text-3xl  text-bold text-[#2B3674] dark:text-white">2.579</span> visitors
+            <span className="text-3xl  text-bold text-[#2B3674] dark:text-white">
+              2.579
+            </span>{" "}
+            visitors
           </div>
         </div>
         <span className="text-green-500 capitalize flex items-center gap-2">
