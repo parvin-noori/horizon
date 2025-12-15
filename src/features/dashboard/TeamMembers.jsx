@@ -1,25 +1,11 @@
 import { Avatar, Button } from "@heroui/react";
 import { IoMdMore } from "react-icons/io";
-
-const teamMembers = [
-  {
-    name: "adela parkson",
-    role: "creative director",
-    avatar: "/imgs/Avatar1.png",
-  },
-  {
-    name: "christian mad",
-    role: "product designer",
-    avatar: "/imgs/Avatar2.png",
-  },
-  {
-    name: "jason statham",
-    role: "junior graphic designer",
-    avatar: "/imgs/Avatar3.png",
-  },
-];
+import { useMembers } from "../../hooks/useTeamMembers";
 
 export default function TeamMembers() {
+  const { data: teamMembers, isLoading, error } = useMembers();
+  if (isLoading) return <span>is loading</span>;
+  if (error) console.log(error);
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <span className="text-lg  text-bold capitalize">team members</span>
@@ -29,7 +15,7 @@ export default function TeamMembers() {
             key={index}
             className="flex items-center space-x-3 shadow-md rounded-xl px-3 py-2 "
           >
-            <Avatar src={member.avatar} alt={member.name} size="lg"/>
+            <Avatar src={member.avatar} alt={member.name} size="lg" />
             <div>
               <span className="text-sm font-semibold  capitalize">
                 {member.name}
@@ -39,7 +25,7 @@ export default function TeamMembers() {
               </p>
             </div>
             <Button className="ms-auto !p-0 !min-w-fit" variant="fade">
-              <IoMdMore className="text-xl text-slate-400"/>
+              <IoMdMore className="text-xl text-slate-400" />
             </Button>
           </li>
         ))}

@@ -57,7 +57,6 @@ export default function ComplexTable() {
   };
 
   const { data, isLoading, error } = useComplexTableData();
-  if (isLoading) return <span>is loading...</span>;
   if (error) {
     console.log(error);
   }
@@ -81,7 +80,7 @@ export default function ComplexTable() {
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={data}>
+          <TableBody items={data??[]} isLoading={isLoading}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (

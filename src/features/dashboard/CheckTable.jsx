@@ -32,7 +32,6 @@ export default function CheckTable() {
   const [selectedKeys, setSelectedKeys] = useState(["2", "3", "4"]);
   const { data, isLoading, error } = useCheckTable();
 
-  if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading data</div>;
 
   return (
@@ -55,7 +54,7 @@ export default function CheckTable() {
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={data} isLoading={isLoading}>
+          <TableBody items={data ?? []} isLoading={isLoading}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (

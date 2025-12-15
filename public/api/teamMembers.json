@@ -1,0 +1,17 @@
+[
+  {
+    "name": "adela parkson",
+    "role": "creative director",
+    "avatar": "/imgs/avatar1.png"
+  },
+  {
+    "name": "christian mad",
+    "role": "product designer",
+    "avatar": "/imgs/avatar2.png"
+  },
+  {
+    "name": "jason statham",
+    "role": "junior graphic designer",
+    "avatar": "/imgs/avatar3.png"
+  }
+]
