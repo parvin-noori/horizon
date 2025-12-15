@@ -11,13 +11,14 @@ import { useEffect, useMemo, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import { useGetData } from "../../hooks/useGetData";
 import KanbanItem from "./KanbanItem";
 import { addKanban, editKanban, setKanbanItems } from "./kanbanSlice";
-import { useKanban } from "./useKanban";
 
 export default function Kanban() {
   const [editngId, setEditngId] = useState(false);
-  const { data: kanbanItems } = useKanban();
+  const { data: kanbanItems } = useGetData();
+  const { kanban } = data ?? [];
   const items = useSelector((state) => state.kanban.items);
 
   const dispatch = useDispatch();
