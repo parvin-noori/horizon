@@ -2,36 +2,7 @@ import { BiSolidUpArrow } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { Bar, BarChart, XAxis } from "recharts";
 
-const data = [
-  {
-    name: "00",
-    pv: 1400,
-  },
-  {
-    name: "04",
-    pv: 9398,
-  },
-  {
-    name: "08",
-    pv: 9800,
-  },
-  {
-    name: "12",
-    pv: 3908,
-  },
-  {
-    name: "14",
-    pv: 7800,
-  },
-  {
-    name: "16",
-    pv: 9800,
-  },
-  {
-    name: "18",
-    pv: 10000,
-  },
-];
+
 
 export default function DailyTraffic() {
   const theme = useSelector((state) => state.theme.theme);
