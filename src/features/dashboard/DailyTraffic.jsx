@@ -1,11 +1,12 @@
 import { BiSolidUpArrow } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { Bar, BarChart, XAxis } from "recharts";
-import { useDailyTraffic } from "./useDailyTraffic";
+import { useGetData } from "../../hooks/useGetData";
 
 export default function DailyTraffic() {
   const theme = useSelector((state) => state.theme.theme);
-  const { data, isLoading, error } = useDailyTraffic();
+  const { data, isLoading, error } = useGetData();
+  const { dailyTraffic } = data ?? [];
   const whiteStopOpacity = theme === "dark" ? 1 : 0.1;
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
@@ -33,7 +34,7 @@ export default function DailyTraffic() {
           fontSize: "small",
         }}
         responsive
-        data={data}
+        data={dailyTraffic}
         margin={{
           top: 20,
           right: 0,

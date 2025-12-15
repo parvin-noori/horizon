@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@heroui/react";
 import { useState } from "react";
-import { useCheckTable } from "./useCheckTable";
+import { useGetData } from "../../hooks/useGetData";
 
 const columns = [
   {
@@ -30,7 +30,8 @@ const columns = [
 ];
 export default function CheckTable() {
   const [selectedKeys, setSelectedKeys] = useState(["2", "3", "4"]);
-  const { data, isLoading, error } = useCheckTable();
+  const { data, isLoading, error } = useGetData();
+  const { checkTable } = data ?? [];
 
   if (error) return <div>Error loading data</div>;
 
@@ -54,7 +55,7 @@ export default function CheckTable() {
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={data ?? []} isLoading={isLoading}>
+          <TableBody items={checkTable ?? []} isLoading={isLoading}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (

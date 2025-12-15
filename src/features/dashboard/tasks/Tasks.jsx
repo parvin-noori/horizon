@@ -9,18 +9,19 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { Checkbox, CheckboxGroup, cn } from "@heroui/react";
 import { useEffect, useState } from "react";
-import { useTasks } from "./useTasks";
+import { useGetData } from "../../../hooks/useGetData";
 import TaskItem from "./TaskItem";
 
 export default function Tasks() {
   const [items, setItems] = useState([]);
-  const { data, isLoading, error } = useTasks();
+  const { data, isLoading, error } = useGetData();
+  const { tasks } = data ?? [];
 
   useEffect(() => {
-    if (data) {
-      setItems(data);
+    if (tasks) {
+      setItems(tasks);
     }
-  }, [data]);
+  }, [tasks]);
 
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {

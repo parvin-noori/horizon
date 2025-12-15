@@ -1,11 +1,12 @@
 import { Avatar, Button } from "@heroui/react";
 import { IoMdMore } from "react-icons/io";
-import { useMembers } from "./useTeamMembers";
+import { useGetData } from "../../hooks/useGetData";
 
 export default function TeamMembers() {
-  const { data: teamMembers, isLoading, error } = useMembers();
-  if (isLoading) return <span>is loading</span>
-  if(error) console.log(error)
+  const { data, isLoading, error } = useGetData();
+  const { teamMembers } = data ?? [];
+  if (isLoading) return <span>is loading</span>;
+  if (error) console.log(error);
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <span className="text-lg  text-bold capitalize">team members</span>

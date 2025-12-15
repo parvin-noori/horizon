@@ -1,8 +1,9 @@
 import { Bar, BarChart, Legend, Tooltip, XAxis } from "recharts";
-import { useWeeklySummary } from "./useWeeklySummary";
+import { useGetData } from "../../../hooks/useGetData";
 
 export default function WeeklyRevenue() {
-  const { data, isLoading, error } = useWeeklySummary();
+  const { data, isLoading, error } = useGetData();
+  const { weeklySummary } = data ?? [];
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5 [&_.recharts-surface:focus]:outline-none">
       <span className="text-2xl  text-bold capitalize">weekly revenue</span>
@@ -16,7 +17,7 @@ export default function WeeklyRevenue() {
           fontSize: "small",
         }}
         responsive
-        data={data}
+        data={weeklySummary}
         margin={{
           top: 20,
           right: 0,

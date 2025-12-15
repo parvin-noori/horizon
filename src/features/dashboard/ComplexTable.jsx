@@ -8,10 +8,10 @@ import {
   TableRow,
 } from "@heroui/react";
 import { useCallback } from "react";
-import { DiAndroid } from "react-icons/di";
-import { FaApple } from "react-icons/fa";
-import { IoLogoWindows } from "react-icons/io5";
-import { useDevTable } from "./useDevTable";
+import { FcApproval } from "react-icons/fc";
+import { MdError } from "react-icons/md";
+import { RxCrossCircled } from "react-icons/rx";
+import { useGetData } from "../../hooks/useGetData";
 
 const columns = [
   {
@@ -19,8 +19,8 @@ const columns = [
     label: "Name",
   },
   {
-    key: "systems",
-    label: "SYSTEMS",
+    key: "status",
+    label: "STATUS",
   },
   {
     key: "date",
@@ -32,60 +32,56 @@ const columns = [
   },
 ];
 
-export default function DevTable() {
-  const { data, isLoading } = useDevTable();
-
-  const systemIcon = {
-    ios: <FaApple />,
-    android: <DiAndroid />,
-    windows: <IoLogoWindows />,
-  };
-
+export default function ComplexTable() {
   const renderCell = useCallback((item, columnKey) => {
     switch (columnKey) {
       case "name":
         return <span className="capitalize text-nowrap">{item.name}</span>;
-      case "systems":
+      case "status":
         return (
           <div className="flex items-center gap-2">
-            {item?.systems.split(",").map((item) => (
-              <span key={item.key} className="text-slate-300">
-                {systemIcon[item]}
-              </span>
-            ))}
+            <span className="text-xl"> {statusIcon[item.status]}</span>
+            {item.status}
           </div>
         );
       case "date":
-        return <span>{item.date}</span>;
+        return <span className="text-nowrap">{item.date}</span>;
       case "progress":
-        return (
-          <div className="flex items-center gap-2">
-            <span>{item.progress}%</span>
-            <Progress size="sm" value={item.progress} />
-          </div>
-        );
+        return <Progress size="sm" value={item.progress} />;
     }
   });
+  const statusIcon = {
+    approved: <FcApproval />,
+    disable: <RxCrossCircled className="text-red-500" />,
+    error: <MdError className="text-yellow-500" />,
+  };
 
+  const { data, isLoading, error } = useGetData();
+  const { complexTable } = data ?? [];
+  if (error) {
+    console.log(error);
+  }
   return (
-    <div className="bg-white dark:bg-secondary rounded-2xl shadow  flex flex-col space-y-5">
-      <span className="text-2xl  text-bold capitalize pt-5 px-6">
-        development table
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow flex flex-col space-y-5">
+      <span className="text-2xl  text-bold capitalize px-6 pt-5">
+        complex table
       </span>
       <div className="overflow-x-auto">
         <Table
+          isCompact
           removeWrapper
           classNames={{
-            th: "bg-transparent border-b border-slate-200 text-slate-300",
-            tr: "px-6",
+            th: "bg-transparent border-slate-200 text-slate-300 px-6",
+            td: "px-6 py-3",
           }}
+          aria-label="Controlled table example with dynamic content"
         >
           <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={data ?? []} isLoading={isLoading}>
+          <TableBody items={complexTable ?? []} isLoading={isLoading}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (

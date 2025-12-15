@@ -1,7 +1,7 @@
-import CheckTable from "../../features/dashboard/checkTable/CheckTable";
-import ComplexTable from "../../features/dashboard/complexTable/ComplexTable";
-import DevTable from "../../features/tables/devTable/DevTable";
-import FourColTable from "../../features/tables/fourColTable/FourColTable";
+import CheckTable from "../../features/dashboard/checkTable";
+import ComplexTable from "../../features/dashboard/complexTable";
+import DevTable from "../../features/tables/devTable";
+import FourColTable from "../../features/tables/fourColTable";
 
 export default function Tables() {
   return (
