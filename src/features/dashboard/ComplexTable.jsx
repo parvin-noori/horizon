@@ -12,36 +12,7 @@ import { FcApproval } from "react-icons/fc";
 import { MdError } from "react-icons/md";
 import { RxCrossCircled } from "react-icons/rx";
 
-const rows = [
-  {
-    key: "1",
-    name: "horizon UI pro",
-    status: "approved",
-    date: "18 Apr 2021",
-    progress: 80,
-  },
-  {
-    key: "2",
-    name: "horizon UI free",
-    progress: 30,
-    status: "disable",
-    date: "18 Apr 2021",
-  },
-  {
-    key: "3",
-    name: "marketplace",
-    progress: 90,
-    status: "error",
-    date: "20 May 2021",
-  },
-  {
-    key: "4",
-    name: "weekly updates",
-    progress: 40,
-    status: "approved",
-    date: "12 Jul 2021",
-  },
-];
+
 
 const columns = [
   {
