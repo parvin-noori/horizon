@@ -15,7 +15,7 @@ import TaskItem from "./TaskItem";
 export default function Tasks() {
   const [items, setItems] = useState([]);
   const { data, isLoading, error } = useGetData();
-  const { tasks } = data ?? [];
+  const { tasks } = data ?? {};
 
   useEffect(() => {
     if (tasks) {

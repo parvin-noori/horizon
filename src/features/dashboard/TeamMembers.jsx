@@ -4,7 +4,7 @@ import { useGetData } from "../../hooks/useGetData";
 
 export default function TeamMembers() {
   const { data, isLoading, error } = useGetData();
-  const { teamMembers } = data ?? [];
+  const { teamMembers } = data ?? {};
   if (isLoading) return <span>is loading</span>;
   if (error) console.log(error);
   return (

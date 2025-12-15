@@ -18,7 +18,7 @@ import { addKanban, editKanban, setKanbanItems } from "./kanbanSlice";
 export default function Kanban() {
   const [editngId, setEditngId] = useState(false);
   const { data: kanbanItems } = useGetData();
-  const { kanban } = data ?? [];
+  const { kanban } = data ?? {};
   const items = useSelector((state) => state.kanban.items);
 
   const dispatch = useDispatch();

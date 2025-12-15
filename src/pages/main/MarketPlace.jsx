@@ -6,7 +6,7 @@ import { useGetData } from "../../hooks/useGetData";
 
 export default function MarketPlace() {
   const { data, isLoading } = useGetData();
-  const { trendingItems, recentlyItems } = data ?? [];
+  const { trendingItems, recentlyItems } = data ?? {};
 
   const allItems = [...(trendingItems ?? []), ...(recentlyItems ?? [])];
   return (

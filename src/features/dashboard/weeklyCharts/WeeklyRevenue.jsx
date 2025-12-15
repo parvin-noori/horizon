@@ -3,7 +3,7 @@ import { useGetData } from "../../../hooks/useGetData";
 
 export default function WeeklyRevenue() {
   const { data, isLoading, error } = useGetData();
-  const { weeklySummary } = data ?? [];
+  const { weeklySummary } = data ?? {};
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5 [&_.recharts-surface:focus]:outline-none">
       <span className="text-2xl  text-bold capitalize">weekly revenue</span>

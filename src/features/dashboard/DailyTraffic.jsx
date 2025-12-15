@@ -6,7 +6,7 @@ import { useGetData } from "../../hooks/useGetData";
 export default function DailyTraffic() {
   const theme = useSelector((state) => state.theme.theme);
   const { data, isLoading, error } = useGetData();
-  const { dailyTraffic } = data ?? [];
+  const { dailyTraffic } = data ?? {};
   const whiteStopOpacity = theme === "dark" ? 1 : 0.1;
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">

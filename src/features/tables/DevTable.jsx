@@ -34,7 +34,7 @@ const columns = [
 
 export default function DevTable() {
   const { data, isLoading } = useGetData();
-  const { devTable } = data ?? [];
+  const { devTable } = data ?? {};
 
   const systemIcon = {
     ios: <FaApple />,

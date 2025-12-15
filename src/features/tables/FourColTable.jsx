@@ -30,7 +30,7 @@ const columns = [
 
 export default function FourColTable() {
   const { data, isLoading } = useGetData();
-  const { fourColTable } = data ?? [];
+  const { fourColTable } = data ?? {};
   const rowsWithPercent = fourColTable?.map((item) => ({
     ...item,
     progress: `${item.progress}%`,

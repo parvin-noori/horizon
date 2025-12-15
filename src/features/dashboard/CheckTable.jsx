@@ -31,7 +31,7 @@ const columns = [
 export default function CheckTable() {
   const [selectedKeys, setSelectedKeys] = useState(["2", "3", "4"]);
   const { data, isLoading, error } = useGetData();
-  const { checkTable } = data ?? [];
+  const { checkTable } = data ?? {};
 
   if (error) return <div>Error loading data</div>;
 

@@ -57,7 +57,7 @@ export default function ComplexTable() {
   };
 
   const { data, isLoading, error } = useGetData();
-  const { complexTable } = data ?? [];
+  const { complexTable } = data ?? {};
   if (error) {
     console.log(error);
   }
