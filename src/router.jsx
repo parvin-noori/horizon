@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router";
-import Dashboard from "./features/dashboard/Dashboard";
+import Dashboard from "./pages/main/Dashboard";
 import Kanban from "./features/kanban/Kanban";
 import IdentityLayout from "./layouts/IdentityLayout";
 import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/login/Login";
-import MarketPlace from "./features/MarketPlace/MarketPlace";
+import MarketPlace from "./pages/main/MarketPlace";
 import Profile from "./features/profile/Profile";
-import Tables from "./features/tables/Tables";
+import Tables from "./pages/main/Tables";
 
 export const router = createBrowserRouter([
   {

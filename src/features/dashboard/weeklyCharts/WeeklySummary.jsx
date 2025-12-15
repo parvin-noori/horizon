@@ -2,7 +2,7 @@ import { BiSolidUpArrow } from "react-icons/bi";
 import { FaRegCalendar } from "react-icons/fa6";
 import { SiTicktick } from "react-icons/si";
 import { Line, LineChart, XAxis } from "recharts";
-import { useWeeklySummary } from "../../hooks/useWeeklySummary";
+import { useWeeklySummary } from "./useWeeklySummary";
 
 export default function WeeklySummary() {
   const { data, isLoading, error } = useWeeklySummary();

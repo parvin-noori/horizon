@@ -1,16 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { kanbanItems } from "./data";
 
 const savedItems = localStorage.getItem("kanbanItems");
 
 const initialState = {
-  items: savedItems ? JSON.parse(savedItems) : kanbanItems,
+  items: savedItems ? JSON.parse(savedItems) : [],
 };
 
 const kanbanSlice = createSlice({
   name: "kanban",
   initialState,
   reducers: {
+    setKanbanItems: (state, action) => {
+      state.items = action.payload;
+      localStorage.setItem("kanbanItems", JSON.stringify(state.items));
+    },
     addKanban: (state, action) => {
       state.items.unshift(action.payload);
     },
@@ -29,5 +32,6 @@ const kanbanSlice = createSlice({
   },
 });
 
-export const { addKanban, editKanban, removeKanban } = kanbanSlice.actions;
+export const { setKanbanItems, addKanban, editKanban, removeKanban } =
+  kanbanSlice.actions;
 export default kanbanSlice.reducer;

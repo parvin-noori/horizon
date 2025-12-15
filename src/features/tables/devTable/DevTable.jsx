@@ -8,10 +8,10 @@ import {
   TableRow,
 } from "@heroui/react";
 import { useCallback } from "react";
-import { FcApproval } from "react-icons/fc";
-import { MdError } from "react-icons/md";
-import { RxCrossCircled } from "react-icons/rx";
-import { useComplexTableData } from "../../hooks/useComplexTableData";
+import { DiAndroid } from "react-icons/di";
+import { FaApple } from "react-icons/fa";
+import { IoLogoWindows } from "react-icons/io5";
+import { useDevTable } from "./useDevTable";
 
 const columns = [
   {
@@ -19,8 +19,8 @@ const columns = [
     label: "Name",
   },
   {
-    key: "status",
-    label: "STATUS",
+    key: "systems",
+    label: "SYSTEMS",
   },
   {
     key: "date",
@@ -32,55 +32,60 @@ const columns = [
   },
 ];
 
-export default function ComplexTable() {
+export default function DevTable() {
+  const { data, isLoading } = useDevTable();
+
+  const systemIcon = {
+    ios: <FaApple />,
+    android: <DiAndroid />,
+    windows: <IoLogoWindows />,
+  };
+
   const renderCell = useCallback((item, columnKey) => {
     switch (columnKey) {
       case "name":
         return <span className="capitalize text-nowrap">{item.name}</span>;
-      case "status":
+      case "systems":
         return (
           <div className="flex items-center gap-2">
-            <span className="text-xl"> {statusIcon[item.status]}</span>
-            {item.status}
+            {item?.systems.split(",").map((item) => (
+              <span key={item.key} className="text-slate-300">
+                {systemIcon[item]}
+              </span>
+            ))}
           </div>
         );
       case "date":
-        return <span className="text-nowrap">{item.date}</span>;
+        return <span>{item.date}</span>;
       case "progress":
-        return <Progress size="sm" value={item.progress} />;
+        return (
+          <div className="flex items-center gap-2">
+            <span>{item.progress}%</span>
+            <Progress size="sm" value={item.progress} />
+          </div>
+        );
     }
   });
-  const statusIcon = {
-    approved: <FcApproval />,
-    disable: <RxCrossCircled className="text-red-500" />,
-    error: <MdError className="text-yellow-500" />,
-  };
 
-  const { data, isLoading, error } = useComplexTableData();
-  if (error) {
-    console.log(error);
-  }
   return (
-    <div className="bg-white dark:bg-secondary rounded-2xl shadow flex flex-col space-y-5">
-      <span className="text-2xl  text-bold capitalize px-6 pt-5">
-        complex table
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow  flex flex-col space-y-5">
+      <span className="text-2xl  text-bold capitalize pt-5 px-6">
+        development table
       </span>
       <div className="overflow-x-auto">
         <Table
-          isCompact
           removeWrapper
           classNames={{
-            th: "bg-transparent border-slate-200 text-slate-300 px-6",
-            td: "px-6 py-3",
+            th: "bg-transparent border-b border-slate-200 text-slate-300",
+            tr: "px-6",
           }}
-          aria-label="Controlled table example with dynamic content"
         >
           <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={data??[]} isLoading={isLoading}>
+          <TableBody items={data ?? []} isLoading={isLoading}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (

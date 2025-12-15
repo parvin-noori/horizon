@@ -1,5 +1,5 @@
 import { Bar, BarChart, Legend, Tooltip, XAxis } from "recharts";
-import { useWeeklySummary } from "../../hooks/useWeeklySummary";
+import { useWeeklySummary } from "./useWeeklySummary";
 
 export default function WeeklyRevenue() {
   const { data, isLoading, error } = useWeeklySummary();

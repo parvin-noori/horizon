@@ -1,13 +1,14 @@
 import {
+  getKeyValue,
   Table,
   TableBody,
   TableCell,
   TableColumn,
   TableHeader,
   TableRow,
-  getKeyValue,
 } from "@heroui/react";
-import { useFourColTable } from "../../hooks/useFourColTable";
+import { useState } from "react";
+import { useCheckTable } from "./useCheckTable";
 
 const columns = [
   {
@@ -27,25 +28,25 @@ const columns = [
     label: "DATE",
   },
 ];
+export default function CheckTable() {
+  const [selectedKeys, setSelectedKeys] = useState(["2", "3", "4"]);
+  const { data, isLoading, error } = useCheckTable();
 
-export default function FourColTable() {
-  const { data, isLoading } = useFourColTable();
-  const rowsWithPercent = data?.map((item) => ({
-    ...item,
-    progress: `${item.progress}%`,
-  }));
+  if (error) return <div>Error loading data</div>;
 
   return (
-    <div className="bg-white dark:bg-secondary rounded-2xl shadow  flex flex-col space-y-5">
-      <span className="text-2xl  text-bold capitalize pt-5 px-6">
-        4-Column table
-      </span>
+    <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
+      <span className="text-2xl  text-bold capitalize">check table</span>
       <div className="overflow-x-auto">
         <Table
           removeWrapper
+          selectedKeys={selectedKeys}
+          selectionMode="multiple"
+          onSelectionChange={setSelectedKeys}
           classNames={{
-            th: "bg-transparent border-b border-slate-200 text-slate-300",
-            tr: "px-6",
+            th: "bg-transparent text-slate-300",
+            tr: "capitalize text-nowrap",
+            td: "data-[selected=true]:before:!opacity-0 !text-inherit [&>span]:whitespace-nowrap",
           }}
         >
           <TableHeader columns={columns}>
@@ -57,9 +58,7 @@ export default function FourColTable() {
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (
-                  <TableCell className="capitalize">
-                    {getKeyValue(item, columnKey)}
-                  </TableCell>
+                  <TableCell>{getKeyValue(item, columnKey)}</TableCell>
                 )}
               </TableRow>
             )}

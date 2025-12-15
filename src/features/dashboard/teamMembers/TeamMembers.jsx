@@ -1,6 +1,6 @@
 import { Avatar, Button } from "@heroui/react";
 import { IoMdMore } from "react-icons/io";
-import { useMembers } from "../../hooks/useTeamMembers";
+import { useMembers } from "./useTeamMembers";
 
 export default function TeamMembers() {
   const { data: teamMembers, isLoading, error } = useMembers();

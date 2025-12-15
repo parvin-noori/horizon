@@ -9,7 +9,7 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { Checkbox, CheckboxGroup, cn } from "@heroui/react";
 import { useEffect, useState } from "react";
-import { useTasks } from "../../hooks/useTasks";
+import { useTasks } from "./useTasks";
 import TaskItem from "./TaskItem";
 
 export default function Tasks() {

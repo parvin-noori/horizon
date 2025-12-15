@@ -1,9 +1,9 @@
-import { useRecentlyItems } from "../../hooks/useRecentlyItems";
-import { useTrendingItems } from "../../hooks/useTrendingItems";
-import Banner from "./Banner";
-import Creators from "./Creators";
-import History from "./History";
-import MarketPlaceItems from "./MarketPlaceItems";
+import Banner from "../../features/MarketPlace/Banner";
+import Creators from "../../features/MarketPlace/Creators";
+import History from "../../features/MarketPlace/History";
+import MarketPlaceItems from "../../features/MarketPlace/MarketPlaceItems";
+import { useTrendingItems } from "../../features/MarketPlace/useTrendingItems";
+import { useRecentlyItems } from "../../features/MarketPlace/useRecentlyItems";
 
 export default function MarketPlace() {
   const { data: trendignItems, isLoading: loadingTrending } =

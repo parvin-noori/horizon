@@ -12,12 +12,14 @@ import { FiPlus } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import KanbanItem from "./KanbanItem";
-import { addKanban, editKanban } from "./kanbanSlice";
+import { addKanban, editKanban, setKanbanItems } from "./kanbanSlice";
+import { useKanban } from "./useKanban";
 
 export default function Kanban() {
   const [editngId, setEditngId] = useState(false);
-  const kanbanItems = useSelector((state) => state.kanban.items);
-  const [items, setItems] = useState(kanbanItems);
+  const { data: kanbanItems } = useKanban();
+  const items = useSelector((state) => state.kanban.items);
+
   const dispatch = useDispatch();
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
@@ -35,8 +37,10 @@ export default function Kanban() {
 
   // sync local items with redux changes (edit / add)
   useEffect(() => {
-    setItems(kanbanItems);
-  }, [kanbanItems]);
+    if (kanbanItems) {
+      dispatch(setKanbanItems(kanbanItems));
+    }
+  }, [kanbanItems, dispatch]);
 
   const columns = useMemo(
     () => [

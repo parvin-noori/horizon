@@ -1,7 +1,7 @@
 import { BiSolidUpArrow } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { Bar, BarChart, XAxis } from "recharts";
-import { useDailyTraffic } from "../../hooks/useDailyTraffic";
+import { useDailyTraffic } from "./useDailyTraffic";
 
 export default function DailyTraffic() {
   const theme = useSelector((state) => state.theme.theme);
