@@ -5,7 +5,7 @@ export const useMembers = () => {
   return useQuery({
     queryKey: ["teamMembers"],
     queryFn: async () => {
-      const { data } = httpService.get("/teamMembers.json");
+      const { data } = await httpService.get("/teamMembers.json");
       return data;
     },
   });
