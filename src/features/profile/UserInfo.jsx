@@ -4,7 +4,7 @@ import banner from "/imgs/userInfoBanner.png";
 
 export default function UserInfo(props) {
   const { user } = props;
-  const { avatar, name, jobPosition, posts, followers, following } = user;
+  const { avatar, name, jobPosition, posts, followers, following } = user ?? {};
   return (
     <div className="bg-white dark:bg-secondary p-5 rounded-xl space-y-15">
       <div className="relative">
