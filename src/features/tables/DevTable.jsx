@@ -13,7 +13,7 @@ import { FaApple } from "react-icons/fa";
 import { IoLogoWindows } from "react-icons/io5";
 import { useDevTable } from "../../hooks/useDevTable";
 
- const columns = [
+const columns = [
   {
     key: "name",
     label: "Name",
@@ -34,7 +34,7 @@ import { useDevTable } from "../../hooks/useDevTable";
 
 export default function DevTable() {
   const { data, isLoading } = useDevTable();
-  
+
   const systemIcon = {
     ios: <FaApple />,
     android: <DiAndroid />,
@@ -48,7 +48,7 @@ export default function DevTable() {
       case "systems":
         return (
           <div className="flex items-center gap-2">
-            {item.systems.split(",").map((item) => (
+            {item?.systems.split(",").map((item) => (
               <span key={item.key} className="text-slate-300">
                 {systemIcon[item]}
               </span>
@@ -85,7 +85,7 @@ export default function DevTable() {
               <TableColumn key={column.key}>{column.label}</TableColumn>
             )}
           </TableHeader>
-          <TableBody items={data} isLoading={isLoading}>
+          <TableBody items={data ?? []} isLoading={isLoading}>
             {(item) => (
               <TableRow key={item.key}>
                 {(columnKey) => (
