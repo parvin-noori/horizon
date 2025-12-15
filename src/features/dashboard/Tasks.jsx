@@ -8,14 +8,20 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { Checkbox, CheckboxGroup, cn } from "@heroui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTasks } from "../../hooks/useTasks";
 import TaskItem from "./TaskItem";
 
-
 export default function Tasks() {
-  const{data,isLoading,error}=useTasks()
-  const [items, setItems] = useState(data);
+  const [items, setItems] = useState([]);
+  const { data, isLoading, error } = useTasks();
+
+  useEffect(() => {
+    if (data) {
+      setItems(data);
+    }
+  }, [data]);
+
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
       delay: 150,
@@ -60,8 +66,10 @@ export default function Tasks() {
     }
   };
 
-  if(isLoading) return <span>is loading</span>
-  if(error) {console.log(error)}
+  if (isLoading) return <span>is loading</span>;
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">

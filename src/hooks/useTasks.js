@@ -5,7 +5,7 @@ export const useTasks = () => {
   return useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const { data } = await httpService.get("/tasks");
+      const { data } = await httpService.get("/tasks.json");
       return data;
     },
   });
