@@ -1,57 +1,13 @@
+import { useTrendingItems } from "../../hooks/useTrendingItems";
 import Banner from "./Banner";
 import Creators from "./Creators";
 import History from "./History";
 import MarketPlaceItems from "./MarketPlaceItems";
 
-const trendignItems = [
-  {
-    id: 1,
-    title: "abstract colors",
-    banner: "/imgs/trendingItem1.png",
-    by: "esthera jackson",
-    bid: 0.91,
-  },
-  {
-    id: 2,
-    title: "ETH AI Brain",
-    banner: "/imgs/trendingItem2.png",
-    by: "nick wilson",
-    bid: 2.82,
-  },
-  {
-    id: 3,
-    title: "mesh gradients",
-    banner: "/imgs/trendingItem3.png",
-    by: "will smith",
-    bid: 0.56,
-  },
-];
-const recentlyItems = [
-  {
-    id: 1,
-    title: "swipe circles",
-    banner: "/imgs/recentlyItem1.png",
-    by: "petter will",
-    bid: 2.3,
-  },
-  {
-    id: 2,
-    title: "colorful heaven",
-    banner: "/imgs/recentlyItem2.png",
-    by: "mark benjamin",
-    bid: 1.3,
-  },
-  {
-    id: 3,
-    title: "3D cubes art",
-    banner: "/imgs/recentlyItem3.png",
-    by: "manny gates",
-    bid: 6.58,
-  },
-];
+const { data: trendignItems } = useTrendingItems();
+const { data: recentlyItems } = recentlyItems();
 
-
-const allItems=[...trendignItems,...recentlyItems];
+const allItems = [...trendignItems, ...recentlyItems];
 
 export default function MarketPlace() {
   return (
@@ -63,7 +19,7 @@ export default function MarketPlace() {
       </div>
       <div className="lg:col-span-2 flex flex-col space-y-5">
         <Creators />
-        <History items={allItems}/>
+        <History items={allItems} />
       </div>
     </div>
   );

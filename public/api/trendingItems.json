@@ -1,0 +1,23 @@
+ [
+  {
+    "id": 1,
+    "title": "abstract colors",
+    "banner": "/imgs/trendingItem1.png",
+    "by": "esthera jackson",
+    "bid": 0.91
+  },
+  {
+    "id": 2,
+    "title": "ETH AI Brain",
+    "banner": "/imgs/trendingItem2.png",
+    "by": "nick wilson",
+    "bid": 2.82
+  },
+  {
+    "id": 3,
+    "title": "mesh gradients",
+    "banner": "/imgs/trendingItem3.png",
+    "by": "will smith",
+    "bid": 0.56
+  }
+]
