@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import httpService from "../core/http-service";
 
 export const useCheckTable = () => {
   return useQuery({
