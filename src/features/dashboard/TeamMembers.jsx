@@ -11,7 +11,7 @@ export default function TeamMembers() {
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <span className="text-lg  text-bold capitalize">team members</span>
       <ul className="flex flex-col space-y-5">
-        {teamMembers?.map((member, index) => (
+        {teamMembers.map((member, index) => (
           <li
             key={index}
             className="flex items-center space-x-3 shadow-md rounded-xl px-3 py-2 "
