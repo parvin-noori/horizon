@@ -17,7 +17,8 @@ import { addKanban, editKanban, setKanbanItems } from "./kanbanSlice";
 
 export default function Kanban() {
   const [editngId, setEditngId] = useState(false);
-  const { data: kanbanItems } = useGetData();
+  const { data, isLoading, error } = useGetData();
+  const { kanban: kanbanItems } = data ?? {};
   const items = useSelector((state) => state.kanban.items);
 
   const dispatch = useDispatch();
@@ -90,6 +91,9 @@ export default function Kanban() {
     dispatch(editKanban({ id: activeId, column: newColumn }));
   };
 
+  if (isLoading) <span>is loading...</span>;
+  if (error) console.log(error);
+
   return (
     <div className="kanban">
       <DndContext sensors={sensor} onDragEnd={handleDragEnd}>
@@ -103,7 +107,7 @@ export default function Kanban() {
           {columns.map((col) => (
             <SortableContext
               key={col.id}
-              items={items.filter((i) => i.column === col.id).map((i) => i.id)}
+              items={items?.filter((i) => i.column === col.id).map((i) => i.id)}
             >
               <div className="bg-white dark:bg-secondary lg:w-full md:w-1/2 sm:w-[70%] w-[80%] rounded-xl p-5 space-y-10 flex flex-col">
                 <div className="flex items-center justify-between">
