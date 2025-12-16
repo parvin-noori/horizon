@@ -1,12 +1,48 @@
-# React + Vite
+# 🌌 Horizon Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Horizon** is a modern, customizable **React dashboard template** built with a feature-based architecture, focusing on scalability, performance, and rich user experience.
 
-Currently, two official plugins are available:
+## 🔗 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 **Vercel Preview:**  
+[https://your-vercel-link.vercel.app](https://horizon-hazel-delta.vercel.app/)
 
-## Expanding the ESLint configuration
+## 🖼 Preview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![Horizon Dashboard Preview](https://github.com/parvin-noori/horizon/blob/main/public/imgs/signIn.png)
+![Horizon Dashboard Preview](https://github.com/parvin-noori/horizon/blob/main/public/imgs/dashboard.png)
+![Horizon Dashboard Preview](https://github.com/parvin-noori/horizon/blob/main/public/imgs/kanban.png)
+
+---
+
+## ✨ Features
+
+- ⚛️ Built with **React**
+- 🧩 **Feature-Based Architecture**
+- 🧠 **Redux Toolkit** for global state management
+- 🔄 **React Query** for server-state management
+- 🧲 **Drag & Drop** powered by **@dnd-kit**
+- 💾 **Persistent dashboard layout** using LocalStorage
+- 🌗 **Dark / Light theme support**
+- 🎨 Styled with **Tailwind CSS**
+- 📊 Interactive charts with **Recharts**
+- 🧭 Sliders & carousels using **Swiper**
+- 📝 Forms handled by **React Hook Form**
+- 📦 Dynamic data loaded from local JSON files
+- 📱 Fully responsive dashboard UI
+
+---
+
+## 🧱 Tech Stack
+
+- **React**
+- **Redux Toolkit**
+- **React Query**
+- **Tailwind CSS**
+- **@dnd-kit**
+- **Recharts**
+- **Swiper**
+- **React Hook Form**
+- **Vite**
+
+
