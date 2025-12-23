@@ -24,7 +24,7 @@ export default function Profile() {
         <Uploader />
       </div>
       <div className="xl:col-span-4 col-span-6">
-        {/* <Projects userInfo={userInfo} /> */}
+        <Projects userInfo={userInfo} />
       </div>
       <div className="xl:col-span-5 col-span-6">
         <GeneralInfo info={userInfo} />

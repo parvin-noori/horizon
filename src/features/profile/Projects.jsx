@@ -1,8 +1,7 @@
 import { Avatar, Button, Link } from "@heroui/react";
 import { FaPen } from "react-icons/fa6";
 
-export default function Projects(props) {
-  const { userInfo } = props ?? [];
+export default function Projects({ userInfo }) {
   const projects = userInfo?.projects ?? [];
 
   return (
@@ -13,8 +12,7 @@ export default function Projects(props) {
         engaged by providing meaningful inforamtion
       </p>
       <ul className="flex flex-col space-y-4 mt-5">
-     
-        {/* {projects?.map((project, index) => (
+        {projects?.map((project, index) => (
           <li
             key={index}
             className="flex items-center gap-3 shadow-md rounded-xl ps-3 pe-5 py-2 dark:bg-white/5"
@@ -48,7 +46,7 @@ export default function Projects(props) {
               <FaPen className="text-slate-400" />
             </Button>
           </li>
-        ))} */}
+        ))}
       </ul>
     </div>
   );

@@ -456,12 +456,14 @@
     "posts": 17,
     "followers": 9.7,
     "following": 274,
-    "education": "stanford university",
-    "Languages": "English, Spanish,italian",
-    "department": "product design",
-    "workHistory": "google, facebook",
-    "organization": "simmmple web LLC",
-    "birthday": "20 July 1986",
+    "info": {
+      "education": "stanford university",
+      "Languages": "English, Spanish,italian",
+      "department": "product design",
+      "workHistory": "google, facebook",
+      "organization": "simmmple web LLC",
+      "birthday": "20 July 1986"
+    },
     "projects": [
       {
         "name": "technology behind the blockchain",
