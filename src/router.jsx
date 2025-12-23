@@ -1,13 +1,20 @@
-import { createBrowserRouter } from "react-router";
-import Dashboard from "./pages/main/Dashboard";
+import { createBrowserRouter, Navigate } from "react-router";
 import Kanban from "./features/kanban/Kanban";
 import IdentityLayout from "./layouts/IdentityLayout";
 import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/login/Login";
+import Dashboard from "./pages/main/Dashboard";
 import MarketPlace from "./pages/main/MarketPlace";
 import Profile from "./pages/main/Profile";
 import Tables from "./pages/main/Tables";
 
+const isAuthenticated = () => {
+  return localStorage.getItem("userInfo") !== null;
+};
+
+const ProtectedRoute = ({ element }) => {
+  return isAuthenticated() ? element : <Navigate to="/" />;
+};
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +28,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    element: <MainLayout />,
+    element: <ProtectedRoute element={<MainLayout />} />,
     children: [
       {
         path: "/dashboard",
