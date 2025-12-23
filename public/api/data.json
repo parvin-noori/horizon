@@ -449,34 +449,32 @@
       "amt": 2100
     }
   ],
-  "userInfo": [
-    {
-      "avatar": "/imgs/userImg.png",
-      "name": "adela parkson",
-      "jobPosition": "product designer",
-      "posts": 17,
-      "followers": 9.7,
-      "following": 274,
-      "education": "stanford university",
-      "Languages": "English, Spanish,italian",
-      "department": "product design",
-      "workHistory": "google, facebook",
-      "organization": "simmmple web LLC",
-      "birthday": "20 July 1986",
-      "projects": [
-        {
-          "name": "technology behind the blockchain",
-          "img": "/imgs/project1.png"
-        },
-        {
-          "name": "greatest way to good economy",
-          "img": "/imgs/project2.png"
-        },
-        {
-          "name": "most essential tips for burnout",
-          "img": "/imgs/project3.png"
-        }
-      ]
-    }
-  ]
+  "userInfo": {
+    "avatar": "/imgs/userImg.png",
+    "name": "adela parkson",
+    "jobPosition": "product designer",
+    "posts": 17,
+    "followers": 9.7,
+    "following": 274,
+    "education": "stanford university",
+    "Languages": "English, Spanish,italian",
+    "department": "product design",
+    "workHistory": "google, facebook",
+    "organization": "simmmple web LLC",
+    "birthday": "20 July 1986",
+    "projects": [
+      {
+        "name": "technology behind the blockchain",
+        "img": "/imgs/project1.png"
+      },
+      {
+        "name": "greatest way to good economy",
+        "img": "/imgs/project2.png"
+      },
+      {
+        "name": "most essential tips for burnout",
+        "img": "/imgs/project3.png"
+      }
+    ]
+  }
 }
