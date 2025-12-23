@@ -27,6 +27,10 @@ export default function LoginForm() {
       return data;
     },
     onSuccess: (data) => {
+        localStorage.setItem("userInfo", JSON.stringify({
+        email: data.user.email,
+        id: data.user.id,
+      }));
       toast.success(`Welcome ${data.user.email}`);
       setTimeout(() => {
         navigate("/dashboard");
