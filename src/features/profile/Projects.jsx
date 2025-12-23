@@ -13,7 +13,7 @@ export default function Projects(props) {
         engaged by providing meaningful inforamtion
       </p>
       <ul className="flex flex-col space-y-4 mt-5">
-        {console.log(projects)}
+     
         {/* {projects?.map((project, index) => (
           <li
             key={index}

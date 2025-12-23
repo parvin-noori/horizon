@@ -12,6 +12,7 @@ export default function Profile() {
   return (
     <div className="grid lg:grid-cols-12 gap-5">
       <div className="xl:col-span-5 col-span-6">
+           {console.log(userInfo)}
         <UserInfo user={userInfo} />
       </div>
       <div className="xl:col-span-3 col-span-6">
