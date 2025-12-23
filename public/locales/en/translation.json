@@ -1,0 +1,47 @@
+{
+  "signIn": {
+    "title": "sign in",
+    "subtitle": "enter your email and password to sign in!",
+    "google": "sign in with google",
+    "keep": "keep me login",
+    "forgot": "forgot password?",
+    "back to dashboard": "back to dashboard",
+    "signIn": "sign in",
+    "validation": {
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required",
+      "notMatching": "Password do not match"
+    }
+  },
+  "mainLayout": {
+    "sidebar": {
+      "dashboard": "dashboard",
+      "NFTMarket": "NFT Market",
+      "Tables": "tables",
+      "kanban": "kanban",
+      "profile": "profile",
+      "singIn": "sign in"
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "dashboard": "dashboard",
+      "thisMonth":"this month",
+      "total spent":"total spent",
+      "onTracks":"on tracks",
+      "weekly revenue":"weekly revenue",
+      "checkTable":"check table",
+      "dashboardStats": {
+        "earning": "earning",
+        "spendThisMonth": "spend this month",
+        "sales": "sales",
+        "your balance": "your balance"
+      }
+
+    }
+  },
+  "categoryList": {
+    "DeleteIsNotPossible": "It is not possible to delete this category",
+    "DuplicateCategory": "The category is duplicate"
+  }
+}
