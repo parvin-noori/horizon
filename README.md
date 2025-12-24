@@ -60,6 +60,7 @@ well, when you successfully logged in, you'll face the dashboard layout which we
 - 📝 Forms handled by **React Hook Form**
 - 📦 Dynamic data loaded from local JSON files
 - 📱 Fully responsive dashboard UI
+- 🔐 Authentication with **Supabase**
 
 ---
 
@@ -69,10 +70,20 @@ well, when you successfully logged in, you'll face the dashboard layout which we
 - **Redux Toolkit**
 - **React Query**
 - **Tailwind CSS**
+- **Supabase Auth**
 - **@dnd-kit**
 - **Recharts**
 - **Swiper**
 - **React Hook Form**
 - **Vite**
+
+---
+
+## 🔒 Route Protection
+
+Dashboard routes are protected by checking authentication state before rendering.
+
+Unauthorized users are redirected to the login page.
+
 
 
