@@ -75,7 +75,6 @@ export default function ComplexTable() {
             th: "bg-transparent border-slate-200 text-slate-300 px-6",
             td: "px-6 py-3",
           }}
-          aria-label="Controlled table example with dynamic content"
         >
           <TableHeader columns={columns}>
             {(column) => (

@@ -32,7 +32,6 @@ import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
 import ThemeButton from "../features/theme/ThemeButton";
 import { useGetData } from "../hooks/useGetData";
 import getPro from "/imgs/GetPRO.svg";
-import user from "/imgs/user.png";
 
 const sidebarItems = [
   {
@@ -66,7 +65,8 @@ export default function MainLayout() {
   const navigate = useNavigate();
   const { data, isLoading, error } = useGetData();
   const userInfo = data?.userInfo;
-  const { name, email, jobPosition, followers, following } = userInfo?? {};
+  const { name, email, jobPosition, followers, following, avatar } =
+    userInfo ?? {};
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -89,8 +89,6 @@ export default function MainLayout() {
     };
   }, [collapsed]);
 
-  if(isLoading) return <span>is loading</span>;
-  if(error) console.log(error);
   return (
     <div className="bg-secondary dark:bg-background  h-full flex lg:items-stretch relative ">
       {/* sidebar */}
@@ -253,8 +251,7 @@ export default function MainLayout() {
               <PopoverTrigger>
                 <Avatar
                   showFallback
-                  src={user}
-                  name="user"
+                  src={avatar}
                   className="!shrink-0 cursor-pointer"
                 />
               </PopoverTrigger>
@@ -266,13 +263,14 @@ export default function MainLayout() {
                 >
                   <CardHeader className="justify-between">
                     <div className="flex gap-3">
-                      <Avatar isBordered radius="full" size="md" src={user} />
+                      <Avatar isBordered radius="full" size="md" src={avatar} />
+
                       <div className="flex flex-col items-start justify-center">
                         <h4 className="text-small font-semibold leading-none text-default-600">
-                          {name}
+                          {isLoading ? "loading..." : name}
                         </h4>
                         <h5 className="text-small tracking-tight text-default-500">
-                          {email}
+                          {isLoading ? "loading..." : email}
                         </h5>
                       </div>
                     </div>
@@ -285,7 +283,7 @@ export default function MainLayout() {
                   </CardHeader>
                   <CardBody className="px-3 py-0">
                     <p className="text-small pl-px text-default-500">
-                      {jobPosition}
+                      {isLoading ? "loading..." : jobPosition}
                       <span aria-label="confetti" role="img">
                         🎉
                       </span>
@@ -294,13 +292,13 @@ export default function MainLayout() {
                   <CardFooter className="gap-3">
                     <div className="flex gap-1">
                       <p className="font-semibold text-default-600 text-small">
-                        {following}
+                        {isLoading ? "loading..." : following}
                       </p>
                       <p className=" text-default-500 text-small">Following</p>
                     </div>
                     <div className="flex gap-1">
                       <p className="font-semibold text-default-600 text-small">
-                        {followers}
+                        {isLoading ? "loading..." : followers}
                       </p>
                       <p className="text-default-500 text-small">Followers</p>
                     </div>

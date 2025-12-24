@@ -7,7 +7,7 @@ import {
 } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
-import { Checkbox, CheckboxGroup, cn } from "@heroui/react";
+import { Checkbox, CheckboxGroup, cn, Skeleton } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { useGetData } from "../../../hooks/useGetData";
 import TaskItem from "./TaskItem";
@@ -67,7 +67,6 @@ export default function Tasks() {
     }
   };
 
-  if (isLoading) return <span>is loading</span>;
   if (error) {
     console.log(error);
   }
@@ -86,24 +85,35 @@ export default function Tasks() {
           <span className="capitalize font-bold ">tasks</span>
         </Checkbox>
       </div>
-
-      <DndContext
-        sensors={sensors}
-        onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis]}
-      >
-        <SortableContext items={items}>
-          <CheckboxGroup
-            className="flex flex-col gap-2"
-            value={selected}
-            onChange={setSelected}
-          >
-            {items.map((item) => (
-              <TaskItem key={item.id} item={item} />
-            ))}
-          </CheckboxGroup>
-        </SortableContext>
-      </DndContext>
+      {isLoading ? (
+        <ul className="w-full space-y-3">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <li key={index} className="w-full">
+              <Skeleton className="rounded-sm h-4 bg-default-100 w-full" />
+            </li>
+          ))}
+        </ul>
+      ) : error ? (
+        <span className="text-red-400">{error.message}</span>
+      ) : (
+        <DndContext
+          sensors={sensors}
+          onDragEnd={handleDragEnd}
+          modifiers={[restrictToVerticalAxis]}
+        >
+          <SortableContext items={items}>
+            <CheckboxGroup
+              className="flex flex-col gap-2"
+              value={selected}
+              onChange={setSelected}
+            >
+              {items.map((item) => (
+                <TaskItem key={item.id} item={item} />
+              ))}
+            </CheckboxGroup>
+          </SortableContext>
+        </DndContext>
+      )}
     </div>
   );
 }

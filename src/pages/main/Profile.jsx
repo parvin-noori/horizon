@@ -7,11 +7,9 @@ import UserInfo from "../../features/profile/UserInfo";
 import { useGetData } from "../../hooks/useGetData";
 
 export default function Profile() {
-  const { data, isLoading, error } = useGetData();
+  const { data } = useGetData();
   const { userInfo } = data ?? {};
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading data!</p>;
   return (
     <div className="grid lg:grid-cols-12 gap-5">
       <div className="xl:col-span-5 col-span-6">

@@ -1,3 +1,4 @@
+import { Skeleton } from "@heroui/react";
 import { BiSolidUpArrow } from "react-icons/bi";
 import { FaRegCalendar } from "react-icons/fa6";
 import { SiTicktick } from "react-icons/si";
@@ -7,9 +8,6 @@ import { useGetData } from "../../../hooks/useGetData";
 export default function WeeklySummary() {
   const { data, isLoading, error } = useGetData();
   const { weeklySummary } = data ?? {};
-  if (isLoading) <span>loading..</span>;
-  if (error) console.log(error);
-  if (error) console.log(data);
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="flex items-center">
@@ -20,7 +18,12 @@ export default function WeeklySummary() {
       </div>
       <div className="grid md:grid-cols-4 gap-5">
         <div className="md:col-span-1 flex flex-col space-y-1">
-          <span className="text-3xl  text-bold">$37.5k</span>
+          {isLoading ? (
+            <Skeleton className="rounded-lg w-3/6 h-4" />
+          ) : (
+            !error && <span className="text-3xl  text-bold">$37.5k</span>
+          )}
+
           <p className="capitalize text-slate-400  text-sm flex items-center gap-3">
             total spent{" "}
             <span className="text-green-500 capitalize flex items-center gap-2">
@@ -33,28 +36,36 @@ export default function WeeklySummary() {
           </p>
         </div>
         <div className="md:col-span-3">
-          <LineChart
-            style={{
-              width: "100%",
-              aspectRatio: 2,
-            }}
-            responsive
-            data={weeklySummary}
-          >
-            <XAxis dataKey="month" axisLine={false} />
-            <Line
-              type="monotone"
-              dataKey="pv"
-              stroke="#8884d8"
-              strokeWidth={2}
-            />
-            <Line
-              type="monotone"
-              dataKey="uv"
-              stroke="#39B8FF"
-              strokeWidth={2}
-            />
-          </LineChart>
+          {isLoading ? (
+            <Skeleton className="rounded-lg">
+              <div className="h-62 rounded-lg bg-default-300" />
+            </Skeleton>
+          ) : error ? (
+            <span className="text-red-400">{error.message}</span>
+          ) : (
+            <LineChart
+              style={{
+                width: "100%",
+                aspectRatio: 2,
+              }}
+              responsive
+              data={weeklySummary}
+            >
+              <XAxis dataKey="month" axisLine={false} />
+              <Line
+                type="monotone"
+                dataKey="pv"
+                stroke="#8884d8"
+                strokeWidth={2}
+              />
+              <Line
+                type="monotone"
+                dataKey="uv"
+                stroke="#39B8FF"
+                strokeWidth={2}
+              />
+            </LineChart>
+          )}
         </div>
       </div>
     </div>

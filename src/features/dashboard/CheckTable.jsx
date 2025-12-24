@@ -33,7 +33,9 @@ export default function CheckTable() {
   const { data, isLoading, error } = useGetData();
   const { checkTable } = data ?? {};
 
-  if (error) return <div>Error loading data</div>;
+   if (error) {
+    console.log(error);
+  }
 
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
