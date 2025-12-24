@@ -85,7 +85,7 @@ export default function LoginForm() {
           })}
           label="Password"
           labelPlacement="outside"
-          placeholder="min 8 characters"
+          placeholder=""
           variant="bordered"
           type="password"
           size="lg"
