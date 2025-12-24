@@ -75,8 +75,8 @@ export default function MarketPlaceItems(props) {
             : items.map((item) => (
                 <SwiperSlide key={item.id}>
                   <Card className="p-3 h-full dark:bg-secondary" shadow="none">
-                    <div className="relative">
-                      <Image isZoomed src={item.banner} alt={item.title} />
+                    <div className="relative overflow-hidden max-h-52 rounded-xl">
+                      <Image removeWrapper isZoomed src={item.banner} alt={item.title} className="w-full object-cover"/>
                       <Button
                         aria-label="like button"
                         onPress={() => toggleLike(item.id)}

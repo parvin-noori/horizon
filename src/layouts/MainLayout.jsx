@@ -256,9 +256,9 @@ export default function MainLayout() {
                 />
               </PopoverTrigger>
 
-              <PopoverContent className="p-1">
+              <PopoverContent className="p-0">
                 <Card
-                  className="max-w-[300px] border-none bg-transparent"
+                  className="max-w-[300px] border-none bg-white dark:bg-secondary shadow-lg"
                   shadow="none"
                 >
                   <CardHeader className="justify-between">
