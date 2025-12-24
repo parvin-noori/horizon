@@ -14,7 +14,7 @@ export default function DashboardStats(props) {
           >
             <div className="flex items-center gap-3 h-full">
               {item.icon && (
-                <div className="bg-secondary dark:bg-white/5 text-primary size-10 flex items-center justify-center rounded-full text-xl">
+                <div className="bg-secondary dark:bg-white/5 text-primary dark:text-white size-10 flex items-center justify-center rounded-full text-xl">
                   <Icon />
                 </div>
               )}
