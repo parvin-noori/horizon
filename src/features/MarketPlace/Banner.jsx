@@ -14,7 +14,7 @@ export default function Banner() {
           creating your own.
         </p>
         <div className="flex items-center space-x-3 mt-5">
-          <Button size="lg" className="bg-white">
+          <Button size="lg" className="bg-white text-[#2B3674]">
             Discover now
           </Button>
           <Button size="lg" color="white" variant="light">
