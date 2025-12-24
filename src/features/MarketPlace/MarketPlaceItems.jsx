@@ -7,10 +7,13 @@ import {
   CardFooter,
   Image,
 } from "@heroui/react";
+import { useState } from "react";
 import { FaRegHeart } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FaHeart } from "react-icons/fa6";
+
 
 const members = [
   { id: 1, img: "/imgs/Avatar1.png", name: "user 1" },
@@ -20,6 +23,15 @@ const members = [
 
 export default function MarketPlaceItems(props) {
   const { items, title } = props;
+  const [likedItems, setLikedItems] = useState({});
+
+  const toggleLike = (id) => {
+    setLikedItems((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   return (
     <div className="flex flex-col space-y-5">
       <h3 className=" font-semibold capitalize text-2xl">{title}</h3>
@@ -48,8 +60,11 @@ export default function MarketPlaceItems(props) {
             <Card className="p-3 h-full dark:bg-secondary" shadow="none">
               <div className="relative">
                 <Image isZoomed src={item.banner} alt={item.title} />
-                <Button className="absolute z-10 bg-white text-primary end-5 top-3 rounded-full p-0 size-9 flex items-center justify-center !min-w-auto">
-                  <FaRegHeart />
+                <Button
+                  onPress={() => toggleLike(item.id)}
+                  className="absolute z-10 bg-white text-primary end-3 top-3 rounded-full p-0 size-9 flex items-center justify-center !min-w-auto"
+                >
+                  {likedItems[item.id] ? <FaHeart /> : <FaRegHeart />}
                 </Button>
               </div>
               <CardBody>
