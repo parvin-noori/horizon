@@ -7,9 +7,18 @@
 👉 **Vercel Preview:**  
 [https://your-vercel-link.vercel.app](https://horizon-hazel-delta.vercel.app/)
 
-## 🖼 Preview
+## 🖼 login
+
+At first you face the login page, because the nature of dashboard panels, which is authenticated:
 
 ![Horizon Dashboard Preview](https://github.com/parvin-noori/horizon/blob/main/public/imgs/signIn.png)
+
+> We've used **supabase** login api to get an access token for working like a real authorization scenarios .  
+> **(Note that you should always login with this username and password to access to dashboard )**.
+
+## 🖼 Dashboard
+well, when you successfully logged in, you'll face the dashboard layout which we really love it:
+
 ![Horizon Dashboard Preview](https://github.com/parvin-noori/horizon/blob/main/public/imgs/dashboard.png)
 ![Horizon Dashboard Preview](https://github.com/parvin-noori/horizon/blob/main/public/imgs/kanban.png)
 
