@@ -75,6 +75,7 @@ export default function DevTable() {
       </span>
       <div className="overflow-x-auto">
         <Table
+         aria-label="dev table"
           removeWrapper
           classNames={{
             th: "bg-transparent border-b border-slate-200 text-slate-300",

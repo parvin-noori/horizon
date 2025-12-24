@@ -116,6 +116,7 @@ export default function KanbanItem(props) {
     >
       {isEditng ? (
         <form
+        aria-label="kanban edit form"
           onSubmit={handleSubmit(handleSaveEdit)}
           className="flex flex-col gap-5"
         >

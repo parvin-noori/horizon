@@ -1,5 +1,5 @@
 import { Avatar, Button } from "@heroui/react";
-import { IoMdMore } from "react-icons/io";
+// import { IoMdMore } from "react-icons/io";
 import { useGetData } from "../../hooks/useGetData";
 
 export default function TeamMembers() {
@@ -25,9 +25,9 @@ export default function TeamMembers() {
                 {member.role}
               </p>
             </div>
-            <Button className="ms-auto !p-0 !min-w-fit" variant="fade">
+            {/* <Button className="ms-auto !p-0 !min-w-fit" variant="fade">
               <IoMdMore className="text-xl text-slate-400" />
-            </Button>
+            </Button> */}
           </li>
         ))}
       </ul>

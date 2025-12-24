@@ -43,6 +43,7 @@ export default function FourColTable() {
       </span>
       <div className="overflow-x-auto">
         <Table
+         aria-label="four column table"
           removeWrapper
           classNames={{
             th: "bg-transparent border-b border-slate-200 text-slate-300",

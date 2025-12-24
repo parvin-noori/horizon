@@ -8,12 +8,10 @@ import {
   Image,
 } from "@heroui/react";
 import { useState } from "react";
-import { FaRegHeart } from "react-icons/fa6";
+import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaHeart } from "react-icons/fa6";
-
 
 const members = [
   { id: 1, img: "/imgs/Avatar1.png", name: "user 1" },
@@ -23,13 +21,20 @@ const members = [
 
 export default function MarketPlaceItems(props) {
   const { items, title } = props;
-  const [likedItems, setLikedItems] = useState({});
+  const [likedItems, setLikedItems] = useState(() => {
+    const saved = localStorage.getItem("likedItems");
+    return saved ? JSON.parse(saved) : {};
+  });
 
   const toggleLike = (id) => {
-    setLikedItems((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+    setLikedItems((prev) => {
+      const newState = {
+        ...prev,
+        [id]: !prev[id],
+      };
+      localStorage.setItem("likedItems", JSON.stringify(newState));
+      return newState;
+    });
   };
 
   return (
@@ -61,6 +66,7 @@ export default function MarketPlaceItems(props) {
               <div className="relative">
                 <Image isZoomed src={item.banner} alt={item.title} />
                 <Button
+                  aria-label="like button"
                   onPress={() => toggleLike(item.id)}
                   className="absolute z-10 bg-white text-primary end-3 top-3 rounded-full p-0 size-9 flex items-center justify-center !min-w-auto"
                 >

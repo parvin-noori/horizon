@@ -68,6 +68,7 @@ export default function ComplexTable() {
       </span>
       <div className="overflow-x-auto">
         <Table
+         aria-label="complex table"
           isCompact
           removeWrapper
           classNames={{

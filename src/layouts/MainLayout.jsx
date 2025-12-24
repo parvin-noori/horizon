@@ -3,9 +3,16 @@ import {
   BreadcrumbItem,
   Breadcrumbs,
   Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
   Input,
   Listbox,
   ListboxItem,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@heroui/react";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
@@ -23,6 +30,7 @@ import {
 import { RiMenuFold4Line } from "react-icons/ri";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
 import ThemeButton from "../features/theme/ThemeButton";
+import { useGetData } from "../hooks/useGetData";
 import getPro from "/imgs/GetPRO.svg";
 import user from "/imgs/user.png";
 
@@ -56,6 +64,9 @@ export default function MainLayout() {
   const lastSegment = location.pathname.split("/").pop();
   const sidebarRef = useRef(null);
   const navigate = useNavigate();
+  const { data, isLoading, error } = useGetData();
+  const userInfo = data?.userInfo;
+  const { name, email, jobPosition, followers, following } = userInfo?? {};
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -77,6 +88,9 @@ export default function MainLayout() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [collapsed]);
+
+  if(isLoading) return <span>is loading</span>;
+  if(error) console.log(error);
   return (
     <div className="bg-secondary dark:bg-background  h-full flex lg:items-stretch relative ">
       {/* sidebar */}
@@ -235,7 +249,65 @@ export default function MainLayout() {
             >
               <AiOutlineExclamationCircle className="text-lg" />
             </Button>
-            <Avatar showFallback src={user} name="user" className="!shrink-0" />
+            <Popover showArrow placement="bottom">
+              <PopoverTrigger>
+                <Avatar
+                  showFallback
+                  src={user}
+                  name="user"
+                  className="!shrink-0 cursor-pointer"
+                />
+              </PopoverTrigger>
+
+              <PopoverContent className="p-1">
+                <Card
+                  className="max-w-[300px] border-none bg-transparent"
+                  shadow="none"
+                >
+                  <CardHeader className="justify-between">
+                    <div className="flex gap-3">
+                      <Avatar isBordered radius="full" size="md" src={user} />
+                      <div className="flex flex-col items-start justify-center">
+                        <h4 className="text-small font-semibold leading-none text-default-600">
+                          {name}
+                        </h4>
+                        <h5 className="text-small tracking-tight text-default-500">
+                          {email}
+                        </h5>
+                      </div>
+                    </div>
+                    <Button
+                      className="bg-transparent text-foreground border-default-200"
+                      color="primary"
+                      radius="full"
+                      size="sm"
+                    ></Button>
+                  </CardHeader>
+                  <CardBody className="px-3 py-0">
+                    <p className="text-small pl-px text-default-500">
+                      {jobPosition}
+                      <span aria-label="confetti" role="img">
+                        🎉
+                      </span>
+                    </p>
+                  </CardBody>
+                  <CardFooter className="gap-3">
+                    <div className="flex gap-1">
+                      <p className="font-semibold text-default-600 text-small">
+                        {following}
+                      </p>
+                      <p className=" text-default-500 text-small">Following</p>
+                    </div>
+                    <div className="flex gap-1">
+                      <p className="font-semibold text-default-600 text-small">
+                        {followers}
+                      </p>
+                      <p className="text-default-500 text-small">Followers</p>
+                    </div>
+                  </CardFooter>
+                </Card>
+              </PopoverContent>
+            </Popover>
           </div>
         </header>
         <Outlet />

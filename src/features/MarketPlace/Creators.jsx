@@ -100,6 +100,7 @@ export default function Creators() {
       </div>
       <div className="overflow-x-auto">
         <Table
+         aria-label="creators table"
           classNames={{ th: "bg-transparent" }}
           removeWrapper
           aria-label="Controlled table example with dynamic content"

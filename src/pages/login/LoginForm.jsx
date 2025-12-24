@@ -64,7 +64,7 @@ export default function LoginForm() {
         </Button>
       </div>
       <Divider />
-      <form onSubmit={handleSubmit(onSubmit)} className="gap-y-5 flex flex-col">
+      <form aria-label="login form" onSubmit={handleSubmit(onSubmit)} className="gap-y-5 flex flex-col">
         <Input
           ref={inputRef}
           {...register("email", { required: "email is required" })}

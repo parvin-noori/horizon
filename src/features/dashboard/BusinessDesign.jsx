@@ -42,7 +42,7 @@ export default function BusinessDesign() {
               <Avatar src={member.img} size="sm" />
             ))}
           </AvatarGroup>
-          <Button className="capitalize bg-primary rounded-xl px-6 text-white">
+          <Button aria-label="start" className="capitalize bg-primary rounded-xl px-6 text-white">
             get started
           </Button>
         </div>
