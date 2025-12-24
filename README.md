@@ -7,6 +7,27 @@
 👉 **Vercel Preview:**  
 [https://your-vercel-link.vercel.app](https://horizon-hazel-delta.vercel.app/)
 
+---
+
+## 🔐 Authentication (Supabase)
+
+This dashboard uses **Supabase Auth** to simulate a real-world authentication flow.
+
+- Authentication is required to access the dashboard
+- Login is handled via **Email & Password**
+- Supabase returns a **JWT access token**
+- The token is stored in **LocalStorage** (demo purpose)
+- Protected routes prevent unauthorized access
+
+> ⚠️ This authentication flow is implemented **for demo purposes only**.
+
+### 🧪 Demo Credentials
+- **Email:** adeleParkson@user.com  
+- **Password:** abc@123
+
+---
+
+
 ## 🖼 login
 
 At first you face the login page, because the nature of dashboard panels, which is authenticated:
