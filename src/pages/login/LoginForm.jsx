@@ -27,15 +27,13 @@ export default function LoginForm() {
       return data;
     },
     onSuccess: (data) => {
-        localStorage.setItem("userInfo", JSON.stringify({
-        email: data.user.email,
-        id: data.user.id,
-      }));
+      const accessToken = data.session.access_token;
+      localStorage.setItem("token", accessToken);
       // toast.success(`Welcome ${data.user.email}`);
       toast.success('Logged in successfully');
       setTimeout(() => {
         navigate("/dashboard");
-      }, 1500);
+      }, 500);
     },
     onError: (error) => {
       toast.error(`Login failed: ${error.message}`);

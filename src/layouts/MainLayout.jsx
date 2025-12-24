@@ -58,7 +58,7 @@ export default function MainLayout() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("userInfo");
+    localStorage.removeItem("token");
     setCollapsed(false);
     navigate("/");
   };
