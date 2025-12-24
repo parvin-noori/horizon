@@ -9,7 +9,7 @@ import Profile from "./pages/main/Profile";
 import Tables from "./pages/main/Tables";
 
 export const isAuthenticated = () => {
-  return localStorage.getItem("userInfo") !== null;
+  return localStorage.getItem("token") !== null;
 };
 
 const ProtectedRoute = ({ element }) => {
