@@ -15,7 +15,9 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({defaultValues: { email: "adeleParkson@user.com", password: "abc@123" }});
+  } = useForm({
+    defaultValues: { email: "adeleParkson@user.com", password: "abc@123" },
+  });
 
   const loginMutation = useMutation({
     mutationFn: async ({ email, password }) => {
@@ -30,7 +32,7 @@ export default function LoginForm() {
       const accessToken = data.session.access_token;
       localStorage.setItem("token", accessToken);
       // toast.success(`Welcome ${data.user.email}`);
-      toast.success('Logged in successfully');
+      toast.success("Logged in successfully");
       setTimeout(() => {
         navigate("/dashboard");
       }, 500);
@@ -44,7 +46,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="gap-y-10 flex flex-col md:grow-0 grow">
+    <div className="gap-y-10 flex flex-col md:grow-0 grow text-[#2B3674] dark:text-white">
       <ToastContainer position="top-right" autoClose={3000} />
       <div className="gap-y-10 flex flex-col">
         <div className="flex flex-col gap-y-3">
@@ -67,6 +69,7 @@ export default function LoginForm() {
           ref={inputRef}
           {...register("email", { required: "email is required" })}
           label="Email"
+          classNames={{ label: "!text-inherit", input: "text-black dark:text-white" }}
           labelPlacement="outside"
           placeholder="mail@gmail.com"
           variant="bordered"
@@ -84,7 +87,7 @@ export default function LoginForm() {
           })}
           label="Password"
           labelPlacement="outside"
-          placeholder=""
+          classNames={{ label: "!text-inherit", input: "text-black dark:text-white" }}
           variant="bordered"
           type="password"
           size="lg"
