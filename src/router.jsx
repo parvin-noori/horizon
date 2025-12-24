@@ -8,7 +8,7 @@ import MarketPlace from "./pages/main/MarketPlace";
 import Profile from "./pages/main/Profile";
 import Tables from "./pages/main/Tables";
 
-const isAuthenticated = () => {
+export const isAuthenticated = () => {
   return localStorage.getItem("userInfo") !== null;
 };
 

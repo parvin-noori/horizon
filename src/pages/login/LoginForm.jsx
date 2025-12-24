@@ -15,7 +15,7 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({defaultValues: { email: "adeleParkson@user.com", password: "abc@123" }});
 
   const loginMutation = useMutation({
     mutationFn: async ({ email, password }) => {
@@ -31,7 +31,8 @@ export default function LoginForm() {
         email: data.user.email,
         id: data.user.id,
       }));
-      toast.success(`Welcome ${data.user.email}`);
+      // toast.success(`Welcome ${data.user.email}`);
+      toast.success('Logged in successfully');
       setTimeout(() => {
         navigate("/dashboard");
       }, 1500);
@@ -106,7 +107,7 @@ export default function LoginForm() {
         <Button type="submit" size="lg" color="primary">
           sign in
         </Button>
-        <p className="capitalize gap-x-3 dark:text-gray-400">
+        {/* <p className="capitalize gap-x-3 dark:text-gray-400">
           not register yet?{" "}
           <Link
             to="register"
@@ -114,7 +115,7 @@ export default function LoginForm() {
           >
             create an account
           </Link>
-        </p>
+        </p> */}
       </form>
     </div>
   );

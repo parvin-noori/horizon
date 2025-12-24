@@ -21,7 +21,7 @@ import {
   MdPerson,
 } from "react-icons/md";
 import { RiMenuFold4Line } from "react-icons/ri";
-import { NavLink, Outlet, useLocation } from "react-router";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
 import ThemeButton from "../features/theme/ThemeButton";
 import getPro from "/imgs/GetPRO.svg";
 import user from "/imgs/user.png";
@@ -47,7 +47,7 @@ const sidebarItems = [
   },
   { name: "kanban", key: "kanban", to: "/kanban", icon: <MdGridView /> },
   { name: "profile", key: "profile", to: "/profile", icon: <MdPerson /> },
-  { name: "sign in", key: "sign-in", to: "/", icon: <MdLock /> },
+  { name: "sign out", key: "sign-out", icon: <MdLock />, action: "logout" },
 ];
 
 export default function MainLayout() {
@@ -55,6 +55,13 @@ export default function MainLayout() {
   const location = useLocation();
   const lastSegment = location.pathname.split("/").pop();
   const sidebarRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+    setCollapsed(false);
+    navigate("/");
+  };
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -104,36 +111,45 @@ export default function MainLayout() {
                 textValue={item.name}
                 className="px-0"
               >
-                <NavLink to={item.to} onClick={() => setCollapsed(false)}>
-                  {({ isActive }) => (
-                    <div
-                      className={`flex items-center gap-x-5 py-1.5 px-5 group outline-0 ${
-                        isActive
-                          ? "text-primary dark:text-white border-e-3 border-primary"
-                          : "text-slate-400 dark:text-white"
-                      }`}
-                    >
-                      <span
-                        className={`text-2xl transition-all duration-200 ${
-                          isActive
-                            ? "text-primary dark:text-white"
-                            : "text-slate-400 dark:text-white group-hover:text-primary"
-                        }`}
-                      >
-                        {item.icon}
-                      </span>
-                      <span
-                        className={`transition-all duration-200 ${
-                          isActive
-                            ? ""
-                            : "text-slate-400 dark:text-white group-hover:text-primary"
-                        }`}
-                      >
-                        {item.name}
-                      </span>
+                {item.action === "logout" ? (
+                  <NavLink onClick={handleLogout}>
+                    <div className=" capitalize flex items-center gap-x-5 py-1.5 px-5 text-slate-400 dark:text-white hover:text-primary">
+                      <span className="text-2xl">{item.icon}</span>
+                      <span>{item.name}</span>
                     </div>
-                  )}
-                </NavLink>
+                  </NavLink>
+                ) : (
+                  <NavLink to={item.to} onClick={() => setCollapsed(false)}>
+                    {({ isActive }) => (
+                      <div
+                        className={`flex items-center gap-x-5 py-1.5 px-5 group outline-0 ${
+                          isActive
+                            ? "text-primary dark:text-white border-e-3 border-primary"
+                            : "text-slate-400 dark:text-white"
+                        }`}
+                      >
+                        <span
+                          className={`text-2xl transition-all duration-200 ${
+                            isActive
+                              ? "text-primary dark:text-white"
+                              : "text-slate-400 dark:text-white group-hover:text-primary"
+                          }`}
+                        >
+                          {item.icon}
+                        </span>
+                        <span
+                          className={`transition-all duration-200 ${
+                            isActive
+                              ? ""
+                              : "text-slate-400 dark:text-white group-hover:text-primary"
+                          }`}
+                        >
+                          {item.name}
+                        </span>
+                      </div>
+                    )}
+                  </NavLink>
+                )}
               </ListboxItem>
             ))}
             {/* </ul> */}
