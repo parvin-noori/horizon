@@ -103,7 +103,6 @@ export default function Creators() {
          aria-label="creators table"
           classNames={{ th: "bg-transparent" }}
           removeWrapper
-          aria-label="Controlled table example with dynamic content"
         >
           <TableHeader columns={columns}>
             {(column) => (

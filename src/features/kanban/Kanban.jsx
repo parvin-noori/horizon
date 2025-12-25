@@ -5,7 +5,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { arrayMove, SortableContext } from "@dnd-kit/sortable";
+import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Button } from "@heroui/react";
 import { useEffect, useMemo, useState } from "react";
 import { FiPlus } from "react-icons/fi";
@@ -74,7 +74,7 @@ export default function Kanban() {
     const overItem = items.find((item) => item.id === over.id);
     const newColumn = overItem?.column;
 
-    setItems((prev) => {
+    setKanbanItems((prev) => {
       let newList = [...prev];
 
       if (newColumn && activeItem.column !== newColumn) {
@@ -106,6 +106,7 @@ export default function Kanban() {
         >
           {columns.map((col) => (
             <SortableContext
+            strategy={verticalListSortingStrategy}
               key={col.id}
               items={items?.filter((i) => i.column === col.id).map((i) => i.id)}
             >

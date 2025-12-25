@@ -32,6 +32,8 @@ import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
 import ThemeButton from "../features/theme/ThemeButton";
 import { useGetData } from "../hooks/useGetData";
 import getPro from "/imgs/GetPRO.svg";
+import darkGetPro from "/imgs/darkGetPRO.svg";
+import { useSelector } from "react-redux";
 
 const sidebarItems = [
   {
@@ -65,6 +67,7 @@ export default function MainLayout() {
   const navigate = useNavigate();
   const { data, isLoading, error } = useGetData();
   const userInfo = data?.userInfo;
+  const theme = useSelector((state) => state.theme.theme);
   const { name, email, jobPosition, followers, following, avatar } =
     userInfo ?? {};
 
@@ -168,7 +171,7 @@ export default function MainLayout() {
           </Listbox>
         </div>
         <div className="sider-footer mt-0">
-          <img src={getPro} alt="Get Pro" className="mx-auto" />
+          <img src={theme==="light"? getPro : darkGetPro} alt="Get Pro" className="mx-auto" />
         </div>
       </div>
       <div className="p-4 flex flex-col gap-y-4 w-full overflow-x-hidden text-[#2B3674] dark:text-white">
