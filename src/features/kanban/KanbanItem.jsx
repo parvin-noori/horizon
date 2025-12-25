@@ -107,7 +107,11 @@ export default function KanbanItem(props) {
   };
   return (
     <div
-      className="shadow-lg border-0 bg-white dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col"
+      className={`shadow-lg select-none transtion-border duration-300 bg-white border border-transparent dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col ${
+        isEditng
+          ? ""
+          : "cursor-pointer  hover:border-slate-300 dark:hover:border-slate-700"
+      }`}
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -116,7 +120,7 @@ export default function KanbanItem(props) {
     >
       {isEditng ? (
         <form
-        aria-label="kanban edit form"
+          aria-label="kanban edit form"
           onSubmit={handleSubmit(handleSaveEdit)}
           className="flex flex-col gap-5"
         >
@@ -169,7 +173,7 @@ export default function KanbanItem(props) {
         </form>
       ) : (
         <>
-          <div className="flex items-center justify-between gap-x-5">
+          <div className="flex items-center justify-between gap-x-5 ">
             <div className="flex items-center lg:gap-x-3 gap-x-3 w-full">
               <span className="capitalize lg:line-clamp-1 line-clamp-2 text-lg ">
                 {feature.title}

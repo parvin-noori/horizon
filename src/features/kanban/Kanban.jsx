@@ -5,36 +5,17 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { Button } from "@heroui/react";
-import { useEffect, useMemo, useState } from "react";
-import { FiPlus } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+import { useEffect, useMemo } from "react";
+
+import { useDispatch } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
-import KanbanItem from "./KanbanItem";
-import { addKanban, editKanban, setKanbanItems } from "./kanbanSlice";
+import Column from "./Column";
+import { editKanban, setKanbanItems } from "./kanbanSlice";
 
 export default function Kanban() {
-  const [editngId, setEditngId] = useState(false);
   const { data, isLoading, error } = useGetData();
   const { kanban: kanbanItems } = data ?? {};
-  const items = useSelector((state) => state.kanban.items);
-
   const dispatch = useDispatch();
-  const touchSensor = useSensor(TouchSensor, {
-    activationConstraint: {
-      delay: 150,
-      tolerance: 5,
-    },
-  });
-  const mouseSensor = useSensor(MouseSensor, {
-    activationConstraint: {
-      delay: 150,
-      tolerance: 5,
-    },
-  });
-  const sensor = useSensors(touchSensor, mouseSensor);
 
   // sync local items with redux changes (edit / add)
   useEffect(() => {
@@ -52,18 +33,19 @@ export default function Kanban() {
     []
   );
 
-  function handleAdd(columnId) {
-    const newId = uuidv4();
-    setEditngId(newId);
-    dispatch(
-      addKanban({
-        id: newId,
-        title: "",
-        desc: "",
-        column: columnId,
-      })
-    );
-  }
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 150,
+      tolerance: 5,
+    },
+  });
+  const mouseSensor = useSensor(MouseSensor, {
+    activationConstraint: {
+      delay: 150,
+      tolerance: 5,
+    },
+  });
+  const sensor = useSensors(touchSensor, mouseSensor);
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
@@ -105,41 +87,7 @@ export default function Kanban() {
           no-scrollbar"
         >
           {columns.map((col) => (
-            <SortableContext
-            strategy={verticalListSortingStrategy}
-              key={col.id}
-              items={items?.filter((i) => i.column === col.id).map((i) => i.id)}
-            >
-              <div className="bg-white dark:bg-secondary lg:w-full md:w-1/2 sm:w-[70%] w-[80%] rounded-xl p-5 space-y-10 flex flex-col">
-                <div className="flex items-center justify-between">
-                  <span className="capitalize text-xl font-semibold">
-                    {col.name}
-                  </span>
-                  <Button
-                    type="button"
-                    onPress={() => handleAdd(col.id)}
-                    isOnlyIcon
-                    variant="light"
-                    className="bg-secondary text-primary dark:text-white dark:bg-white/5"
-                  >
-                    <FiPlus />
-                  </Button>
-                </div>
-                <ul className="space-y-5">
-                  {items
-                    .filter((item) => item.column === col.id)
-                    .map((item) => (
-                      <KanbanItem
-                        key={item.id}
-                        feature={item}
-                        features={items}
-                        isEditng={editngId === item.id}
-                        setEditngId={setEditngId}
-                      />
-                    ))}
-                </ul>
-              </div>
-            </SortableContext>
+            <Column col={col} />
           ))}
         </div>
       </DndContext>
