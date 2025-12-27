@@ -10,7 +10,7 @@ const kanbanSlice = createSlice({
   name: "kanban",
   initialState,
   reducers: {
-    setKanbanItems: (state, action) => {
+    replaceAllKanbanItems: (state, action) => {
       state.items = action.payload;
       localStorage.setItem("kanbanItems", JSON.stringify(state.items));
     },
@@ -32,6 +32,6 @@ const kanbanSlice = createSlice({
   },
 });
 
-export const { setKanbanItems, addKanban, editKanban, removeKanban } =
+export const { replaceAllKanbanItems, addKanban, editKanban, removeKanban } =
   kanbanSlice.actions;
 export default kanbanSlice.reducer;

@@ -1,26 +1,32 @@
 import {
+  closestCorners,
   DndContext,
+  DragOverlay,
   MouseSensor,
   TouchSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { arrayMove } from "@dnd-kit/sortable";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
 import Column from "./Column";
-import { editKanban, setKanbanItems } from "./kanbanSlice";
+import KanbanItem from "./KanbanItem";
+import { replaceAllKanbanItems } from "./kanbanSlice";
 
 export default function Kanban() {
   const { data, isLoading, error } = useGetData();
   const { kanban: kanbanItems } = data ?? {};
+  const [activeId, setActiveId] = useState(null);
+  const items = useSelector((state) => state.kanban.items);
   const dispatch = useDispatch();
 
   // sync local items with redux changes (edit / add)
   useEffect(() => {
-    if (kanbanItems) {
-      dispatch(setKanbanItems(kanbanItems));
+    if (!items.length && kanbanItems) {
+      dispatch(replaceAllKanbanItems(kanbanItems));
     }
   }, [kanbanItems, dispatch]);
 
@@ -47,30 +53,48 @@ export default function Kanban() {
   });
   const sensor = useSensors(touchSensor, mouseSensor);
 
+  const handleDragStart = (event) => {
+    setActiveId(event.active.id);
+  };
+
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (!over) return;
 
     const activeId = active.id;
-    const activeItem = items.find((item) => item.id === activeId);
-    const overItem = items.find((item) => item.id === over.id);
-    const newColumn = overItem?.column;
+    const overId = over.id;
+    if (activeId === overId) return;
 
-    setKanbanItems((prev) => {
-      let newList = [...prev];
+    const activeIndex = items.findIndex((item) => item.id === activeId);
+    const overIndex = items.findIndex((item) => item.id === overId);
+    const activeItem = items[activeIndex];
+    const overItem = items[overIndex];
 
-      if (newColumn && activeItem.column !== newColumn) {
-        newList = newList.map((item) =>
-          item.id === activeId ? { ...item, column: newColumn } : item
-        );
-      }
+    if (!activeItem || !overIndex === -1) return;
 
-      const activeIndex = newList.findIndex((item) => item.id === activeId);
-      const overIndex = newList.findIndex((item) => item.id === over.id);
+    let newItems = [...items];
 
-      return arrayMove(newList, activeIndex, overIndex);
-    });
-    dispatch(editKanban({ id: activeId, column: newColumn }));
+    if (activeItem.column == overItem.column) {
+      const columnItems = newItems.filter(
+        (item) => item.column === activeItem.column
+      );
+
+      const oldIndex = columnItems.findIndex((i) => i.id === activeId);
+      const newIndex = columnItems.findIndex((i) => i.id === overId);
+
+      const sortedColumn = arrayMove(columnItems, oldIndex, newIndex);
+
+      // merge back
+      newItems = newItems.map((item) => {
+        if (item.column !== activeItem.column) return item;
+        return sortedColumn.shift();
+      });
+    } else {
+      newItems = newItems.map((item) =>
+        item.id === activeId ? { ...item, column: overItem.column } : item
+      );
+    }
+    dispatch(replaceAllKanbanItems(newItems));
   };
 
   if (isLoading) <span>is loading...</span>;
@@ -78,7 +102,12 @@ export default function Kanban() {
 
   return (
     <div className="kanban">
-      <DndContext sensors={sensor} onDragEnd={handleDragEnd}>
+      <DndContext
+        onDragStart={handleDragStart}
+        collisionDetection={closestCorners}
+        sensors={sensor}
+        onDragEnd={handleDragEnd}
+      >
         <div
           className="flex lg:grid 
           lg:grid-cols-3 
@@ -87,9 +116,14 @@ export default function Kanban() {
           no-scrollbar"
         >
           {columns.map((col) => (
-            <Column col={col} />
+            <Column key={col.id} col={col} />
           ))}
         </div>
+        <DragOverlay>
+          {activeId ? (
+            <KanbanItem feature={items.find((i) => i.id === activeId)} />
+          ) : null}
+        </DragOverlay>
       </DndContext>
     </div>
   );

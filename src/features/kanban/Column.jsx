@@ -1,3 +1,4 @@
+import { useDroppable } from "@dnd-kit/core";
 import { SortableContext } from "@dnd-kit/sortable";
 import { Button } from "@heroui/react";
 import { useState } from "react";
@@ -10,6 +11,9 @@ import { addKanban } from "./kanbanSlice";
 export default function Column(props) {
   const { col } = props;
   const [editngId, setEditngId] = useState(false);
+  const { setNodeRef } = useDroppable({
+    id: `column-${col.id}`,
+  });
 
   const items = useSelector((state) => state.kanban.items);
 
@@ -33,7 +37,10 @@ export default function Column(props) {
       key={col.id}
       items={items?.filter((i) => i.column === col.id).map((i) => i.id)}
     >
-      <div className="bg-white dark:bg-secondary lg:w-full md:w-1/2 sm:w-[70%] w-[80%] rounded-xl p-5 space-y-10 flex flex-col">
+      <div
+        ref={setNodeRef}
+        className="bg-white dark:bg-secondary lg:w-full md:w-1/2 sm:w-[70%] w-[80%] rounded-xl p-5 space-y-10 flex flex-col"
+      >
         <div className="flex items-center justify-between">
           <span className="capitalize text-xl font-semibold">{col.name}</span>
           <Button
