@@ -1,19 +1,15 @@
 import {
   DndContext,
   DragOverlay,
-  KeyboardSensor,
-  PointerSensor,
+  MouseSensor,
   pointerWithin,
+  TouchSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
 import { useEffect, useMemo, useState } from "react";
 
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-} from "@dnd-kit/sortable";
+import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
@@ -44,14 +40,14 @@ export default function Kanban() {
     }
   }, [kanbanItems, dispatch]);
 
-  const touchSensor = useSensor(PointerSensor, {
+  const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
-      distance: 3,
+      //  delay: 150,
       // tolerance: 5,
+      distance: 3,
     },
   });
-  const mouseSensor = useSensor(KeyboardSensor, {
-    coordinateGetter: sortableKeyboardCoordinates,
+  const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
       // delay: 150,
       // tolerance: 5,
@@ -123,7 +119,7 @@ export default function Kanban() {
       const activeIndex = items.findIndex((t) => t.id === activeId);
       const overIndex = items.findIndex((t) => t.id === overId);
 
-      const newItems = items.map(item => ({ ...item }));
+      const newItems = items.map((item) => ({ ...item }));
       newItems[activeIndex].column = newItems[overIndex].column;
       const sorted = arrayMove(newItems, activeIndex, overIndex);
 
@@ -136,14 +132,14 @@ export default function Kanban() {
 
     if (isActiveATask && isOverAColumn) {
       // setFeatures((features) => {
-        const activeIndex = items.findIndex((t) => t.id === activeId);
+      const activeIndex = items.findIndex((t) => t.id === activeId);
 
-        const newItems = items.map(item => ({ ...item }));
-        newItems[activeIndex].column = overId;
+      const newItems = items.map((item) => ({ ...item }));
+      newItems[activeIndex].column = overId;
 
-        dispatch(replaceAllKanbanItems(newItems));
+      dispatch(replaceAllKanbanItems(newItems));
 
-        // return arrayMove(features, activeIndex, activeIndex);
+      // return arrayMove(features, activeIndex, activeIndex);
       // });
     }
   };
