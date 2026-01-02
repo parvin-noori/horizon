@@ -139,8 +139,6 @@ export default function Kanban() {
 
       dispatch(replaceAllKanbanItems(newItems));
 
-      // return arrayMove(features, activeIndex, activeIndex);
-      // });
     }
   };
 

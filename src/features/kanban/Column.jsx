@@ -55,14 +55,14 @@ export default function Column(props) {
     <div
       style={style}
       ref={setNodeRef}
-      className="rounded-xl p-5 flex flex-col  bg-white"
+      className="rounded-xl p-5 flex flex-col  bg-white dark:bg-secondary"
     >
       <div className="flex items-center  justify-between mb-4">
         <button {...attributes} {...listeners} className="cursor-grab">
           <MdOutlineDragIndicator />
         </button>
         <span className="font-semibold">{col.title}</span>
-        <span className="bg-secondary size-7 items-center justify-center flex rounded">{items.length}</span>
+        <span className="bg-secondary dark:bg-white/5 size-7 items-center justify-center flex rounded">{items.length}</span>
       </div>
 
       <ul className="space-y-3 min-h-[400px]">
