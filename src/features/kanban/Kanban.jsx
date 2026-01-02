@@ -42,8 +42,8 @@ export default function Kanban() {
 
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
-      //  delay: 150,
-      // tolerance: 5,
+       delay: 150,
+      tolerance: 5,
       distance: 3,
     },
   });
