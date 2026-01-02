@@ -26,6 +26,7 @@ export default function Kanban() {
   const { kanban: kanbanItems } = data ?? {};
   const [activeColumn, setActiveColumn] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
+
   const [columns, setColumns] = useState([
     { id: "backlog", title: "backlog", color: "#6B7280" },
     { id: "In Progress", title: "In Progress", color: "#F59E0B" },
@@ -33,10 +34,6 @@ export default function Kanban() {
   ]);
 
   const items = useSelector((state) => state.kanban.items);
-  const [features, setFeatures] = useState(() =>
-    items.map((item) => ({ ...item }))
-  );
-
   const dispatch = useDispatch();
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
 
@@ -46,10 +43,6 @@ export default function Kanban() {
       dispatch(replaceAllKanbanItems(kanbanItems));
     }
   }, [kanbanItems, dispatch]);
-
-  useEffect(() => {
-    setFeatures(items.map((item) => ({ ...item })));
-  }, [items]);
 
   const touchSensor = useSensor(PointerSensor, {
     activationConstraint: {
@@ -107,7 +100,7 @@ export default function Kanban() {
       return arrayMove(columns, activeColumnIndex, overColumnIndex);
     });
 
-    dispatch(replaceAllKanbanItems(features));
+    dispatch(replaceAllKanbanItems(items));
   };
 
   const onDragOver = (event) => {
@@ -127,14 +120,14 @@ export default function Kanban() {
 
     // I'm dropping a task over another task
     if (isActiveATask && isOverATask) {
-      setFeatures((features) => {
-        const activeIndex = features.findIndex((t) => t.id === activeId);
-        const overIndex = features.findIndex((t) => t.id === overId);
+      const activeIndex = items.findIndex((t) => t.id === activeId);
+      const overIndex = items.findIndex((t) => t.id === overId);
 
-        features[activeIndex].column = features[overIndex].column;
+      const newItems = items.map(item => ({ ...item }));
+      newItems[activeIndex].column = newItems[overIndex].column;
+      const sorted = arrayMove(newItems, activeIndex, overIndex);
 
-        return arrayMove(features, activeIndex, overIndex);
-      });
+      dispatch(replaceAllKanbanItems(sorted));
     }
 
     const isOverAColumn = over.data.current?.type === "column";
@@ -142,12 +135,16 @@ export default function Kanban() {
     // I'm dropping a task over a column
 
     if (isActiveATask && isOverAColumn) {
-      setFeatures((features) => {
-        const activeIndex = features.findIndex((t) => t.id === activeId);
-        features[activeIndex].column = overId;
+      // setFeatures((features) => {
+        const activeIndex = items.findIndex((t) => t.id === activeId);
 
-        return arrayMove(features, activeIndex, activeIndex);
-      });
+        const newItems = items.map(item => ({ ...item }));
+        newItems[activeIndex].column = overId;
+
+        dispatch(replaceAllKanbanItems(newItems));
+
+        // return arrayMove(features, activeIndex, activeIndex);
+      // });
     }
   };
 
@@ -175,8 +172,8 @@ export default function Kanban() {
               <Column
                 key={col.id}
                 col={col}
-                features={features}
-                items={features.filter((item) => item.column === col.id)}
+                features={items}
+                items={items.filter((item) => item.column === col.id)}
               />
             ))}
           </SortableContext>
@@ -186,10 +183,8 @@ export default function Kanban() {
             {activeColumn && (
               <Column
                 col={activeColumn}
-                features={features}
-                items={features.filter(
-                  (item) => item.column === activeColumn.id
-                )}
+                features={items}
+                items={items.filter((item) => item.column === activeColumn.id)}
               />
             )}
             {activeItem && (
