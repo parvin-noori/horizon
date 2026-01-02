@@ -9,7 +9,11 @@ import {
 } from "@dnd-kit/core";
 import { useEffect, useMemo, useState } from "react";
 
-import { arrayMove, SortableContext, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+} from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
@@ -32,6 +36,7 @@ export default function Kanban() {
   const [features, setFeatures] = useState(() =>
     items.map((item) => ({ ...item }))
   );
+
   const dispatch = useDispatch();
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
 
@@ -41,6 +46,10 @@ export default function Kanban() {
       dispatch(replaceAllKanbanItems(kanbanItems));
     }
   }, [kanbanItems, dispatch]);
+
+  useEffect(() => {
+    setFeatures(items.map((item) => ({ ...item })));
+  }, [items]);
 
   const touchSensor = useSensor(PointerSensor, {
     activationConstraint: {
@@ -78,30 +87,6 @@ export default function Kanban() {
     }
   };
 
-  // const onDragEnd = (event) => {
-  //   setActiveColumn(null);
-  //   setActiveItem(null);
-  //   const { active, over } = event;
-
-  //   if (!over) return;
-
-  //   const activeColumnId = active.id;
-  //   const overColumnId = over.id;
-
-  //   if (activeColumnId == overColumnId) return;
-
-  //   setColumns((columns) => {
-  //     const activeColumnIndex = columns.findIndex(
-  //       (col) => col.id === activeColumnId
-  //     );
-  //     const overColumnIndex = columns.findIndex(
-  //       (col) => col.id === overColumnId
-  //     );
-
-  //     return arrayMove(columns, activeColumnIndex, overColumnIndex);
-  //   });
-  // };
-
   const onDragEnd = (event) => {
     setActiveColumn(null);
     setActiveItem(null);
@@ -121,6 +106,8 @@ export default function Kanban() {
 
       return arrayMove(columns, activeColumnIndex, overColumnIndex);
     });
+
+    dispatch(replaceAllKanbanItems(features));
   };
 
   const onDragOver = (event) => {
@@ -184,13 +171,14 @@ export default function Kanban() {
           no-scrollbar"
         >
           <SortableContext items={columnsId}>
-          {columns.map((col) => (
-            <Column
-              key={col.id}
-              col={col}
-              items={features.filter((item) => item.column === col.id)}
-            />
-          ))}
+            {columns.map((col) => (
+              <Column
+                key={col.id}
+                col={col}
+                features={features}
+                items={features.filter((item) => item.column === col.id)}
+              />
+            ))}
           </SortableContext>
         </div>
         {createPortal(
@@ -198,6 +186,7 @@ export default function Kanban() {
             {activeColumn && (
               <Column
                 col={activeColumn}
+                features={features}
                 items={features.filter(
                   (item) => item.column === activeColumn.id
                 )}

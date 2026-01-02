@@ -25,7 +25,6 @@ export default function KanbanItem(props) {
   const { feature, features, isEditng, setEditngId } = props;
   const { title, desc, status } = feature;
   const [mouseIsOver, setMouseIsOver] = useState(false);
-  const { id } = feature;
   const dispatch = useDispatch();
   const {
     register,
@@ -64,7 +63,7 @@ export default function KanbanItem(props) {
   };
 
   const handleDelete = (id) => {
-    dispatch(removeKanban({ id: id }));
+    dispatch(removeKanban({ id }));
   };
 
   function getButtonBackground(status) {
@@ -95,7 +94,7 @@ export default function KanbanItem(props) {
 
   const handleSaveEdit = (data) => {
     const isDuplicate = features.some(
-      (item) => item.title === data.title && item.id !== id
+      (item) => item.title === data.title && item.id !== feature.id
     );
 
     if (isDuplicate) {
@@ -109,7 +108,7 @@ export default function KanbanItem(props) {
     setEditngId(null);
     dispatch(
       editKanban({
-        id,
+        id: feature.id,
         ...data,
       })
     );
@@ -120,7 +119,7 @@ export default function KanbanItem(props) {
       <div
         ref={setNodeRef}
         style={style}
-        className="shadow-lg select-none h-[200px]   duration-300 bg-secondary/50   dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col"
+        className="shadow-lg select-none min-h-[200px]   duration-300 bg-secondary/50   dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col"
       ></div>
     );
   }
@@ -202,7 +201,7 @@ export default function KanbanItem(props) {
               {mouseIsOver && (
                 <>
                   <Button
-                    onPress={() => handleDelete(id)}
+                    onPress={() => handleDelete(feature.id)}
                     isOnlyIcon
                     variant="light"
                     className="p-0 !shrink-0 ms-auto min-w-auto !size-8 rounded-lg text-slate-400"
@@ -210,7 +209,7 @@ export default function KanbanItem(props) {
                     <IoMdTrash />
                   </Button>
                   <Button
-                    onPress={() => setEditngId(id)}
+                    onPress={() => setEditngId(feature.id)}
                     isOnlyIcon
                     variant="light"
                     className="p-0 !shrink-0 min-w-auto !size-8 rounded-lg text-slate-400"
