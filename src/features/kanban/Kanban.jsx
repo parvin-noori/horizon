@@ -42,7 +42,7 @@ export default function Kanban() {
 
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
-       delay: 150,
+      delay: 150,
       tolerance: 5,
       distance: 3,
     },
@@ -138,12 +138,11 @@ export default function Kanban() {
       newItems[activeIndex].column = overId;
 
       dispatch(replaceAllKanbanItems(newItems));
-
     }
   };
 
   if (isLoading) <span>is loading...</span>;
-  if (error) console.log(error);
+  if (error) <span>{error.message}</span>;
 
   return (
     <div className="kanban">

@@ -15,6 +15,7 @@ import {
   PopoverTrigger,
 } from "@heroui/react";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { LuBell } from "react-icons/lu";
@@ -28,36 +29,13 @@ import {
   MdPerson,
 } from "react-icons/md";
 import { RiMenuFold4Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
 import ThemeButton from "../features/theme/ThemeButton";
+import LanguageButton from "../features/language/LanguageButton";
 import { useGetData } from "../hooks/useGetData";
 import getPro from "/imgs/GetPRO.svg";
 import darkGetPro from "/imgs/darkGetPRO.svg";
-import { useSelector } from "react-redux";
-
-const sidebarItems = [
-  {
-    name: "dashboard",
-    key: "dashboard",
-    to: "/dashboard",
-    icon: <MdHome />,
-  },
-  {
-    name: "NFT marketplace",
-    key: "nft-marketplace",
-    to: "/marketPlace",
-    icon: <MdOutlineShoppingCart />,
-  },
-  {
-    name: "tables",
-    key: "tables",
-    to: "/tables",
-    icon: <MdBarChart />,
-  },
-  { name: "kanban", key: "kanban", to: "/kanban", icon: <MdGridView /> },
-  { name: "profile", key: "profile", to: "/profile", icon: <MdPerson /> },
-  { name: "sign out", key: "sign-out", icon: <MdLock />, action: "logout" },
-];
 
 export default function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
@@ -70,6 +48,47 @@ export default function MainLayout() {
   const theme = useSelector((state) => state.theme.theme);
   const { name, email, jobPosition, followers, following, avatar } =
     userInfo ?? {};
+
+  const { t } = useTranslation();
+
+  const sidebarItems = [
+    {
+      name: t("mainLayout.sidebar.dashboard"),
+      key: "dashboard",
+      to: "/dashboard",
+      icon: <MdHome />,
+    },
+    {
+      name: t("mainLayout.sidebar.NFTMarket"),
+      key: "nft-marketplace",
+      to: "/marketPlace",
+      icon: <MdOutlineShoppingCart />,
+    },
+    {
+      name: t("mainLayout.sidebar.tables"),
+      key: "tables",
+      to: "/tables",
+      icon: <MdBarChart />,
+    },
+    {
+      name: t("mainLayout.sidebar.kanban"),
+      key: "kanban",
+      to: "/kanban",
+      icon: <MdGridView />,
+    },
+    {
+      name: t("mainLayout.sidebar.profile"),
+      key: "profile",
+      to: "/profile",
+      icon: <MdPerson />,
+    },
+    {
+      name: t("mainLayout.sidebar.singOut"),
+      key: "sign-out",
+      icon: <MdLock />,
+      action: "logout",
+    },
+  ];
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -171,7 +190,11 @@ export default function MainLayout() {
           </Listbox>
         </div>
         <div className="sider-footer mt-0">
-          <img src={theme==="light"? getPro : darkGetPro} alt="Get Pro" className="mx-auto" />
+          <img
+            src={theme === "light" ? getPro : darkGetPro}
+            alt="Get Pro"
+            className="mx-auto"
+          />
         </div>
       </div>
       <div className="p-4 flex flex-col gap-y-4 w-full overflow-x-hidden text-[#2B3674] dark:text-white">
@@ -183,7 +206,7 @@ export default function MainLayout() {
               }}
               separator="/"
             >
-              <BreadcrumbItem>pages</BreadcrumbItem>
+              <BreadcrumbItem>{t("mainLayout.pages")}</BreadcrumbItem>
               <BreadcrumbItem>{lastSegment}</BreadcrumbItem>
             </Breadcrumbs>
             <div className="flex items-center gap-3">
@@ -240,7 +263,10 @@ export default function MainLayout() {
               <LuBell className="text-lg" />
             </Button>
             <ThemeButton
-              className={"!min-w-auto shrink-0 p-0 !aspect-square"}
+              className={"!min-w-auto shrink-0 p-0 !aspect-square rounded-full"}
+            />
+            <LanguageButton
+              className={"!min-w-auto shrink-0 p-0 !aspect-square rounded-full"}
             />
             <Button
               isOnlyIcon
@@ -250,7 +276,7 @@ export default function MainLayout() {
             >
               <AiOutlineExclamationCircle className="text-lg" />
             </Button>
-            <Popover  placement="bottom">
+            <Popover placement="bottom">
               <PopoverTrigger>
                 <Avatar
                   showFallback

@@ -19,7 +19,7 @@ export default function ThemeButton({className}) {
     }
   }, [theme]);
   return (
-     <Button isOnlyIcon variant="light" radius="full" className={`!min-w-auto shrink-0 p-0 !aspect-square ${className}`}
+     <Button isOnlyIcon variant="light" radius="none" className={`!min-w-auto shrink-0 p-0 !aspect-square ${className}`}
       onPress={() =>
         dispatch(changeTheme(theme === "light" ? "dark" : "light"))
       }

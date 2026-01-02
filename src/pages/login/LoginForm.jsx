@@ -7,10 +7,12 @@ import { ToastContainer, toast } from "react-toastify";
 
 import { Link, useNavigate } from "react-router";
 import { supabase } from "../../lib/supabase";
+import { useTranslation } from "react-i18next";
 
 export default function LoginForm() {
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -32,7 +34,7 @@ export default function LoginForm() {
       const accessToken = data.session.access_token;
       localStorage.setItem("token", accessToken);
       // toast.success(`Welcome ${data.user.email}`);
-      toast.success("Logged in successfully");
+      toast.success(t('signIn.validation.Loggedsuccessfully'));
       setTimeout(() => {
         navigate("/dashboard");
       }, 500);
@@ -50,26 +52,35 @@ export default function LoginForm() {
       <ToastContainer position="top-right" autoClose={3000} />
       <div className="gap-y-10 flex flex-col">
         <div className="flex flex-col gap-y-3">
-          <span className="lg:text-5xl text-4xl font-semibold ">sign in</span>
-          <p className="text-gray-400">
-            Enter your email and password to sign in!
-          </p>
+          <span className="lg:text-5xl text-4xl font-semibold ">
+            {t("signIn.title")}
+          </span>
+          <p className="text-gray-400">{t("signIn.subtitle")}</p>
         </div>
         <Button
           className="bg-blue-50 w-full capitalize text-blue-950 dark:bg-white/10 dark:text-white"
           startContent={<FcGoogle />}
           size="lg"
         >
-          sign in with Google
+          {t("signIn.google")}
         </Button>
       </div>
       <Divider />
-      <form aria-label="login form" onSubmit={handleSubmit(onSubmit)} className="gap-y-5 flex flex-col">
+      <form
+        aria-label="login form"
+        onSubmit={handleSubmit(onSubmit)}
+        className="gap-y-5 flex flex-col"
+      >
         <Input
           ref={inputRef}
-          {...register("email", { required: "email is required" })}
-          label="Email"
-          classNames={{ label: "!text-inherit", input: "text-black dark:text-white" }}
+          {...register("email", {
+            required: t("signIn.validation.emailRequired"),
+          })}
+          label={`${t('signIn.validation.email')}`}
+          classNames={{
+            label: "!text-inherit",
+            input: "text-black dark:text-white",
+          }}
           labelPlacement="outside"
           placeholder="mail@gmail.com"
           variant="bordered"
@@ -83,11 +94,14 @@ export default function LoginForm() {
         <Input
           ref={inputRef}
           {...register("password", {
-            required: "Password is required",
+               required: t("signIn.validation.passwordRequired"),
           })}
-          label="Password"
+          abel={`${t('signIn.validation.password')}`}
           labelPlacement="outside"
-          classNames={{ label: "!text-inherit", input: "text-black dark:text-white" }}
+          classNames={{
+            label: "!text-inherit",
+            input: "text-black dark:text-white",
+          }}
           variant="bordered"
           type="password"
           size="lg"
@@ -97,16 +111,16 @@ export default function LoginForm() {
         )}
 
         <div className="flex justify-between items-center">
-          <Checkbox defaultSelected>keep my login</Checkbox>
+          <Checkbox defaultSelected>{t('signIn.keep')}</Checkbox>
           <Link
             to="/forgot-password"
             className="text-primary hover:underline dark:text-white"
           >
-            Forgot password?
+            {t('signIn.forget')}
           </Link>
         </div>
         <Button type="submit" size="lg" color="primary">
-          sign in
+          {t('signIn.signIn')}
         </Button>
         {/* <p className="capitalize gap-x-3 dark:text-gray-400">
           not register yet?{" "}
