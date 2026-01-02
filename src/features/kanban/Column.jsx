@@ -46,7 +46,7 @@ export default function Column(props) {
       <div
         ref={setNodeRef}
         style={style}
-        className="rounded-xl p-5 flex flex-col min-h-[500px]  bg-white  border-primary border-2"
+        className="rounded-xl p-5 flex flex-col min-h-[500px]   bg-white  border-primary border-2"
       ></div>
     );
   }
@@ -55,7 +55,7 @@ export default function Column(props) {
     <div
       style={style}
       ref={setNodeRef}
-      className="rounded-xl p-5 flex flex-col  bg-white dark:bg-secondary"
+      className="rounded-xl p-5 flex flex-col w-full min-w-[300px] bg-white dark:bg-secondary"
     >
       <div className="flex items-center  justify-between mb-4">
         <button {...attributes} {...listeners} className="cursor-grab">

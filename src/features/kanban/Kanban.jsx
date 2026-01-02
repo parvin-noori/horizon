@@ -49,8 +49,8 @@ export default function Kanban() {
   });
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
-      // delay: 150,
-      // tolerance: 5,
+      delay: 150,
+      tolerance: 5,
       distance: 3,
     },
   });
