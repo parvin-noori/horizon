@@ -1,15 +1,16 @@
 import {
-  closestCorners,
   DndContext,
   DragOverlay,
-  MouseSensor,
-  TouchSensor,
+  KeyboardSensor,
+  PointerSensor,
+  pointerWithin,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
 import { useEffect, useMemo, useState } from "react";
 
-import { arrayMove } from "@dnd-kit/sortable";
+import { arrayMove, SortableContext, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
 import Column from "./Column";
@@ -19,9 +20,20 @@ import { replaceAllKanbanItems } from "./kanbanSlice";
 export default function Kanban() {
   const { data, isLoading, error } = useGetData();
   const { kanban: kanbanItems } = data ?? {};
-  const [activeId, setActiveId] = useState(null);
+  const [activeColumn, setActiveColumn] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);
+  const [columns, setColumns] = useState([
+    { id: "backlog", title: "backlog", color: "#6B7280" },
+    { id: "In Progress", title: "In Progress", color: "#F59E0B" },
+    { id: "Done", title: "Done", color: "#10B981" },
+  ]);
+
   const items = useSelector((state) => state.kanban.items);
+  const [features, setFeatures] = useState(() =>
+    items.map((item) => ({ ...item }))
+  );
   const dispatch = useDispatch();
+  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
 
   // sync local items with redux changes (edit / add)
   useEffect(() => {
@@ -30,71 +42,126 @@ export default function Kanban() {
     }
   }, [kanbanItems, dispatch]);
 
-  const columns = useMemo(
-    () => [
-      { id: 1, name: "backlog", color: "#6B7280" },
-      { id: 2, name: "In Progress", color: "#F59E0B" },
-      { id: 3, name: "Done", color: "#10B981" },
-    ],
-    []
-  );
-
-  const touchSensor = useSensor(TouchSensor, {
+  const touchSensor = useSensor(PointerSensor, {
     activationConstraint: {
-      delay: 150,
-      tolerance: 5,
+      distance: 3,
+      // tolerance: 5,
     },
   });
-  const mouseSensor = useSensor(MouseSensor, {
+  const mouseSensor = useSensor(KeyboardSensor, {
+    coordinateGetter: sortableKeyboardCoordinates,
     activationConstraint: {
-      delay: 150,
-      tolerance: 5,
+      // delay: 150,
+      // tolerance: 5,
+      distance: 3,
     },
   });
-  const sensor = useSensors(touchSensor, mouseSensor);
+  const sensors = useSensors(touchSensor, mouseSensor);
 
-  const handleDragStart = (event) => {
-    setActiveId(event.active.id);
+  const createNewColumns = () => {
+    const columnToAdd = {
+      id: uuidv4(),
+      title: `columne ${columns.length}`,
+      // color:"#3B82F6"
+    };
+    return [...columns, columnToAdd];
   };
 
-  const handleDragEnd = (event) => {
+  const onDragStart = (event) => {
+    if (event.active.data.current?.type === "column") {
+      setActiveColumn(event.active.data.current?.column);
+      return;
+    }
+    if (event.active.data.current?.type === "item") {
+      setActiveItem(event.active.data.current?.feature);
+      return;
+    }
+  };
+
+  // const onDragEnd = (event) => {
+  //   setActiveColumn(null);
+  //   setActiveItem(null);
+  //   const { active, over } = event;
+
+  //   if (!over) return;
+
+  //   const activeColumnId = active.id;
+  //   const overColumnId = over.id;
+
+  //   if (activeColumnId == overColumnId) return;
+
+  //   setColumns((columns) => {
+  //     const activeColumnIndex = columns.findIndex(
+  //       (col) => col.id === activeColumnId
+  //     );
+  //     const overColumnIndex = columns.findIndex(
+  //       (col) => col.id === overColumnId
+  //     );
+
+  //     return arrayMove(columns, activeColumnIndex, overColumnIndex);
+  //   });
+  // };
+
+  const onDragEnd = (event) => {
+    setActiveColumn(null);
+    setActiveItem(null);
+
     const { active, over } = event;
+
     if (!over) return;
 
     const activeId = active.id;
     const overId = over.id;
+
     if (activeId === overId) return;
 
-    const activeIndex = items.findIndex((item) => item.id === activeId);
-    const overIndex = items.findIndex((item) => item.id === overId);
-    const activeItem = items[activeIndex];
-    const overItem = items[overIndex];
+    setColumns((columns) => {
+      const activeColumnIndex = columns.findIndex((col) => col.id === activeId);
+      const overColumnIndex = columns.findIndex((col) => col.id === overId);
 
-    if (!activeItem || !overIndex === -1) return;
+      return arrayMove(columns, activeColumnIndex, overColumnIndex);
+    });
+  };
 
-    let newItems = [...items];
+  const onDragOver = (event) => {
+    const { active, over } = event;
 
-    if (activeItem.column == overItem.column) {
-      const columnItems = newItems.filter(
-        (item) => item.column === activeItem.column
-      );
+    if (!over) return;
 
-      const oldIndex = columnItems.findIndex((i) => i.id === activeId);
-      const newIndex = columnItems.findIndex((i) => i.id === overId);
+    const activeId = active.id;
+    const overId = over.id;
 
-      const sortedColumn = arrayMove(columnItems, oldIndex, newIndex);
+    if (activeId === overId) return;
 
-      // merge back
-      newItems = newItems.map((item) => {
-        if (item.column !== activeItem.column) return item;
-        return sortedColumn.shift();
+    const isActiveATask = active.data.current?.type === "item";
+    const isOverATask = over.data.current?.type === "item";
+
+    if (!isActiveATask) return;
+
+    // I'm dropping a task over another task
+    if (isActiveATask && isOverATask) {
+      setFeatures((features) => {
+        const activeIndex = features.findIndex((t) => t.id === activeId);
+        const overIndex = features.findIndex((t) => t.id === overId);
+
+        features[activeIndex].column = features[overIndex].column;
+
+        return arrayMove(features, activeIndex, overIndex);
       });
-    } else {
-      newItems = newItems.map((item) =>
-        item.id === activeId ? { ...item, column: overItem.column } : item
-      );
     }
-    dispatch(replaceAllKanbanItems(newItems));
+
+    const isOverAColumn = over.data.current?.type === "column";
+
+    // I'm dropping a task over a column
+
+    if (isActiveATask && isOverAColumn) {
+      setFeatures((features) => {
+        const activeIndex = features.findIndex((t) => t.id === activeId);
+        features[activeIndex].column = overId;
+
+        return arrayMove(features, activeIndex, activeIndex);
+      });
+    }
   };
 
   if (isLoading) <span>is loading...</span>;
@@ -103,10 +170,11 @@ export default function Kanban() {
   return (
     <div className="kanban">
       <DndContext
-        onDragStart={handleDragStart}
-        collisionDetection={closestCorners}
-        sensors={sensor}
-        onDragEnd={handleDragEnd}
+        collisionDetection={pointerWithin}
+        sensors={sensors}
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+        onDragOver={onDragOver}
       >
         <div
           className="flex lg:grid 
@@ -115,15 +183,34 @@ export default function Kanban() {
           overflow-x-auto 
           no-scrollbar"
         >
+          <SortableContext items={columnsId}>
           {columns.map((col) => (
-            <Column key={col.id} col={col} />
+            <Column
+              key={col.id}
+              col={col}
+              items={features.filter((item) => item.column === col.id)}
+            />
           ))}
+          </SortableContext>
         </div>
-        <DragOverlay>
-          {activeId ? (
-            <KanbanItem feature={items.find((i) => i.id === activeId)} />
-          ) : null}
-        </DragOverlay>
+        {createPortal(
+          <DragOverlay>
+            {activeColumn && (
+              <Column
+                col={activeColumn}
+                items={features.filter(
+                  (item) => item.column === activeColumn.id
+                )}
+              />
+            )}
+            {activeItem && (
+              <div>
+                <KanbanItem feature={activeItem} />
+              </div>
+            )}
+          </DragOverlay>,
+          document.body
+        )}
       </DndContext>
     </div>
   );

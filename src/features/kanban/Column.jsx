@@ -1,21 +1,35 @@
-import { useDroppable } from "@dnd-kit/core";
-import { SortableContext } from "@dnd-kit/sortable";
-import { Button } from "@heroui/react";
-import { useState } from "react";
-import { FiPlus } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+import { useDndContext } from "@dnd-kit/core";
+import { SortableContext, useSortable } from "@dnd-kit/sortable";
+
+import { CSS } from "@dnd-kit/utilities";
+import { useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
 import KanbanItem from "./KanbanItem";
 import { addKanban } from "./kanbanSlice";
 
 export default function Column(props) {
-  const { col } = props;
+  const { col, items } = props;
   const [editngId, setEditngId] = useState(false);
-  const { setNodeRef } = useDroppable({
-    id: `column-${col.id}`,
-  });
 
-  const items = useSelector((state) => state.kanban.items);
+  const { active } = useDndContext();
+  const isItemDragging = active?.data?.current?.type === "item";
+  const isDraggingThisColumn = active?.id === col.id;
+
+  const itemsId = useMemo(() => items.map((item) => item.id), [items]);
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: col.id, data: { type: "column", col } });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   const dispatch = useDispatch();
 
@@ -32,41 +46,42 @@ export default function Column(props) {
     );
   }
 
-  return (
-    <SortableContext
-      key={col.id}
-      items={items?.filter((i) => i.column === col.id).map((i) => i.id)}
-    >
+  if (isDragging) {
+    return (
       <div
         ref={setNodeRef}
-        className="bg-white dark:bg-secondary lg:w-full md:w-1/2 sm:w-[70%] w-[80%] rounded-xl p-5 space-y-10 flex flex-col"
-      >
-        <div className="flex items-center justify-between">
-          <span className="capitalize text-xl font-semibold">{col.name}</span>
-          <Button
-            type="button"
-            onPress={() => handleAdd(col.id)}
-            isOnlyIcon
-            variant="light"
-            className="bg-secondary text-primary dark:text-white dark:bg-white/5"
-          >
-            <FiPlus />
-          </Button>
-        </div>
-        <ul className="space-y-5">
-          {items
-            .filter((item) => item.column === col.id)
-            .map((item) => (
-              <KanbanItem
-                key={item.id}
-                feature={item}
-                features={items}
-                isEditng={editngId === item.id}
-                setEditngId={setEditngId}
-              />
-            ))}
-        </ul>
+        style={style}
+        className="rounded-xl p-5 flex flex-col min-h-[500px]  bg-white opacity-60 border-primary border-2"
+      ></div>
+    );
+  }
+
+  return (
+    <div
+      style={style}
+      ref={setNodeRef}
+      className="rounded-xl p-5 flex flex-col  bg-white"
+    >
+      <div className="flex items-center cursor-grab justify-between mb-4">
+        <button {...attributes} {...listeners}>
+          drag
+        </button>
+        <span className="font-semibold">{col.title}</span>
+        <span>{items.length}</span>
       </div>
-    </SortableContext>
+
+      <ul className="space-y-3 min-h-[400px]">
+        <SortableContext items={itemsId}>
+          {items?.map((item) => (
+            <KanbanItem
+              key={item.id}
+              feature={item}
+              isEditng={editngId === item.id}
+              setEditngId={setEditngId}
+            />
+          ))}
+        </SortableContext>
+      </ul>
+    </div>
   );
 }

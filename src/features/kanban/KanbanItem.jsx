@@ -11,7 +11,7 @@ import {
   SelectItem,
   Textarea,
 } from "@heroui/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineEdit } from "react-icons/ai";
 import { IoMdTrash } from "react-icons/io";
@@ -24,6 +24,7 @@ import Avatar3 from "/imgs/Avatar3.png";
 export default function KanbanItem(props) {
   const { feature, features, isEditng, setEditngId } = props;
   const { title, desc, status } = feature;
+  const [mouseIsOver, setMouseIsOver] = useState(false);
   const { id } = feature;
   const dispatch = useDispatch();
   const {
@@ -39,12 +40,20 @@ export default function KanbanItem(props) {
     },
   });
   const inputRef = useRef(null);
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: feature.id, data: { type: "item", feature } });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    // transition: "opacity 0.2s",
+    // opacity: hidden ? 0 : 1,
   };
   const background = getButtonBackground(feature.status);
 
@@ -105,12 +114,24 @@ export default function KanbanItem(props) {
       })
     );
   };
+
+  if (isDragging) {
+    return (
+      <div
+        ref={setNodeRef}
+        style={style}
+        className="shadow-lg select-none h-[200px]   duration-300 bg-secondary/50   dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col"
+      ></div>
+    );
+  }
   return (
     <div
-      className={`shadow-lg select-none transtion-border duration-300 bg-white border border-transparent dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col ${
+      onMouseEnter={() => setMouseIsOver(true)}
+      onMouseLeave={() => setMouseIsOver(false)}
+      className={`shadow-lg select-none transtion-border  duration-300 bg-white border border-transparent dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col ${
         isEditng
           ? ""
-          : "cursor-pointer  hover:border-slate-300 dark:hover:border-slate-700"
+          : "cursor-grab hover:border-slate-300 dark:hover:border-slate-700"
       }`}
       ref={setNodeRef}
       style={style}
@@ -178,22 +199,26 @@ export default function KanbanItem(props) {
               <span className="capitalize lg:line-clamp-1 line-clamp-2 text-lg ">
                 {feature.title}
               </span>
-              <Button
-                onPress={() => handleDelete(id)}
-                isOnlyIcon
-                variant="light"
-                className="p-0 !shrink-0 ms-auto min-w-auto !size-8 rounded-lg text-slate-400"
-              >
-                <IoMdTrash />
-              </Button>
-              <Button
-                onPress={() => setEditngId(id)}
-                isOnlyIcon
-                variant="light"
-                className="p-0 !shrink-0 min-w-auto !size-8 rounded-lg text-slate-400"
-              >
-                <AiOutlineEdit />
-              </Button>
+              {mouseIsOver && (
+                <>
+                  <Button
+                    onPress={() => handleDelete(id)}
+                    isOnlyIcon
+                    variant="light"
+                    className="p-0 !shrink-0 ms-auto min-w-auto !size-8 rounded-lg text-slate-400"
+                  >
+                    <IoMdTrash />
+                  </Button>
+                  <Button
+                    onPress={() => setEditngId(id)}
+                    isOnlyIcon
+                    variant="light"
+                    className="p-0 !shrink-0 min-w-auto !size-8 rounded-lg text-slate-400"
+                  >
+                    <AiOutlineEdit />
+                  </Button>
+                </>
+              )}
             </div>
           </div>
 

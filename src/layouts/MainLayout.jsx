@@ -250,7 +250,7 @@ export default function MainLayout() {
             >
               <AiOutlineExclamationCircle className="text-lg" />
             </Button>
-            <Popover showArrow placement="bottom">
+            <Popover  placement="bottom">
               <PopoverTrigger>
                 <Avatar
                   showFallback
