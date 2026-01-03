@@ -1,4 +1,5 @@
 import { Avatar, AvatarGroup, Button } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 import { MdSlowMotionVideo } from "react-icons/md";
 import { RiTimerLine } from "react-icons/ri";
 import { TbFlameFilled } from "react-icons/tb";
@@ -10,6 +11,7 @@ const members = [
 ];
 
 export default function BusinessDesign() {
+  const { t } = useTranslation();
   return (
     <div className="bg-white  dark:bg-secondary overflow-hidden rounded-2xl shadow pt-5 flex flex-col space-y-5">
       <div className="flex items-center gap-2  px-6">
@@ -17,23 +19,28 @@ export default function BusinessDesign() {
           <TbFlameFilled />
         </span>
         <div className="flex flex-col capitalize font-bold">
-          <span className="text-xs text-slate-400">business design</span>
-          <span className=" text-sm  ">new lession is available</span>
+          <span className="text-xs text-slate-400">
+            {t("pages.dashboard.businessDesign.title")}
+          </span>
+          <span className=" text-sm  ">
+            {" "}
+            {t("pages.dashboard.businessDesign.subtitle")}
+          </span>
         </div>
       </div>
 
       <p className=" text-lg  px-6 grow">
-        what do you need to know to create better products?
+        {t("pages.dashboard.businessDesign.caption")}
       </p>
       <div className="flex flex-col bg-secondary dark:bg-white/5   px-6">
         <div className="flex items-center gap-5  text-xs py-5">
           <span className="flex items-center gap-2">
             <RiTimerLine className="text-green-400" />
-            85 mins
+            85 {t("pages.dashboard.businessDesign.mins")}
           </span>
           <span className="flex items-center gap-2">
             <MdSlowMotionVideo className="text-red-400 text-lg" />
-            video format
+            {t("pages.dashboard.businessDesign.videoFormat")}
           </span>
         </div>
         <div className="flex items-center justify-between gap-4 pb-5">
@@ -42,8 +49,11 @@ export default function BusinessDesign() {
               <Avatar src={member.img} size="sm" />
             ))}
           </AvatarGroup>
-          <Button aria-label="start" className="capitalize bg-primary rounded-xl px-6 text-white">
-            get started
+          <Button
+            aria-label="start"
+            className="capitalize bg-primary rounded-xl px-6 text-white"
+          >
+            {t('getStarted')}
           </Button>
         </div>
       </div>

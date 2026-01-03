@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@heroui/react";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { FcApproval } from "react-icons/fc";
 import { MdError } from "react-icons/md";
 import { RxCrossCircled } from "react-icons/rx";
@@ -58,17 +59,18 @@ export default function ComplexTable() {
 
   const { data, isLoading, error } = useGetData();
   const { complexTable } = data ?? {};
+  const { t } = useTranslation();
   if (error) {
     console.log(error);
   }
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow flex flex-col space-y-5">
       <span className="text-2xl  text-bold capitalize px-6 pt-5">
-        complex table
+        {t("pages.dashboard.complexTable.title")}
       </span>
       <div className="overflow-x-auto">
         <Table
-         aria-label="complex table"
+          aria-label="complex table"
           isCompact
           removeWrapper
           classNames={{

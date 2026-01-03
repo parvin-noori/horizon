@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@heroui/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
 
 const columns = [
@@ -32,14 +33,17 @@ export default function CheckTable() {
   const [selectedKeys, setSelectedKeys] = useState(["2", "3", "4"]);
   const { data, isLoading, error } = useGetData();
   const { checkTable } = data ?? {};
+  const { t } = useTranslation();
 
-   if (error) {
+  if (error) {
     console.log(error);
   }
 
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
-      <span className="text-2xl  text-bold capitalize">check table</span>
+      <span className="text-2xl  text-bold capitalize">
+        {t("pages.dashboard.checkTable.title")}
+      </span>
       <div className="overflow-x-auto">
         <Table
           removeWrapper

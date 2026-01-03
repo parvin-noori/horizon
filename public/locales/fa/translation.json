@@ -37,11 +37,11 @@
   "pages": {
     "dashboard": {
       "dashboard": "داشبورد",
-      "thisMonth": "this month",
-      "total spent": "total spent",
-      "onTracks": "on tracks",
-      "weekly revenue": "weekly revenue",
-      "checkTable": "check table",
+      "thisMonth": "ماه جاری",
+      "totalSpent": "هزینه کل",
+      "onTrack": "طبق برنامه",
+      "weeklyRevenue": "درآمد هفتگی",
+      "sinceLastMonth": "از ماه گذشته تاکنون",
       "dashboardStats": {
         "earning": "درآمد",
         "spendThisMonth": "هزینه این ماه",
@@ -49,8 +49,86 @@
         "yourBalance": "موجودی شما",
         "newTasks": "وظایف جدید",
         "TotalProjects": "کل پروژه ها"
+      },
+      "checkTable": {
+        "title": "مشاهده جدول",
+        "name": "نام پروژه",
+        "progress": "پیشرفت (%)",
+        "quantity": "مقدار",
+        "date": "تاریخ"
+      },
+      "dailyTraffic": {
+        "title": "ترافیک روزانه",
+        "visitors": "بازدیدکنندگان"
+      },
+      "pieChart": {
+        "title": "چارت دایره ای",
+        "monthly": "ماهانه",
+        "yearly": "سالانه",
+        "daily": "روزانه"
+      },
+      "complexTable": {
+        "title": "جدول پیشرفته"
+      },
+      "tasks": {
+        "title": "وظایف",
+        "landingPageDesign": "طراحی صفحه لندینگ",
+        "dashboardBuilder": "سازنده داشبورد",
+        "mobileAppDesign": "طراحی اپلیکیشن موبایل",
+        "illustration": "تصویرسازی",
+        "promotionalLp": "صفحه فرود تبلیغاتی"
+      },
+      "businessDesign": {
+        "title": "طراحی کسب‌وکار",
+        "subtitle": "درس جدید در دسترس است",
+        "caption": "چه چیزهایی را باید بدانید تا محصولات بهتری بسازید؟",
+        "mins": "دقیقه",
+        "videoFormat": "فرمت ویدئو"
+      },
+      "teamMembers": {
+        "title": "اعضای تیم",
+        "roles": {
+          "creativeDirector": "مدیر خلاق",
+          "productDesigner": "طراح محصول",
+          "juniorGraphicDesigner": "طراح گرافیک جونیور"
+        }
+      },
+      "card": {
+        "title": "کنترل امنیت کارت‌ها درون اپ با یک لمس",
+        "subtitle": "مزایای کارت‌های ما را تنها با یک لمس کشف کنید.",
+        "cards": "کارت‌ها"
+      },
+      "ads": {
+        "starbucks": "استارباکس",
+        "cashback": "بازگشت وجه",
+        "&": "وارد",
+        "off": "تخفیف"
       }
     }
+  },
+  "getStarted": "شروع کنید",
+
+  "months": {
+    "jan": "ژانویه",
+    "feb": "فوریه",
+    "mar": "مارس",
+    "apr": "آوریل",
+    "may": "مه",
+    "jun": "ژوئن",
+    "jul": "ژوئیه",
+    "aug": "اوت",
+    "sep": "سپتامبر",
+    "oct": "اکتبر",
+    "nov": "نوامبر",
+    "dec": "دسامبر"
+  },
+  "chart": {
+    "uv": "بازدید یکتا",
+    "pv": "بازدید کل",
+    "amt": "مبلغ",
+    "value": "مقدار",
+    "system": "سیستم",
+    "yourFiles": "فایل های شما"
   },
   "header": {
     "search": "جستجو"

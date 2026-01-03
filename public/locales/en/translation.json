@@ -20,7 +20,7 @@
       "emailRequired": "Email is required",
       "passwordRequired": "Password is required",
       "notMatching": "Password do not match",
-      "Loggedsuccessfully":"Logged in successfully"
+      "Loggedsuccessfully": "Logged in successfully"
     }
   },
   "mainLayout": {
@@ -32,32 +32,109 @@
       "profile": "profile",
       "singOut": "sign out"
     },
-    "pages":"pages"
-    
+    "pages": "pages"
   },
   "pages": {
     "dashboard": {
       "dashboard": "dashboard",
       "thisMonth": "this month",
-      "total spent": "total spent",
-      "onTracks": "on tracks",
-      "weekly revenue": "weekly revenue",
-      "checkTable": "check table",
+      "totalSpent": "total spent",
+      "onTrack": "on track",
+      "weeklyRevenue": "weekly revenue",
+
+      "sinceLastMonth": "since last month",
       "dashboardStats": {
         "earning": "earning",
         "spendThisMonth": "spend this month",
         "sales": "sales",
         "yourBalance": "your balance",
-        "newTasks":"new tasks",
-        "TotalProjects":"total projects"
+        "newTasks": "new tasks",
+        "TotalProjects": "total projects"
+      },
+      "checkTable": {
+        "title": "check table",
+        "name": "name",
+        "progress": "progress",
+        "quantity": "quantity",
+        "date": "date"
+      },
+      "dailyTraffic": {
+        "title": "daily traffic",
+        "visitors": "visitors"
+      },
+      "pieChart": {
+        "title": "your pie chart",
+        "monthly": "monthly",
+        "yearly": "yearly",
+        "daily": "daily"
+      },
+      "complexTable": {
+        "title": "complex table"
+      },
+      "tasks": {
+        "title": "tasks",
+        "landingPageDesign": "landing page design",
+        "dashboardBuilder": "dashboard builder",
+        "mobileAppDesign": "mobile app design",
+        "illustration": "illustration",
+        "promotional Lp": "promotional LP"
+      },
+      "businessDesign": {
+        "title": "business design",
+        "subtitle": "new lession is available",
+        "caption": "what do you need to know to create better products?",
+        "mins": "mins",
+        "videoFormat": "video format"
+      },
+      "teamMembers": {
+        "title": "team members",
+        "roles": {
+          "creativeDirector": "creative director",
+          "productDesigner": "product designer",
+          "juniorGraphicDesigner": "junior graphic designer"
+        }
+      },
+      "card": {
+        "title": "control cards security in-app with a tap",
+        "subtitle": "discover our cards benefits, with one tap.",
+        "cards": "cards"
+      },
+      "ads": {
+        "starbucks": "starbucks",
+        "cashback": "cashback",
+        "&": "&",
+        "off": "off"
       }
     }
+  },
+  "getStarted": "get started",
+  "months": {
+    "jan": "jan",
+    "feb": "feb",
+    "mar": "mar",
+    "apr": "apr",
+    "may": "may",
+    "jun": "jun",
+    "jul": "jul",
+    "aug": "aug",
+    "sep": "sep",
+    "oct": "oct",
+    "nov": "nov",
+    "dec": "dec"
+  },
+  "chart": {
+    "uv": "uv",
+    "pv": "pv",
+    "amt": "amt",
+    "value": "value",
+    "system": "system",
+    "yourFiles": "your files"
   },
   "categoryList": {
     "DeleteIsNotPossible": "It is not possible to delete this category",
     "DuplicateCategory": "The category is duplicate"
   },
-  "header":{
-    "search":"search"
+  "header": {
+    "search": "search"
   }
 }

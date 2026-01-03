@@ -1,8 +1,9 @@
 import { Select, SelectItem } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 import { Cell, Legend, Pie, PieChart } from "recharts";
 
 const data = [
-  { name: "your files", value: 800 },
+  { name: "yourFiles", value: 800 },
   { name: "system", value: 400 },
   { name: "", value: 300 },
 ];
@@ -11,15 +12,18 @@ const RADIAN = Math.PI / 180;
 const COLORS = ["#8884d8", "#39B8FF", "#dddddd"];
 
 export default function PieCharts() {
+  const { t } = useTranslation();
   const selectItems = [
-    { key: "monthly", label: "Monthly" },
-    { key: "yearly", label: "Yearly" },
-    { key: "daily", label: "Daily" },
+    { key: "monthly", label: t("pages.dashboard.pieChart.monthly") },
+    { key: "yearly", label: t("pages.dashboard.pieChart.yearly") },
+    { key: "daily", label: t("pages.dashboard.pieChart.daily") },
   ];
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="flex items-center justify-between">
-        <span className=" capitalize font-bold">your pie chart</span>
+        <span className=" capitalize font-bold">
+          {t("pages.dashboard.pieChart.title")}
+        </span>
         <Select
           size="sm"
           variant="underlined"
@@ -46,6 +50,7 @@ export default function PieCharts() {
           style={{
             fontSize: "small",
           }}
+          formatter={(value) => t(`chart.${value}`)}
         />
         <Pie
           data={data}

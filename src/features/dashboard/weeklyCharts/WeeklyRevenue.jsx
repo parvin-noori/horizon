@@ -1,13 +1,21 @@
 import { Skeleton } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 import { Bar, BarChart, Legend, Tooltip, XAxis } from "recharts";
 import { useGetData } from "../../../hooks/useGetData";
 
 export default function WeeklyRevenue() {
   const { data, isLoading, error } = useGetData();
   const { weeklySummary } = data ?? {};
+  const { t } = useTranslation();
   return (
-    <div className={`${isLoading ? "h-[50vh]" : ""} bg-white dark:bg-secondary  rounded-2xl shadow py-5 px-6 flex flex-col space-y-5 [&_.recharts-surface:focus]:outline-none`}>
-      <span className="text-2xl  text-bold capitalize">weekly revenue</span>
+    <div
+      className={`${
+        isLoading ? "h-[50vh]" : ""
+      } bg-white dark:bg-secondary  rounded-2xl shadow py-5 px-6 flex flex-col space-y-5 [&_.recharts-surface:focus]:outline-none`}
+    >
+      <span className="text-2xl  text-bold capitalize">
+        {t("pages.dashboard.weeklyRevenue")}
+      </span>
       {isLoading ? (
         <Skeleton className="rounded-lg">
           <div className="h-62 rounded-lg bg-default-300" />
@@ -37,7 +45,7 @@ export default function WeeklyRevenue() {
           <XAxis dataKey="name" axisLine={false} />
           {/* <YAxis width="auto" /> */}
           <Tooltip cursor={false} />
-          <Legend />
+          <Legend formatter={(value) => t(`chart.${value}`)} />
           <Bar dataKey="pv" stackId="a" fill="#8884d8" barSize={15} />
           <Bar dataKey="uv" stackId="a" fill="#39B8FF" />
           <Bar

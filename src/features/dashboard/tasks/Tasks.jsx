@@ -9,13 +9,18 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { Checkbox, CheckboxGroup, cn, Skeleton } from "@heroui/react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useGetData } from "../../../hooks/useGetData";
+import { useItemTranslation } from "../../../hooks/useTranslation";
 import TaskItem from "./TaskItem";
 
 export default function Tasks() {
   const [items, setItems] = useState([]);
   const { data, isLoading, error } = useGetData();
   const { tasks } = data ?? {};
+  const { t } = useTranslation();
+
+  const { translateItem } = useItemTranslation("pages.dashboard.tasks");
 
   useEffect(() => {
     if (tasks) {
@@ -82,7 +87,9 @@ export default function Tasks() {
           checked={isAllSelected}
           value="tasks"
         >
-          <span className="capitalize font-bold ">tasks</span>
+          <span className="capitalize font-bold ">
+            {t("pages.dashboard.tasks.title")}
+          </span>
         </Checkbox>
       </div>
       {isLoading ? (
@@ -108,7 +115,10 @@ export default function Tasks() {
               onChange={setSelected}
             >
               {items.map((item) => (
-                <TaskItem key={item.id} item={item} />
+                <TaskItem
+                  key={item.id}
+                  item={{ ...item, title: translateItem(item.title) }}
+                />
               ))}
             </CheckboxGroup>
           </SortableContext>

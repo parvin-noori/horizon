@@ -1,4 +1,5 @@
 import { Skeleton } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 import { BiSolidUpArrow } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { Bar, BarChart, XAxis } from "recharts";
@@ -9,16 +10,17 @@ export default function DailyTraffic() {
   const { data, isLoading, error } = useGetData();
   const { dailyTraffic } = data ?? {};
   const whiteStopOpacity = theme === "dark" ? 1 : 0.1;
+  const { t } = useTranslation();
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow py-5 px-6 flex flex-col space-y-5">
       <div className="capitalize text-slate-400 justify-between  text-sm flex items-start gap-3">
         <div className="flex flex-col gap-2">
-          <span>daily traffic</span>
+          <span>{t("pages.dashboard.dailyTraffic.title")}</span>
           <div className="flex items-center gap-1">
             <span className="text-3xl  text-bold text-[#2B3674] dark:text-white">
               2.579
             </span>{" "}
-            visitors
+            {t("pages.dashboard.dailyTraffic.visitors")}
           </div>
         </div>
         <span className="text-green-500 capitalize flex items-center gap-2">
