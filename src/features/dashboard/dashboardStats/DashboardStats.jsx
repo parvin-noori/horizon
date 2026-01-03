@@ -1,7 +1,9 @@
 import { Card } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 
 export default function DashboardStats(props) {
   const { items } = props;
+  const { t } = useTranslation();
   return (
     <div className="grid grid-flow-col overflow-x-auto auto-cols-[183px] gap-3 w-full max-w-full whitespace-nowrap">
       {items.map((item) => {
@@ -20,7 +22,7 @@ export default function DashboardStats(props) {
               )}
               <div className="flex flex-col">
                 <span className="text-slate-400 text-sm capitalize">
-                  {item.title}
+                  {t(`pages.dashboard.dashboardStats${item.key}`)}
                 </span>
                 <span className=" font-semibold">{item.value}</span>
                 {item.change != null && item.change !== 0 && (

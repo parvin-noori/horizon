@@ -47,7 +47,9 @@
         "earning": "earning",
         "spendThisMonth": "spend this month",
         "sales": "sales",
-        "your balance": "your balance"
+        "yourBalance": "your balance",
+        "newTasks":"new tasks",
+        "TotalProjects":"total projects"
       }
     }
   },

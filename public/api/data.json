@@ -99,6 +99,7 @@
   "dashboardStats": [
     {
       "title": "earning",
+      "key": "earning",
       "value": "$350.4",
       "icon": "MdBarChart",
       "change": 0,
@@ -106,6 +107,7 @@
     },
     {
       "title": "Spend this month",
+      "key": "spendThisMonth",
       "value": "$642.39",
       "icon": "PiCurrencyDollarSimpleBold",
       "change": 0,
@@ -113,18 +115,21 @@
     },
     {
       "title": "Sales",
+      "key": "sales",
       "value": "$574.34",
       "change": 23,
       "trend": "up"
     },
     {
       "title": "your balance",
+      "key": "yourBalance",
       "value": "$1,000",
       "change": 0,
       "trend": "none"
     },
     {
       "title": "New Tasks",
+      "key": "newTasks",
       "value": "154",
       "change": null,
       "trend": "none",
@@ -132,6 +137,7 @@
     },
     {
       "title": "Total Projects",
+      "key": "totalProjects",
       "value": "2935",
       "change": null,
       "trend": "none",

@@ -43,14 +43,16 @@
       "weekly revenue": "weekly revenue",
       "checkTable": "check table",
       "dashboardStats": {
-        "earning": "earning",
-        "spendThisMonth": "spend this month",
-        "sales": "sales",
-        "your balance": "your balance"
+        "earning": "درآمد",
+        "spendThisMonth": "هزینه این ماه",
+        "sales": "فروش",
+        "yourBalance": "موجودی شما",
+        "newTasks": "وظایف جدید",
+        "TotalProjects": "کل پروژه ها"
       }
     }
   },
-   "header":{
-    "search":"جستجو"
+  "header": {
+    "search": "جستجو"
   }
 }
