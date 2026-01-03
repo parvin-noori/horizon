@@ -36,7 +36,7 @@
   },
   "pages": {
     "dashboard": {
-      "dashboard": "dashboard",
+      "title": "dashboard",
       "thisMonth": "this month",
       "totalSpent": "total spent",
       "onTrack": "on track",
@@ -105,9 +105,41 @@
         "&": "&",
         "off": "off"
       }
+    },
+    "marketPlace": {
+      "title":"market place",
+      "currentBid": "current bid",
+      "history":"history",
+      "banner": {
+        "title": " Discover, collect, and sell extraordinary NFTs",
+        "subtitle": "Enter in this creative world. discover now the latest NFTs or start creating your own."
+      },
+      "items": {
+        "tendingNFTs": "Trending NFTs",
+        "RecentlyAdded": "Recently added",
+        "abstractColors": "abstract colors",
+        "meshGradients": "mesh gradients",
+        "ETHAIBrain": "ETH AI Brain",
+        "swipeCircles": "swipe circles",
+        "colorfulHeaven": "colorful heaven",
+        "3DCubesArt": "3D cubes art"
+      },
+      "creatores": {
+        "title": "top creators",
+        "name": "name",
+        "artWorks": "artworks",
+        "rating": "rating"
+      }
     }
   },
+  "buttons": {
+    "discoverNow": "Discover now",
+    "watchVideo": "Watch video",
+    "placeBid": " place bid",
+    "SeeAll": "See all"
+  },
   "getStarted": "get started",
+  "by": "by",
   "months": {
     "jan": "jan",
     "feb": "feb",

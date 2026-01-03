@@ -8,6 +8,7 @@ import {
   Image,
 } from "@heroui/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,6 +25,7 @@ const members = [
 export default function MarketPlaceItems(props) {
   const { items, title } = props;
   const { isLoading, error } = useGetData();
+  const { t } = useTranslation();
   const [likedItems, setLikedItems] = useState(() => {
     const saved = localStorage.getItem("likedItems");
     return saved ? JSON.parse(saved) : {};
@@ -76,7 +78,13 @@ export default function MarketPlaceItems(props) {
                 <SwiperSlide key={item.id}>
                   <Card className="p-3 h-full dark:bg-secondary" shadow="none">
                     <div className="relative overflow-hidden max-h-52 rounded-xl">
-                      <Image removeWrapper isZoomed src={item.banner} alt={item.title} className="w-full object-cover"/>
+                      <Image
+                        removeWrapper
+                        isZoomed
+                        src={item.banner}
+                        alt={item.title}
+                        className="w-full object-cover"
+                      />
                       <Button
                         aria-label="like button"
                         onPress={() => toggleLike(item.id)}
@@ -92,7 +100,7 @@ export default function MarketPlaceItems(props) {
                             {item.title}
                           </span>
                           <span className="text-xs text-slate-400 capitalize line-clamp-1">
-                            by {item.by}
+                            {t("by")} {item.by}
                           </span>
                         </div>
                         <AvatarGroup max={2}>
@@ -104,10 +112,10 @@ export default function MarketPlaceItems(props) {
                     </CardBody>
                     <CardFooter className="flex items-center justify-between gap-x-3">
                       <span className="text-sm text-primary dark:text-slate-400 capitalize line-clamp-2">
-                        current bid :{item.bid} ETH
+                        {t("pages.marketPlace.currentBid")} :{item.bid} ETH
                       </span>
                       <Button color="primary" radius="full" className="px-5">
-                        place bid
+                        {t("buttons.placeBid")}
                       </Button>
                     </CardFooter>
                   </Card>

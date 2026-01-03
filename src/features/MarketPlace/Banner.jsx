@@ -1,24 +1,32 @@
 import { Button, Card, CardBody, Image } from "@heroui/react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import ProductsBanner from "/imgs/ProductsBanner.png";
 
 export default function Banner() {
+  const language = useSelector((state) => state.lang.lang);
+  const { t } = useTranslation();
   return (
     <Card>
-      <Image height={300} width="100%" className="object-cover" removeWrapper src={ProductsBanner} alt="Products Banner" />
+      <Image
+        height={300}
+        width="100%"
+        className={`object-cover ${language === "fa" ? "-scale-x-100" : ""}`}
+        removeWrapper
+        src={ProductsBanner}
+        alt="Products Banner"
+      />
       <CardBody className="absolute flex flex-col z-10 text-white xl:w-1/2 md:4/6 space-y-3 top-1/2 -translate-y-1/2 start-10">
-        <h3 className="text-3xl">
-          Discover, collect, and sell extraordinary NFTs
-        </h3>
+        <h3 className="text-3xl">{t("pages.marketPlace.banner.title")}</h3>
         <p className="text-slate-200">
-          Enter in this creative world. discover now the latest NFTs or start
-          creating your own.
+          {t("pages.marketPlace.banner.subtitle")}
         </p>
         <div className="flex items-center space-x-3 mt-5">
           <Button size="lg" className="bg-white text-[#2B3674]">
-            Discover now
+            {t("buttons.discoverNow")}
           </Button>
           <Button size="lg" color="white" variant="light">
-            Watch video
+            {t("buttons.watchVideo")}
           </Button>
         </div>
       </CardBody>

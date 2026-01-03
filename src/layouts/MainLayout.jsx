@@ -43,7 +43,7 @@ export default function MainLayout() {
   const lastSegment = location.pathname.split("/").pop();
   const { t } = useTranslation();
   const language=useSelector(state=>state.lang.lang)
-  const title = t(`pages.dashboard.${lastSegment}`);
+  const title = t(`pages.${lastSegment}.title`);
 
   const sidebarRef = useRef(null);
   const navigate = useNavigate();

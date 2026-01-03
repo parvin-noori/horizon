@@ -9,6 +9,8 @@ import {
   TableRow,
 } from "@heroui/react";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
+import { useItemTranslation } from "../../hooks/useTranslation";
 
 const rows = [
   {
@@ -77,6 +79,9 @@ const columns = [
 ];
 
 export default function Creators() {
+  const { t } = useTranslation();
+  const { translateItem } = useItemTranslation("pages.marketPlace.creators");
+
   const renderCell = useCallback((item, columnKey) => {
     switch (columnKey) {
       case "name":
@@ -90,17 +95,19 @@ export default function Creators() {
   return (
     <div className="bg-white dark:bg-secondary p-4 rounded-lg flex flex-col space-y-4">
       <div className="flex items-center justify-between">
-        <span className=" text-xl capitalize font-semibold">top creators</span>
+        <span className=" text-xl capitalize font-semibold">
+          {t("pages.marketPlace.creatores.title")}
+        </span>
         <Button
           className="bg-secondary dark:bg-white/5 text-primary dark:text-white"
           radius="full"
         >
-          See all{" "}
+          {t("buttons.seeAll")}
         </Button>
       </div>
       <div className="overflow-x-auto">
         <Table
-         aria-label="creators table"
+          aria-label="creators table"
           classNames={{ th: "bg-transparent" }}
           removeWrapper
         >

@@ -36,7 +36,7 @@
   },
   "pages": {
     "dashboard": {
-      "dashboard": "داشبورد",
+      "title": "داشبورد",
       "thisMonth": "ماه جاری",
       "totalSpent": "هزینه کل",
       "onTrack": "طبق برنامه",
@@ -104,9 +104,41 @@
         "&": "وارد",
         "off": "تخفیف"
       }
+    },
+    "marketPlace": {
+      "title":"بازارچه آنلاین",
+      "currentBid": "پیشنهاد فعلی",
+      "history": "تاریخچه",
+      "banner": {
+        "title": "NFTهای منحصربه‌فرد را کشف، جمع‌آوری و معامله کنید",
+        "subtitle": "وارد این دنیای خلاقانه شوید. جدیدترین NFTها را همین حالا کشف کنید یا شروع به ساخت آثار خودتان کنید."
+      },
+      "items": {
+        "tendingNFTs": "NFTهای ترند",
+        "recentlyAdded": "اخیرا اضافه شده",
+        "abstractColors": "رنگ های انتزاعی",
+        "meshGradients": "گرادینت شبکه ای",
+        "ETHAIBrain": "هوش مصنوعی اتریوم",
+        "swipeCircles": "swipe circles",
+        "colorfulHeaven": "بهشت رنگارنگ",
+        "3DCubesArt": "هنر مکعب های سه بعدی"
+      },
+      "creatores": {
+        "title": "بهترین سازندگان",
+        "name": "نام",
+        "artWorks": "آثار هنری",
+        "rating": "امتیاز"
+      }
     }
   },
+  "buttons": {
+    "discoverNow": "اکنون کشف کنید",
+    "watchVideo": "تماشای ویدئو",
+    "placeBid": "ثبت پیشنهاد",
+    "seeAll": "همه"
+  },
   "getStarted": "شروع کنید",
+  "by": "توسط",
 
   "months": {
     "jan": "ژانویه",
