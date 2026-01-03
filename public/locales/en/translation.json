@@ -107,9 +107,9 @@
       }
     },
     "marketPlace": {
-      "title":"market place",
+      "title": "market place",
       "currentBid": "current bid",
-      "history":"history",
+      "history": "history",
       "banner": {
         "title": " Discover, collect, and sell extraordinary NFTs",
         "subtitle": "Enter in this creative world. discover now the latest NFTs or start creating your own."
@@ -130,6 +130,11 @@
         "artWorks": "artworks",
         "rating": "rating"
       }
+    },
+    "tables": {
+      "title": "tables",
+      "devTable": "development table",
+      "4-ColumnTable": "4-Column table"
     }
   },
   "buttons": {

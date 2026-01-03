@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@heroui/react";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { DiAndroid } from "react-icons/di";
 import { FaApple } from "react-icons/fa";
 import { IoLogoWindows } from "react-icons/io5";
@@ -68,14 +69,16 @@ export default function DevTable() {
     }
   });
 
+  const { t } = useTranslation();
+
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow  flex flex-col space-y-5">
       <span className="text-2xl  text-bold capitalize pt-5 px-6">
-        development table
+        {t("pages.tables.devTable")}
       </span>
       <div className="overflow-x-auto">
         <Table
-         aria-label="dev table"
+          aria-label="dev table"
           removeWrapper
           classNames={{
             th: "bg-transparent border-b border-slate-200 text-slate-300",

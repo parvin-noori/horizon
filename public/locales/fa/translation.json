@@ -106,7 +106,7 @@
       }
     },
     "marketPlace": {
-      "title":"بازارچه آنلاین",
+      "title": "بازارچه آنلاین",
       "currentBid": "پیشنهاد فعلی",
       "history": "تاریخچه",
       "banner": {
@@ -129,6 +129,11 @@
         "artWorks": "آثار هنری",
         "rating": "امتیاز"
       }
+    },
+    "tables": {
+      "title": "جدول ها",
+      "devTable": "جدول توسعه",
+      "4-ColumnTable": "جدول ۴ستونه"
     }
   },
   "buttons": {

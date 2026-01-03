@@ -7,6 +7,7 @@ import {
   TableRow,
   getKeyValue,
 } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
 
 const columns = [
@@ -36,14 +37,15 @@ export default function FourColTable() {
     progress: `${item.progress}%`,
   }));
 
+  const { t } = useTranslation();
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow  flex flex-col space-y-5">
       <span className="text-2xl  text-bold capitalize pt-5 px-6">
-        4-Column table
+        {t("pages.tables.4-ColumnTable")}
       </span>
       <div className="overflow-x-auto">
         <Table
-         aria-label="four column table"
+          aria-label="four column table"
           removeWrapper
           classNames={{
             th: "bg-transparent border-b border-slate-200 text-slate-300",
