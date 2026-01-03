@@ -54,5 +54,8 @@
   "categoryList": {
     "DeleteIsNotPossible": "It is not possible to delete this category",
     "DuplicateCategory": "The category is duplicate"
+  },
+  "header":{
+    "search":"search"
   }
 }

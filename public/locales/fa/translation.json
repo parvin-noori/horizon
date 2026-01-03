@@ -32,6 +32,25 @@
       "profile": "پروفایل",
       "singOut": "خروج"
     },
-     "pages":"صفحات"
+    "pages": "صفحات"
+  },
+  "pages": {
+    "dashboard": {
+      "dashboard": "داشبورد",
+      "thisMonth": "this month",
+      "total spent": "total spent",
+      "onTracks": "on tracks",
+      "weekly revenue": "weekly revenue",
+      "checkTable": "check table",
+      "dashboardStats": {
+        "earning": "earning",
+        "spendThisMonth": "spend this month",
+        "sales": "sales",
+        "your balance": "your balance"
+      }
+    }
+  },
+   "header":{
+    "search":"جستجو"
   }
 }

@@ -31,8 +31,8 @@ import {
 import { RiMenuFold4Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
-import ThemeButton from "../features/theme/ThemeButton";
 import LanguageButton from "../features/language/LanguageButton";
+import ThemeButton from "../features/theme/ThemeButton";
 import { useGetData } from "../hooks/useGetData";
 import getPro from "/imgs/GetPRO.svg";
 import darkGetPro from "/imgs/darkGetPRO.svg";
@@ -41,6 +41,10 @@ export default function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const lastSegment = location.pathname.split("/").pop();
+  const { t } = useTranslation();
+  const language=useSelector(state=>state.lang.lang)
+  const title = t(`pages.dashboard.${lastSegment}`);
+
   const sidebarRef = useRef(null);
   const navigate = useNavigate();
   const { data, isLoading, error } = useGetData();
@@ -49,7 +53,6 @@ export default function MainLayout() {
   const { name, email, jobPosition, followers, following, avatar } =
     userInfo ?? {};
 
-  const { t } = useTranslation();
 
   const sidebarItems = [
     {
@@ -111,6 +114,8 @@ export default function MainLayout() {
     };
   }, [collapsed]);
 
+  const sidebarPosition = document.body.dataset.sidebarPosition;
+
   return (
     <div className="bg-secondary dark:bg-background  h-full flex lg:items-stretch relative ">
       {/* sidebar */}
@@ -122,8 +127,12 @@ export default function MainLayout() {
       <div
         ref={sidebarRef}
         className={`sidebar bg-white dark:bg-secondary  h-full fixed lg:sticky lg:translate-x-0 z-30 lg:z-0  top-0 flex flex-col py-2 min-w-[250px] ${
-          collapsed ? "translate-x-0" : "-translate-x-full"
-        }  lg:translate-x-0 transition-transform duration-300`}
+          collapsed
+            ? "translate-x-0"
+            : sidebarPosition === "right"
+            ? "translate-x-full"
+            : "-translate-x-full"
+        }   transition-transform duration-300 `}
       >
         <div className="sider-header p-12 border-b border-secondary dark:border-slate-800">
           <span className=" uppercase text-2xl text-[#2B3674] dark:text-white">
@@ -207,7 +216,9 @@ export default function MainLayout() {
               separator="/"
             >
               <BreadcrumbItem>{t("mainLayout.pages")}</BreadcrumbItem>
-              <BreadcrumbItem>{lastSegment}</BreadcrumbItem>
+              <BreadcrumbItem>
+                {language === "fa" ? title : lastSegment}
+              </BreadcrumbItem>
             </Breadcrumbs>
             <div className="flex items-center gap-3">
               <Button
@@ -219,7 +230,7 @@ export default function MainLayout() {
                 {collapsed ? <MdMenuOpen /> : <RiMenuFold4Line />}
               </Button>
               <span className=" text-2xl font-semibold dark:text-white">
-                {lastSegment}
+                  {language === "fa" ? title : lastSegment}
               </span>
             </div>
           </div>
@@ -228,7 +239,7 @@ export default function MainLayout() {
               isClearable
               startContent={<FiSearch />}
               color="white"
-              placeholder="search"
+              placeholder={t('header.search')}
               size="md"
               type="text"
               radius="full"
