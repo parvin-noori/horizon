@@ -11,6 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
 import Column from "./Column";
@@ -22,11 +23,20 @@ export default function Kanban() {
   const { kanban: kanbanItems } = data ?? {};
   const [activeColumn, setActiveColumn] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
+  const { t } = useTranslation();
 
   const [columns, setColumns] = useState([
-    { id: "backlog", title: "backlog", color: "#6B7280" },
-    { id: "In Progress", title: "In Progress", color: "#F59E0B" },
-    { id: "Done", title: "Done", color: "#10B981" },
+    {
+      id: "backlog",
+      title: t("pages.kanban.backlog"),
+      color: "#6B7280",
+    },
+    {
+      id: "In Progress",
+      title: t("pages.kanban.inProgress"),
+      color: "#F59E0B",
+    },
+    { id: "Done", title: t("pages.kanban.done"), color: "#10B981" },
   ]);
 
   const items = useSelector((state) => state.kanban.items);
@@ -161,16 +171,17 @@ export default function Kanban() {
           no-scrollbar"
         >
           <SortableContext items={columnsId}>
-            {columns.map((col) => (
+            {columns.map((col, index) => (
               <Column
                 key={col.id}
                 col={col}
                 features={items}
-                items={items.filter((item) => item.column === col.id)}
+                items={items.filter((item) => item.column === index + 1)}
               />
             ))}
           </SortableContext>
         </div>
+
         {createPortal(
           <DragOverlay>
             {activeColumn && (

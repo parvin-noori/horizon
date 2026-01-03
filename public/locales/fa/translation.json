@@ -28,7 +28,7 @@
       "dashboard": "داشبورد",
       "NFTMarket": "بازارهای NFT",
       "tables": "جدول ها",
-      "kanban": "کانبن",
+      "kanban": "کانبان",
       "profile": "پروفایل",
       "singOut": "خروج"
     },
@@ -134,13 +134,26 @@
       "title": "جدول ها",
       "devTable": "جدول توسعه",
       "4-ColumnTable": "جدول ۴ستونه"
+    },
+    "kanban": {
+      "title": "کانبان",
+      "done": "انجام شده",
+      "inProgress": "در حال انجام",
+      "backLog": "وظایف عقب‌افتاده"
+    },
+    "profile":{
+      "title":"پروفایل"
     }
   },
   "buttons": {
     "discoverNow": "اکنون کشف کنید",
     "watchVideo": "تماشای ویدئو",
     "placeBid": "ثبت پیشنهاد",
-    "seeAll": "همه"
+    "seeAll": "همه",
+    "pending": "در انتظار",
+    "updates": "به‌روزرسانی‌ها",
+    "errors": "خطاها",
+    "done": "انجام شده"
   },
   "getStarted": "شروع کنید",
   "by": "توسط",

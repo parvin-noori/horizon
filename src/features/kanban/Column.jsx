@@ -1,7 +1,7 @@
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
-import { MdOutlineDragIndicator } from "react-icons/md";
 import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
+import { MdOutlineDragIndicator } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import KanbanItem from "./KanbanItem";
 import { addKanban } from "./kanbanSlice";
@@ -62,9 +62,12 @@ export default function Column(props) {
           <MdOutlineDragIndicator />
         </button>
         <span className="font-semibold">{col.title}</span>
-        <span className="bg-secondary dark:bg-white/5 size-7 items-center justify-center flex rounded">{items.length}</span>
+        <span className="bg-secondary dark:bg-white/5 size-7 items-center justify-center flex rounded">
+          {items.length}
+        </span>
       </div>
 
+    
       <ul className="space-y-3 min-h-[400px]">
         <SortableContext items={itemsId}>
           {items?.map((item) => (

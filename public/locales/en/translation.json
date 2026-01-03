@@ -135,13 +135,26 @@
       "title": "tables",
       "devTable": "development table",
       "4-ColumnTable": "4-Column table"
+    },
+    "kanban": {
+      "title": "kanban",
+      "done": "done",
+      "inProgress": "in progress",
+      "backlog": "backlog"
+    },
+    "profile":{
+      "title":"profile"
     }
   },
   "buttons": {
     "discoverNow": "Discover now",
     "watchVideo": "Watch video",
     "placeBid": " place bid",
-    "SeeAll": "See all"
+    "SeeAll": "See all",
+    "pending":"pending",
+    "updates":"updates",
+    "errors":"errors",
+    "done":"done"
   },
   "getStarted": "get started",
   "by": "by",

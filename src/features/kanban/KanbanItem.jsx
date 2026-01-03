@@ -11,6 +11,7 @@ import {
   SelectItem,
   Textarea,
 } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -25,6 +26,7 @@ export default function KanbanItem(props) {
   const { feature, features, isEditng, setEditngId } = props;
   const { title, desc, status } = feature;
   const [mouseIsOver, setMouseIsOver] = useState(false);
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const {
     register,
@@ -80,10 +82,10 @@ export default function KanbanItem(props) {
   }
 
   const statusKanban = [
-    { key: "pending", label: "pending" },
-    { key: "updates", label: "updates" },
-    { key: "errors", label: "errors" },
-    { key: "done", label: "done" },
+    { key: "pending", label: t("buttons.pending") },
+    { key: "updates", label: t("buttons.updates") },
+    { key: "errors", label: t("buttons.errors") },
+    { key: "done", label: t("buttons.done") },
   ];
 
   useEffect(() => {
@@ -113,7 +115,6 @@ export default function KanbanItem(props) {
       })
     );
   };
-
   if (isDragging) {
     return (
       <div
