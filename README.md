@@ -61,6 +61,7 @@ well, when you successfully logged in, you'll face the dashboard layout which we
 - 📦 Dynamic data loaded from local JSON files
 - 📱 Fully responsive dashboard UI
 - 🔐 Authentication with **Supabase**
+- 🌐 Multi-language support with i18next
 
 ---
 
@@ -76,6 +77,7 @@ well, when you successfully logged in, you'll face the dashboard layout which we
 - **Swiper**
 - **React Hook Form**
 - **Vite**
+- i18next / react-i18next
 
 ---
 
