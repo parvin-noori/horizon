@@ -1,27 +1,31 @@
 import { Skeleton } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
+import { useItemTranslation } from "../../hooks/useTranslation";
 
 export default function GeneralInfo(props) {
   const { info } = props ?? {};
   const { isLoading, error } = useGetData();
+  const { t } = useTranslation();
+  const { translateItem } = useItemTranslation("pages.profile.generalInfo");
+
   return (
     <div className="bg-white dark:bg-secondary p-5 rounded-xl flex flex-col space-y-4">
       <span className=" text-xl font-semibold capitalize">
-        general information
+        {t("pages.profile.generalInfo.title")}
       </span>
       <p className="text-slate-400 text-sm">
-        as we live, our hearts turn colder. cause pain is what we go through as
-        we become older. we get insulted by others, lose trust for those others.
-        we get back stabbed in the front by friends. it becomes harder for us to
-        give others a hand. we get our heart broken by people we love, even that
-        we them all...
+        {t("pages.profile.generalInfo.subtitle")}
       </p>
       <ul className="grid xl:grid-cols-2 lg:grid-cols-1 sm:grid-cols-2 mt-5 gap-5">
         {isLoading ? (
           Array.from({ length: 3 }).map((_, index) => (
-            <div key={index} className="capitalize shadow-md dark:bg-white/5 space-y-3 dark:shadow-none p-5 flex flex-col rounded-lg w-full">
-                <Skeleton className="w-2/5 rounded-lg h-2 bg-default-300" />
-                <Skeleton className="w-3/5 rounded-lg h-2 bg-default-300" />
+            <div
+              key={index}
+              className="capitalize shadow-md dark:bg-white/5 space-y-3 dark:shadow-none p-5 flex flex-col rounded-lg w-full"
+            >
+              <Skeleton className="w-2/5 rounded-lg h-2 bg-default-300" />
+              <Skeleton className="w-3/5 rounded-lg h-2 bg-default-300" />
             </div>
           ))
         ) : error ? (
@@ -30,27 +34,39 @@ export default function GeneralInfo(props) {
           info && (
             <>
               <li className="capitalize shadow-md dark:bg-white/5 dark:shadow-none p-5 flex flex-col rounded-lg">
-                <span className="text-slate-400 text-sm">education</span>
+                <span className="text-slate-400 text-sm">
+                  {t("pages.profile.generalInfo.education")}
+                </span>
                 {info.education}
               </li>
               <li className="capitalize shadow-md dark:bg-white/5 dark:shadow-none p-5 flex flex-col rounded-lg">
-                <span className="text-slate-400 text-sm">languages</span>
-                {info.languages}
+                <span className="text-slate-400 text-sm">
+                  {t("pages.profile.generalInfo.languages")}
+                </span>
+                {info.Languages}
               </li>
               <li className="capitalize shadow-md dark:bg-white/5 dark:shadow-none p-5 flex flex-col rounded-lg">
-                <span className="text-slate-400 text-sm">department</span>
+                <span className="text-slate-400 text-sm">
+                  {t("pages.profile.generalInfo.department")}
+                </span>
                 {info.department}
               </li>
               <li className="capitalize shadow-md dark:bg-white/5 dark:shadow-none p-5 flex flex-col rounded-lg">
-                <span className="text-slate-400 text-sm">work history</span>
+                <span className="text-slate-400 text-sm">
+                  {t("pages.profile.generalInfo.workHistory")}
+                </span>
                 {info.workHistory}
               </li>
               <li className="capitalize shadow-md dark:bg-white/5 dark:shadow-none p-5 flex flex-col rounded-lg">
-                <span className="text-slate-400 text-sm">organization</span>
+                <span className="text-slate-400 text-sm">
+                  {t("pages.profile.generalInfo.organization")}
+                </span>
                 {info.organization}
               </li>
               <li className="capitalize shadow-md dark:bg-white/5 dark:shadow-none p-5 flex flex-col rounded-lg">
-                <span className="text-slate-400 text-sm">birthday</span>
+                <span className="text-slate-400 text-sm">
+                  {t("pages.profile.generalInfo.birthday")}
+                </span>
                 {info.birthday}
               </li>
             </>

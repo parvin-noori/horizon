@@ -139,10 +139,58 @@
       "title": "کانبان",
       "done": "انجام شده",
       "inProgress": "در حال انجام",
-      "backLog": "وظایف عقب‌افتاده"
+      "backlog": "عقب‌افتاده"
     },
-    "profile":{
-      "title":"پروفایل"
+    "profile": {
+      "title": "پروفایل",
+      "productDesigner": "طراح محصول",
+      "posts": "پست ها",
+      "followers": "دنبال شونده",
+      "followings": "دنبال کننده",
+      "Gb": "گیگابایت",
+      "storage": {
+        "title": "حافظه شما",
+        "subtitle": "کنترل فضای دستگاه، به ساده‌ترین شکل"
+      },
+      "uploader": {
+        "title": "تکمیل پروفایل",
+        "uploadFiles": "آپلود فایل",
+        "uploadFormat": "تنها فایل‌های PNG، JPG و GIF قابل آپلود هستند",
+        "subtitle": "مدیریت پروژه‌های توزیع‌شده با وایت‌برد آنلاین برای برنامه‌ریزی و هماهنگی"
+      },
+      "projects": {
+        "project": "پروژه",
+        "title": "پروژه ها",
+        "seeProjectDetail": "جزییات",
+        "subtitle": "جزئیات کامل پروژه‌های شما در اینجا نمایش داده می‌شود.",
+        "technologyBehindTheBlockchain": "فناوری‌های به‌کاررفته در بلاک‌چین"
+      },
+      "generalInfo": {
+        "title": "اطلاعات عمومی",
+        "subtitle": "با گذر زمان، قلب‌های ما سردتر می‌شوند. زیرا درد بخشی از مسیری است که با بزرگ‌تر شدن تجربه می‌کنیم. از دیگران توهین می‌بینیم و اعتمادمان را از دست می‌دهیم. از دوستان ضربه می‌خوریم، حتی رو‌به‌رو. کمک کردن به دیگران برایمان سخت‌تر می‌شود. قلبمان توسط کسانی می‌شکند که دوستشان داریم، حتی با وجود اینکه همه چیزمان بوده‌اند...",
+        "education": "تحصیلات",
+        "languages": "زبان‌ها",
+        "department": "دپارتمان",
+        "workHistory": "سوابق کاری",
+        "organization": "سازمان",
+        "birthday": "تاریخ تولد",
+        "google": "گوگل",
+        "facebook": "فیسبوک",
+        "productDesign": "طراحی محصول"
+      },
+      "notifications": {
+        "title": "اعلانات",
+        "itemUpdateNotification": "اعلان بروزرسانی آیتم",
+        "itemCommentNotifications": "اعلان نظرات آیتم",
+        "buyerReviewNotifications": "اعلان بررسی خریدار",
+        "ratingRemindersNotifications": "یادآوری‌های امتیازدهی",
+        "meetupsNearYouNotifications": "اعلان رویدادهای نزدیک شما",
+        "companyNewsNotifications": "اعلان اخبار شرکت",
+        "newLaunchesAndProjects": "محصولات و پروژه‌های جدید",
+        "monthlyProductChanges": "تغییرات ماهانه محصولات",
+        "subscribeToNewsletter": "اشتراک در خبرنامه",
+        "emailMeWhenSomeoneFollowsMe": "ارسال ایمیل وقتی کسی مرا دنبال می‌کند"
+      }
     }
   },
   "buttons": {
@@ -153,7 +201,8 @@
     "pending": "در انتظار",
     "updates": "به‌روزرسانی‌ها",
     "errors": "خطاها",
-    "done": "انجام شده"
+    "done": "انجام شده",
+    "publishNow": "انتشار"
   },
   "getStarted": "شروع کنید",
   "by": "توسط",

@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 
 function toCamelCase(str) {
+  if (typeof str !== "string") return "";
+
   return str
     .toLowerCase()
     .replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase());

@@ -142,8 +142,55 @@
       "inProgress": "in progress",
       "backlog": "backlog"
     },
-    "profile":{
-      "title":"profile"
+    "profile": {
+      "title": "profile",
+      "productDesigner": "product designer",
+      "posts": "posts",
+      "followers": "followers",
+      "follwings": "follwing",
+      "Gb": "Gb",
+      "storage": {
+        "title": "Your storage",
+        "subtitle": "supervise your device space in the easiest way"
+      },
+      "uploader": {
+        "title": "complete your profile",
+        "uploadFiles": "upload files",
+        "uploadFormat": "PNG, JPG and GIF files are allowed",
+        "subtitle": "stay on the pusle of distributed projects with an online whiteboard to plan, coordinate and discuss"
+      },
+      "projects": {
+        "project": "project",
+        "title": "all projects",
+        "seeProjectDetail": "See project detail",
+        "subtitle": "Here you can find more details about your projects. Keep your users engaged by providing meaningful information."
+      },
+      "generalInfo": {
+        "title": "general information",
+        "subtitle": "as we live, our hearts turn colder. cause pain is what we go through aswe become older. we get insulted by others, lose trust for those others.we get back stabbed in the front by friends. it becomes harder for us to give others a hand. we get our heart broken by people we love, even that we them all...",
+        "education": "education",
+        "languages": "languages",
+        "department": "department",
+        "workHistory": "work history",
+        "organization": "organization",
+        "birthday": "birthday",
+        "google": "google",
+        "facebook": "facebook",
+        "productDesign": "product design"
+      },
+      "notifications": {
+        "title": "notifications",
+        "itemUpdateNotification": "item update notification",
+        "itemCommentNotifications": "item comment notifications",
+        "buyerReviewNotifications": "buyer review notifications",
+        "ratingRemindersNotifications": "rating reminders notifications",
+        "meetupsNearYouNotifications": "meetups near you notifications",
+        "companyNewsNotifications": "company news notifications",
+        "newLaunchesAndProjects": "new launches and projects",
+        "monthlyProductChanges": "monthly product changes",
+        "subscribeToNewsletter": "subscribe to newsletter",
+        "emailMeWhenSomeoneFollowsMe": "email me when someone follows me"
+      }
     }
   },
   "buttons": {
@@ -151,10 +198,11 @@
     "watchVideo": "Watch video",
     "placeBid": " place bid",
     "SeeAll": "See all",
-    "pending":"pending",
-    "updates":"updates",
-    "errors":"errors",
-    "done":"done"
+    "pending": "pending",
+    "updates": "updates",
+    "errors": "errors",
+    "done": "done",
+    "publishNow": "publish now"
   },
   "getStarted": "get started",
   "by": "by",

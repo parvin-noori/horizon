@@ -1,17 +1,22 @@
 import { Avatar, Button, Link, Skeleton } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 import { FaPen } from "react-icons/fa6";
 import { useGetData } from "../../hooks/useGetData";
+import { useItemTranslation } from "../../hooks/useTranslation";
 
 export default function Projects({ userInfo }) {
   const projects = userInfo?.projects ?? [];
   const { isLoading, error } = useGetData();
+  const { t } = useTranslation();
+  const { translateItem } = useItemTranslation("pages.profile.projects");
 
   return (
     <div className="bg-white dark:bg-secondary p-5 rounded-xl flex flex-col space-y-4">
-      <span className=" text-xl font-semibold capitalize">all projects </span>
+      <span className=" text-xl font-semibold capitalize">
+        {t("pages.profile.projects.title")}
+      </span>
       <p className="text-slate-400 text-sm">
-        here you can find more details about your projects. keep you user
-        engaged by providing meaningful inforamtion
+        {t("pages.profile.projects.subtitle")}
       </p>
       <ul className="flex flex-col space-y-4 mt-5">
         {isLoading ? (
@@ -40,10 +45,10 @@ export default function Projects({ userInfo }) {
               />
               <div className="flex flex-col gap-3">
                 <span className="text-sm font-semibold  capitalize line-clamp-1">
-                  {project.name}
+                  {translateItem(project.name)}
                 </span>
                 <p className="text-xs text-slate-400 dark:text-gray-400 capitalize">
-                  project #{index + 1} .{" "}
+                  {t("pages.profile.projects.project")} #{index + 1} .{" "}
                   <span className="text-xs text-slate-400 dark:text-gray-400 capitalize">
                     <Link
                       to="#"
@@ -52,7 +57,7 @@ export default function Projects({ userInfo }) {
                       size="sm"
                       className="cursor-pointer"
                     >
-                      See project detail
+                      {t("pages.profile.projects.seeProjectDetail")}
                     </Link>
                   </span>
                 </p>

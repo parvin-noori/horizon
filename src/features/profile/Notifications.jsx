@@ -1,4 +1,6 @@
 import { cn, Switch } from "@heroui/react";
+import { useTranslation } from "react-i18next";
+import { useItemTranslation } from "../../hooks/useTranslation";
 
 const notifItems = [
   {
@@ -54,9 +56,14 @@ const notifItems = [
 ];
 
 export default function Notifications() {
+  const { t } = useTranslation();
+  const { translateItem } = useItemTranslation("pages.profile.notifications");
+
   return (
     <div className="bg-white dark:bg-secondary p-5 rounded-xl flex flex-col space-y-6">
-      <span className=" text-xl font-semibold capitalize">notifications</span>
+      <span className=" text-xl font-semibold capitalize">
+        {t("pages.profile.notifications.title")}
+      </span>
       <ul className="space-y-3">
         {notifItems.map((item, index) => (
           <li key={index}>
@@ -65,7 +72,7 @@ export default function Notifications() {
               size="sm"
               defaultSelected={item.status === "enabled"}
             >
-              <span>{item.title}</span>
+              <span>{translateItem(item.title)}</span>
             </Switch>
           </li>
         ))}
