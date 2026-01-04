@@ -116,7 +116,7 @@ export default function MainLayout() {
   const sidebarPosition = document.body.dataset.sidebarPosition;
 
   return (
-    <div className="bg-secondary dark:bg-background  h-full flex lg:items-stretch relative ">
+    <div className="bg-secondary  dark:bg-background  h-full flex lg:items-stretch relative ">
       {/* sidebar */}
       <div
         className={`bg-black/70 fixed  inset-0 z-20 ${

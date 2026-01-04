@@ -1,4 +1,3 @@
-
 /* @import "tw-animate-css"; */
 @import "tailwindcss";
 
@@ -6,14 +5,58 @@
 /* @custom-variant dark (&:is(.dark *)); */
 @config "../tailwind.config.js";
 
-/* @layer base {
-  * {
-    @apply border-border outline-ring/50;
+@font-face {
+  font-family: "YekanBakh";
+  src: url("/fonts/yekanBakh/YekanBakhFaNum-Thin.woff2");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "YekanBakh";
+  src: url("/fonts/yekanBakh/YekanBakhFaNum-Light.woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "YekanBakh";
+  src: url("/fonts/yekanBakh/YekanBakhFaNum-Regular.woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "YekanBakh";
+  src: url("/fonts/yekanBakh/YekanBakhFaNum-SemiBold.woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "YekanBakh";
+  src: url("/fonts/yekanBakh/YekanBakhFaNum-Bold.woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "YekanBakh";
+  src: url("/fonts/yekanBakh/YekanBakhFaNum-Black.woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
+:root {
+  --font-figtree: "Figtree", sans-serif, "YekanBakh";
+}
+
+@layer base {
+  html {
+    font-family: var(--font-figtree);
   }
-  body {
-    @apply bg-background text-foreground;
-  }
-} */
+}
+
 
 .swiper {
   width: 100%;

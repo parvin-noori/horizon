@@ -39,8 +39,8 @@ export default function Ads() {
         </b>
         <p className="flex items-center gap-x-2 text-slate-400">
           <IoFastFoodSharp />
-          10% {t("pages.dashboard.ads.cashback")}
-          {t("pages.dashboard.ads.&")}
+          10% {t("pages.dashboard.ads.cashback")} {" "}
+          {t("pages.dashboard.ads.&")}{" "}
           {t("pages.dashboard.ads.off")}
         </p>
       </div>

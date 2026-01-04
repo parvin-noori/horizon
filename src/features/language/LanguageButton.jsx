@@ -24,6 +24,7 @@ export default function LanguageButton({ className }) {
     document.body.dir = language === "fa" ? "rtl" : "ltr";
     document.body.dataset.sidebarPosition =
       language === "fa" ? "right" : "left";
+
   }, [language, i18n]);
 
   const handleChangeLanguage = (lang) => {

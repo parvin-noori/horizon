@@ -28,7 +28,7 @@ export default function TaskItem(props) {
           ),
           label: cn(
             "w-full text-slate-400 capitalize",
-            "group-data-[selected=true]:text-inherit"
+            "group-data-[selected=true]:text-inherit text-sm"
           ),
         }}
         value={title}
