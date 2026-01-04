@@ -28,7 +28,6 @@ export default function DashboardStats(props) {
               <div className="flex flex-col">
                 <span className="text-slate-400 text-sm capitalize">
                   {translateItem(item.title)}
-                  {console.log(item.key)}
                 </span>
                 <span className=" font-semibold">{item.value}</span>
                 {item.change != null && item.change !== 0 && (
