@@ -176,7 +176,7 @@ export default function Kanban() {
                 key={col.id}
                 col={col}
                 features={items}
-                items={items.filter((item) => item.column === index + 1)}
+                items={items.filter((item) => item.column === col.id)}
               />
             ))}
           </SortableContext>

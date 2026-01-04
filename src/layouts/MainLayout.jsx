@@ -16,9 +16,7 @@ import {
 } from "@heroui/react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
-import { LuBell } from "react-icons/lu";
 import {
   MdBarChart,
   MdGridView,
@@ -34,6 +32,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
 import LanguageButton from "../features/language/LanguageButton";
 import ThemeButton from "../features/theme/ThemeButton";
 import { useGetData } from "../hooks/useGetData";
+import { useItemTranslation } from "../hooks/useTranslation";
 import getPro from "/imgs/GetPRO.svg";
 import darkGetPro from "/imgs/darkGetPRO.svg";
 
@@ -42,8 +41,9 @@ export default function MainLayout() {
   const location = useLocation();
   const lastSegment = location.pathname.split("/").pop();
   const { t } = useTranslation();
-  const language=useSelector(state=>state.lang.lang)
+  const language = useSelector((state) => state.lang.lang);
   const title = t(`pages.${lastSegment}.title`);
+  const { translateItem } = useItemTranslation("pages.profile");
 
   const sidebarRef = useRef(null);
   const navigate = useNavigate();
@@ -52,7 +52,6 @@ export default function MainLayout() {
   const theme = useSelector((state) => state.theme.theme);
   const { name, email, jobPosition, followers, following, avatar } =
     userInfo ?? {};
-
 
   const sidebarItems = [
     {
@@ -230,7 +229,7 @@ export default function MainLayout() {
                 {collapsed ? <MdMenuOpen /> : <RiMenuFold4Line />}
               </Button>
               <span className=" text-2xl font-semibold dark:text-white">
-                  {language === "fa" ? title : lastSegment}
+                {language === "fa" ? title : lastSegment}
               </span>
             </div>
           </div>
@@ -239,7 +238,7 @@ export default function MainLayout() {
               isClearable
               startContent={<FiSearch />}
               color="white"
-              placeholder={t('header.search')}
+              placeholder={t("header.search")}
               size="md"
               type="text"
               radius="full"
@@ -265,28 +264,28 @@ export default function MainLayout() {
                 ],
               }}
             />
-            <Button
+            {/* <Button
               isOnlyIcon
               variant="light"
               radius="full"
               className="!min-w-auto shrink-0 p-0 !aspect-square"
             >
               <LuBell className="text-lg" />
-            </Button>
+            </Button> */}
             <ThemeButton
               className={"!min-w-auto shrink-0 p-0 !aspect-square rounded-full"}
             />
             <LanguageButton
               className={"!min-w-auto shrink-0 p-0 !aspect-square rounded-full"}
             />
-            <Button
+            {/* <Button
               isOnlyIcon
               variant="light"
               radius="full"
               className="!min-w-auto shrink-0 p-0 !aspect-square"
             >
               <AiOutlineExclamationCircle className="text-lg" />
-            </Button>
+            </Button> */}
             <Popover placement="bottom">
               <PopoverTrigger>
                 <Avatar
@@ -323,7 +322,7 @@ export default function MainLayout() {
                   </CardHeader>
                   <CardBody className="px-3 py-0">
                     <p className="text-small pl-px text-default-500">
-                      {isLoading ? "loading..." : jobPosition}
+                      {isLoading ? "loading..." : translateItem(jobPosition)}
                       <span aria-label="confetti" role="img">
                         🎉
                       </span>
@@ -334,13 +333,18 @@ export default function MainLayout() {
                       <p className="font-semibold text-default-600 text-small">
                         {isLoading ? "loading..." : following}
                       </p>
-                      <p className=" text-default-500 text-small">Following</p>
+                      <p className=" text-default-500 text-small">
+                        {t("pages.profile.followings")}
+                      </p>
                     </div>
                     <div className="flex gap-1">
                       <p className="font-semibold text-default-600 text-small">
                         {isLoading ? "loading..." : followers}
                       </p>
-                      <p className="text-default-500 text-small">Followers</p>
+                      <p className="text-default-500 text-small">
+                        {" "}
+                        {t("pages.profile.followers")}
+                      </p>
                     </div>
                   </CardFooter>
                 </Card>

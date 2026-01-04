@@ -34,7 +34,9 @@ export default function Ads() {
         />
       </div>
       <div className="flex flex-col items-start gap-1">
-        <b className="capitalize text-2xl">starbucks</b>
+        <b className="capitalize text-2xl">
+          {t("pages.dashboard.ads.starbucks")}
+        </b>
         <p className="flex items-center gap-x-2 text-slate-400">
           <IoFastFoodSharp />
           10% {t("pages.dashboard.ads.cashback")}

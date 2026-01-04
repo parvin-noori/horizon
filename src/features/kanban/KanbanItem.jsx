@@ -11,9 +11,9 @@ import {
   SelectItem,
   Textarea,
 } from "@heroui/react";
-import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AiOutlineEdit } from "react-icons/ai";
 import { IoMdTrash } from "react-icons/io";
 import { useDispatch } from "react-redux";
@@ -238,7 +238,7 @@ export default function KanbanItem(props) {
               color={background}
               className="uppercase text-white"
             >
-              {feature.status ? feature.status : "done"}
+              {feature.status ? t(`buttons.${status}`) : t(`buttons.done`)}
             </Chip>
           </div>
         </>
