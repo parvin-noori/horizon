@@ -48,7 +48,7 @@
         "sales": "فروش",
         "yourBalance": "موجودی شما",
         "newTasks": "وظایف جدید",
-        "totalProjects": " پروژه ها"
+        "totalProjects": "کل پروژه ها"
       },
       "checkTable": {
         "title": "مشاهده جدول",
@@ -126,14 +126,23 @@
       "creatores": {
         "title": "بهترین سازندگان",
         "name": "نام",
-        "artWorks": "آثار هنری",
+        "artworks": "آثار هنری",
         "rating": "امتیاز"
       }
     },
     "tables": {
       "title": "جدول ها",
       "devTable": "جدول توسعه",
-      "4-ColumnTable": "جدول ۴ستونه"
+      "4-ColumnTable": "جدول ۴ستونه",
+      "name": "نام",
+      "systems": "سیستم ها",
+      "date": "تاریخ",
+      "progress": "پیشرفت",
+      "status":"وضعیت",
+      "quantity":"تعداد",
+      "approved":"تایید",
+      "disable":"غیرفعال",
+      "error":"خطا"
     },
     "kanban": {
       "title": "کانبان",

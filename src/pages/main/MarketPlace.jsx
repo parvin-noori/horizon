@@ -34,7 +34,7 @@ export default function MarketPlace() {
           items={translatedTrending ?? []}
         />
         <MarketPlaceItems
-          title={t("pages.marketPlace.items.RecentlyAdded")}
+          title={t("pages.marketPlace.items.recentlyAdded")}
           items={translatedRecent ?? []}
         />
       </div>

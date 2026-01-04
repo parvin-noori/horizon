@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
+import { useItemTranslation } from "../../hooks/useTranslation";
 
 const columns = [
   {
@@ -34,6 +35,7 @@ export default function CheckTable() {
   const { data, isLoading, error } = useGetData();
   const { checkTable } = data ?? {};
   const { t } = useTranslation();
+  const { translateItem } = useItemTranslation("pages.tables");
 
   if (error) {
     console.log(error);
@@ -58,7 +60,7 @@ export default function CheckTable() {
         >
           <TableHeader columns={columns}>
             {(column) => (
-              <TableColumn key={column.key}>{column.label}</TableColumn>
+              <TableColumn key={column.key}>{translateItem(column.label)}</TableColumn>
             )}
           </TableHeader>
           <TableBody items={checkTable ?? []} isLoading={isLoading}>

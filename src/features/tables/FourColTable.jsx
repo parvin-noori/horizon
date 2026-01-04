@@ -8,6 +8,7 @@ import {
   getKeyValue,
 } from "@heroui/react";
 import { useTranslation } from "react-i18next";
+import { useItemTranslation } from "../../hooks/useTranslation";
 import { useGetData } from "../../hooks/useGetData";
 
 const columns = [
@@ -32,6 +33,7 @@ const columns = [
 export default function FourColTable() {
   const { data, isLoading } = useGetData();
   const { fourColTable } = data ?? {};
+  const { translateItem } = useItemTranslation("pages.tables");
   const rowsWithPercent = fourColTable?.map((item) => ({
     ...item,
     progress: `${item.progress}%`,
@@ -54,7 +56,9 @@ export default function FourColTable() {
         >
           <TableHeader columns={columns}>
             {(column) => (
-              <TableColumn key={column.key}>{column.label}</TableColumn>
+              <TableColumn key={column.key}>
+                {translateItem(column.label)}
+              </TableColumn>
             )}
           </TableHeader>
           <TableBody items={fourColTable ?? []} isLoading={isLoading}>

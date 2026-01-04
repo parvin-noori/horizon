@@ -13,6 +13,7 @@ import { DiAndroid } from "react-icons/di";
 import { FaApple } from "react-icons/fa";
 import { IoLogoWindows } from "react-icons/io5";
 import { useGetData } from "../../hooks/useGetData";
+import { useItemTranslation } from "../../hooks/useTranslation";
 
 const columns = [
   {
@@ -36,6 +37,7 @@ const columns = [
 export default function DevTable() {
   const { data, isLoading } = useGetData();
   const { devTable } = data ?? {};
+  const { translateItem } = useItemTranslation("pages.tables");
 
   const systemIcon = {
     ios: <FaApple />,
@@ -87,7 +89,9 @@ export default function DevTable() {
         >
           <TableHeader columns={columns}>
             {(column) => (
-              <TableColumn key={column.key}>{column.label}</TableColumn>
+              <TableColumn key={column.key}>
+                {translateItem(column.label)}
+              </TableColumn>
             )}
           </TableHeader>
           <TableBody items={devTable ?? []} isLoading={isLoading}>

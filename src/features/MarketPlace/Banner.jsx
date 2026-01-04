@@ -16,7 +16,7 @@ export default function Banner() {
         src={ProductsBanner}
         alt="Products Banner"
       />
-      <CardBody className="absolute flex flex-col z-10 text-white xl:w-1/2 md:4/6 space-y-3 top-1/2 -translate-y-1/2 start-10">
+      <CardBody className="absolute flex flex-col z-10 text-white xl:w-1/2 md:4/6 space-y-3 top-1/2 -translate-y-1/2 start-10 text-start">
         <h3 className="text-3xl">{t("pages.marketPlace.banner.title")}</h3>
         <p className="text-slate-200">
           {t("pages.marketPlace.banner.subtitle")}

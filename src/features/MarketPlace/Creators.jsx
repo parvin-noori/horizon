@@ -80,7 +80,7 @@ const columns = [
 
 export default function Creators() {
   const { t } = useTranslation();
-  const { translateItem } = useItemTranslation("pages.marketPlace.creators");
+  const { translateItem } = useItemTranslation("pages.marketPlace.creatores");
 
   const renderCell = useCallback((item, columnKey) => {
     switch (columnKey) {
@@ -113,7 +113,9 @@ export default function Creators() {
         >
           <TableHeader columns={columns}>
             {(column) => (
-              <TableColumn key={column.key}>{column.label}</TableColumn>
+              <TableColumn key={column.key}>
+                {translateItem(column.label)}
+              </TableColumn>
             )}
           </TableHeader>
           <TableBody items={rows}>

@@ -321,10 +321,10 @@ export default function MainLayout() {
                     ></Button>
                   </CardHeader>
                   <CardBody className="px-3 py-0">
-                    <p className="text-small pl-px text-default-500">
+                    <p className="text-small pl-px text-default-500 text-start">
                       {isLoading ? "loading..." : translateItem(jobPosition)}
                       <span aria-label="confetti" role="img">
-                        🎉
+                      {" "}  🎉
                       </span>
                     </p>
                   </CardBody>

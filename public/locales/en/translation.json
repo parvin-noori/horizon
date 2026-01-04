@@ -116,7 +116,7 @@
       },
       "items": {
         "tendingNFTs": "Trending NFTs",
-        "RecentlyAdded": "Recently added",
+        "recentlyAdded": "Recently added",
         "abstractColors": "abstract colors",
         "meshGradients": "mesh gradients",
         "ETHAIBrain": "ETH AI Brain",

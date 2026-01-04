@@ -13,6 +13,7 @@ import { FcApproval } from "react-icons/fc";
 import { MdError } from "react-icons/md";
 import { RxCrossCircled } from "react-icons/rx";
 import { useGetData } from "../../hooks/useGetData";
+import { useItemTranslation } from "../../hooks/useTranslation";
 
 const columns = [
   {
@@ -34,6 +35,8 @@ const columns = [
 ];
 
 export default function ComplexTable() {
+  const { translateItem } = useItemTranslation("pages.tables");
+
   const renderCell = useCallback((item, columnKey) => {
     switch (columnKey) {
       case "name":
@@ -42,7 +45,7 @@ export default function ComplexTable() {
         return (
           <div className="flex items-center gap-2">
             <span className="text-xl"> {statusIcon[item.status]}</span>
-            {item.status}
+            {t(`pages.tables.${item.status}`)}
           </div>
         );
       case "date":
@@ -80,7 +83,9 @@ export default function ComplexTable() {
         >
           <TableHeader columns={columns}>
             {(column) => (
-              <TableColumn key={column.key}>{column.label}</TableColumn>
+              <TableColumn key={column.key}>
+                {translateItem(column.label)}
+              </TableColumn>
             )}
           </TableHeader>
           <TableBody items={complexTable ?? []} isLoading={isLoading}>
