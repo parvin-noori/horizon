@@ -49,7 +49,7 @@
         "sales": "sales",
         "yourBalance": "your balance",
         "newTasks": "new tasks",
-        "TotalProjects": "total projects"
+        "totalProjects": "total projects"
       },
       "checkTable": {
         "title": "check table",
