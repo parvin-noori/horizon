@@ -77,7 +77,7 @@
         "dashboardBuilder": "dashboard builder",
         "mobileAppDesign": "mobile app design",
         "illustration": "illustration",
-        "promotional Lp": "promotional LP"
+        "promotionalLp": "promotional LP"
       },
       "businessDesign": {
         "title": "business design",
@@ -134,7 +134,16 @@
     "tables": {
       "title": "tables",
       "devTable": "development table",
-      "4-ColumnTable": "4-Column table"
+      "4-ColumnTable": "4-Column table",
+      "name": "name",
+      "systems": "systems",
+      "date": "date",
+      "progress": "progress",
+      "status": "status",
+      "quantity": "quantity",
+      "approved": "approved",
+      "disable": "disable",
+      "error": "error"
     },
     "kanban": {
       "title": "kanban",
