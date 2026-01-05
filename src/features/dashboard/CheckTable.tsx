@@ -30,9 +30,23 @@ const columns = [
     label: "DATE",
   },
 ];
+
+export type checkTable = {
+  key: string;
+  name: string;
+  progress: number;
+  quantity: number;
+  date: string;
+};
+
+export interface UseGetDataResult {
+  data?: { checkTable?: checkTable[] };
+  isLoading: boolean;
+  error?: Error | null;
+}
 export default function CheckTable() {
-  const [selectedKeys, setSelectedKeys] = useState(["2", "3", "4"]);
-  const { data, isLoading, error } = useGetData();
+  const [selectedKeys, setSelectedKeys] = useState<string[]>(["2", "3", "4"]);
+  const { data, isLoading, error }: UseGetDataResult = useGetData();
   const { checkTable } = data ?? {};
   const { t } = useTranslation();
   const { translateItem } = useItemTranslation("pages.tables");
@@ -60,7 +74,9 @@ export default function CheckTable() {
         >
           <TableHeader columns={columns}>
             {(column) => (
-              <TableColumn key={column.key}>{translateItem(column.label)}</TableColumn>
+              <TableColumn key={column.key}>
+                {String(translateItem(column.label))}
+              </TableColumn>
             )}
           </TableHeader>
           <TableBody items={checkTable ?? []} isLoading={isLoading}>

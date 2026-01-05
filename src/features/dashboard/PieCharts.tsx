@@ -2,7 +2,16 @@ import { Select, SelectItem } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { Cell, Legend, Pie, PieChart } from "recharts";
 
-const data = [
+type DataType = {
+  name: string;
+  value: number;
+};
+
+type SelectItemsType = {
+  key: string;
+  label: string;
+};
+const data: DataType[] = [
   { name: "yourFiles", value: 800 },
   { name: "system", value: 400 },
   { name: "", value: 300 },
@@ -13,7 +22,7 @@ const COLORS = ["#8884d8", "#39B8FF", "#dddddd"];
 
 export default function PieCharts() {
   const { t } = useTranslation();
-  const selectItems = [
+  const selectItems: SelectItemsType[] = [
     { key: "monthly", label: t("pages.dashboard.pieChart.monthly") },
     { key: "yearly", label: t("pages.dashboard.pieChart.yearly") },
     { key: "daily", label: t("pages.dashboard.pieChart.daily") },

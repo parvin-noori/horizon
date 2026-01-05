@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router";
 import LanguageButton from "../features/language/LanguageButton";
 import ThemeButton from "../features/theme/ThemeButton";
+import { RootState } from "../types/store";
 import loginHeroImage from "/imgs/login-hero.png";
 
 export default function IdentityLayout() {
-  const language = useSelector((state) => state.lang.lang);
+  const language = useSelector((state: RootState) => state.lang.lang);
   const { t } = useTranslation();
   const menuItem = [
     { name: t("signIn.menuItems.blog"), link: "/blog" },

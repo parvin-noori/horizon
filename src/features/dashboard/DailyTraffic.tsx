@@ -4,10 +4,22 @@ import { BiSolidUpArrow } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { Bar, BarChart, XAxis } from "recharts";
 import { useGetData } from "../../hooks/useGetData";
+import { RootState } from "../../types/store";
+
+export type DailyTraffic = {
+  pv: number;
+  name: string;
+};
+
+export interface UseGetDataResult {
+  data?: { dailyTraffic?: DailyTraffic[] };
+  isLoading: boolean;
+  error?: Error | null;
+}
 
 export default function DailyTraffic() {
-  const theme = useSelector((state) => state.theme.theme);
-  const { data, isLoading, error } = useGetData();
+  const theme = useSelector((state: RootState) => state.theme.theme);
+  const { data, isLoading, error }: UseGetDataResult = useGetData();
   const { dailyTraffic } = data ?? {};
   const whiteStopOpacity = theme === "dark" ? 1 : 0.1;
   const { t } = useTranslation();

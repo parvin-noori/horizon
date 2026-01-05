@@ -2,9 +2,10 @@ import { Skeleton } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { Bar, BarChart, Legend, Tooltip, XAxis } from "recharts";
 import { useGetData } from "../../../hooks/useGetData";
+import { UseGetDataResult } from "./WeeklySummary";
 
 export default function WeeklyRevenue() {
-  const { data, isLoading, error } = useGetData();
+  const { data, isLoading, error }: UseGetDataResult = useGetData();
   const { weeklySummary } = data ?? {};
   const { t } = useTranslation();
   return (

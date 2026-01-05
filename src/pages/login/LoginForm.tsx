@@ -5,12 +5,12 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { ToastContainer, toast } from "react-toastify";
 
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router";
 import { supabase } from "../../lib/supabase";
-import { useTranslation } from "react-i18next";
+import { LoginFormData} from "./types";
 
 export default function LoginForm() {
-  const inputRef = useRef(null);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const {
@@ -22,7 +22,7 @@ export default function LoginForm() {
   });
 
   const loginMutation = useMutation({
-    mutationFn: async ({ email, password }) => {
+    mutationFn: async ({ email, password }: LoginFormData) => {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -34,7 +34,7 @@ export default function LoginForm() {
       const accessToken = data.session.access_token;
       localStorage.setItem("token", accessToken);
       // toast.success(`Welcome ${data.user.email}`);
-      toast.success(t('signIn.validation.Loggedsuccessfully'));
+      toast.success(t("signIn.validation.Loggedsuccessfully"));
       setTimeout(() => {
         navigate("/dashboard");
       }, 500);
@@ -43,7 +43,7 @@ export default function LoginForm() {
       toast.error(`Login failed: ${error.message}`);
     },
   });
-  const onSubmit = (data) => {
+  const onSubmit = (data:LoginFormData) => {
     loginMutation.mutate({ email: data.email, password: data.password });
   };
 
@@ -72,11 +72,10 @@ export default function LoginForm() {
         className="gap-y-5 flex flex-col"
       >
         <Input
-          ref={inputRef}
           {...register("email", {
             required: t("signIn.validation.emailRequired"),
           })}
-          label={`${t('signIn.validation.email')}`}
+          label={`${t("signIn.validation.email")}`}
           classNames={{
             label: "!text-inherit",
             input: "text-black dark:text-white",
@@ -92,11 +91,10 @@ export default function LoginForm() {
         )}
 
         <Input
-          ref={inputRef}
           {...register("password", {
-               required: t("signIn.validation.passwordRequired"),
+            required: t("signIn.validation.passwordRequired"),
           })}
-          abel={`${t('signIn.validation.password')}`}
+          label={`${t("signIn.validation.password")}`}
           labelPlacement="outside"
           classNames={{
             label: "!text-inherit",
@@ -111,16 +109,16 @@ export default function LoginForm() {
         )}
 
         <div className="flex justify-between items-center">
-          <Checkbox defaultSelected>{t('signIn.keep')}</Checkbox>
+          <Checkbox defaultSelected>{t("signIn.keep")}</Checkbox>
           <Link
             to="/forgot-password"
             className="text-primary hover:underline dark:text-white"
           >
-            {t('signIn.forget')}
+            {t("signIn.forget")}
           </Link>
         </div>
         <Button type="submit" size="lg" color="primary">
-          {t('signIn.signIn')}
+          {t("signIn.signIn")}
         </Button>
         {/* <p className="capitalize gap-x-3 dark:text-gray-400">
           not register yet?{" "}

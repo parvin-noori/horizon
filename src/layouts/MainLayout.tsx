@@ -29,31 +29,40 @@ import {
 import { RiMenuFold4Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
+import MyButton from "../components/ui/MyButtons";
 import LanguageButton from "../features/language/LanguageButton";
 import ThemeButton from "../features/theme/ThemeButton";
 import { useGetData } from "../hooks/useGetData";
 import { useItemTranslation } from "../hooks/useTranslation";
+import { RootState } from "../types/store";
+import { SidebarItems, UserInfo } from "./types";
 import getPro from "/imgs/GetPRO.svg";
 import darkGetPro from "/imgs/darkGetPRO.svg";
+
+export interface UseGetDataResult {
+  data?: { userInfo?: UserInfo };
+  isLoading: boolean;
+  error?: Error | null;
+}
 
 export default function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const lastSegment = location.pathname.split("/").pop();
   const { t } = useTranslation();
-  const language = useSelector((state) => state.lang.lang);
+  const language = useSelector((state: RootState) => state.lang.lang);
   const title = t(`pages.${lastSegment}.title`);
   const { translateItem } = useItemTranslation("pages.profile");
 
-  const sidebarRef = useRef(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { data, isLoading, error } = useGetData();
+  const { data, isLoading, error }: UseGetDataResult = useGetData();
   const userInfo = data?.userInfo;
-  const theme = useSelector((state) => state.theme.theme);
+  const theme = useSelector((state: RootState) => state.theme.theme);
   const { name, email, jobPosition, followers, following, avatar } =
     userInfo ?? {};
 
-  const sidebarItems = [
+  const sidebarItems: SidebarItems[] = [
     {
       name: t("mainLayout.sidebar.dashboard"),
       key: "dashboard",
@@ -92,15 +101,18 @@ export default function MainLayout() {
     },
   ];
 
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     localStorage.removeItem("token");
     setCollapsed(false);
     navigate("/");
   };
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
         setCollapsed(false);
       }
     }
@@ -154,14 +166,14 @@ export default function MainLayout() {
                 className="px-0"
               >
                 {item.action === "logout" ? (
-                  <NavLink onClick={handleLogout}>
+                  <NavLink to="#" onClick={handleLogout}>
                     <div className=" capitalize flex items-center gap-x-5 py-1.5 px-5 text-slate-400 dark:text-white hover:text-primary">
                       <span className="text-2xl">{item.icon}</span>
                       <span>{item.name}</span>
                     </div>
                   </NavLink>
                 ) : (
-                  <NavLink to={item.to} onClick={() => setCollapsed(false)}>
+                  <NavLink to={item.to!} onClick={() => setCollapsed(false)}>
                     {({ isActive }) => (
                       <div
                         className={`flex items-center gap-x-5 py-1.5 px-5 group outline-0 ${
@@ -220,14 +232,14 @@ export default function MainLayout() {
               </BreadcrumbItem>
             </Breadcrumbs>
             <div className="flex items-center gap-3">
-              <Button
+              <MyButton
                 isOnlyIcon
                 onPress={() => setCollapsed(!collapsed)}
                 variant="light"
                 className="bg-secondary lg:hidden size-9 aspect-square min-w-auto shrink-0 p-0 text-primary dark:text-white dark:bg-white/5"
               >
                 {collapsed ? <MdMenuOpen /> : <RiMenuFold4Line />}
-              </Button>
+              </MyButton>
               <span className=" text-2xl font-semibold dark:text-white">
                 {language === "fa" ? title : lastSegment}
               </span>
@@ -237,7 +249,6 @@ export default function MainLayout() {
             <Input
               isClearable
               startContent={<FiSearch />}
-              color="white"
               placeholder={t("header.search")}
               size="md"
               type="text"
@@ -322,9 +333,12 @@ export default function MainLayout() {
                   </CardHeader>
                   <CardBody className="px-3 py-0">
                     <p className="text-small pl-px text-default-500 text-start">
-                      {isLoading ? "loading..." : translateItem(jobPosition)}
+                      {isLoading
+                        ? "loading..."
+                        : String(translateItem(jobPosition))}
                       <span aria-label="confetti" role="img">
-                      {" "}  🎉
+                        {" "}
+                        🎉
                       </span>
                     </p>
                   </CardBody>

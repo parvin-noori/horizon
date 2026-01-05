@@ -6,8 +6,22 @@ import { SiTicktick } from "react-icons/si";
 import { Line, LineChart, XAxis } from "recharts";
 import { useGetData } from "../../../hooks/useGetData";
 
+export type WeeklySummary = {
+  month: string;
+  name: string;
+  uv: number;
+  pv: number;
+  amt: number;
+};
+
+export interface UseGetDataResult {
+  data?: { weeklySummary?: WeeklySummary[] };
+  isLoading: boolean;
+  error?: Error | null;
+}
+
 export default function WeeklySummary() {
-  const { data, isLoading, error } = useGetData();
+  const { data, isLoading, error }: UseGetDataResult = useGetData();
   const { weeklySummary } = data ?? {};
   const { t } = useTranslation();
   return (

@@ -1,5 +1,5 @@
 import CheckTable from "../../features/dashboard/CheckTable";
-import ComplexTable from "../../features/dashboard/ComplexTable";
+import ComplexTable from "../../features/dashboard/ComplexTable.rsx";
 import DevTable from "../../features/tables/DevTable";
 import FourColTable from "../../features/tables/FourColTable";
 

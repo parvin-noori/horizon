@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/react";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { FcApproval } from "react-icons/fc";
 import { MdError } from "react-icons/md";
@@ -33,36 +33,59 @@ const columns = [
     label: "PROGRESS",
   },
 ];
+type StatusIconType = {
+  approved: React.ReactNode;
+  disable: React.ReactNode;
+  error: React.ReactNode;
+};
 
+export type ComplexTable = {
+  key: string;
+  name: string;
+  status: string;
+  date: string;
+  progress: number;
+};
+
+export interface UseGetDataResult {
+  data?: { complexTable?: ComplexTable[] };
+  isLoading: boolean;
+  error?: Error | null;
+}
 export default function ComplexTable() {
+  const { data, isLoading, error }: UseGetDataResult = useGetData();
+  const { complexTable } = data ?? {};
+  const { t } = useTranslation();
   const { translateItem } = useItemTranslation("pages.tables");
 
-  const renderCell = useCallback((item, columnKey) => {
-    switch (columnKey) {
-      case "name":
-        return <span className="capitalize text-nowrap">{item.name}</span>;
-      case "status":
-        return (
-          <div className="flex items-center gap-2">
-            <span className="text-xl"> {statusIcon[item.status]}</span>
-            {t(`pages.tables.${item.status}`)}
-          </div>
-        );
-      case "date":
-        return <span className="text-nowrap">{item.date}</span>;
-      case "progress":
-        return <Progress size="sm" value={item.progress} />;
-    }
-  });
-  const statusIcon = {
+  const renderCell = useCallback(
+    (item: ComplexTable, columnKey: string | number): React.ReactNode => {
+      switch (columnKey) {
+        case "name":
+          return <span className="capitalize text-nowrap">{item.name}</span>;
+        case "status":
+          return (
+            <div className="flex items-center gap-2">
+              <span className="text-xl">
+                {statusIcon[item.status as keyof StatusIconType]}
+              </span>
+              {t(`pages.tables.${item.status}`)}
+            </div>
+          );
+        case "date":
+          return <span className="text-nowrap">{item.date}</span>;
+        case "progress":
+          return <Progress size="sm" value={item.progress} />;
+      }
+    },
+    [t]
+  );
+  const statusIcon: StatusIconType = {
     approved: <FcApproval />,
     disable: <RxCrossCircled className="text-red-500" />,
     error: <MdError className="text-yellow-500" />,
   };
 
-  const { data, isLoading, error } = useGetData();
-  const { complexTable } = data ?? {};
-  const { t } = useTranslation();
   if (error) {
     console.log(error);
   }
@@ -84,7 +107,7 @@ export default function ComplexTable() {
           <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>
-                {translateItem(column.label)}
+                {String(translateItem(column.label))}
               </TableColumn>
             )}
           </TableHeader>
