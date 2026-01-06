@@ -1,7 +1,7 @@
 import { Card } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { useItemTranslation } from "../../../hooks/useTranslation";
-import { DashboardStatusType } from "./data";
+import { DashboardStatusType } from "./types/DashboardStats";
 
 type dashboardStatsProps = {
   items: DashboardStatusType[];

@@ -21,22 +21,8 @@ import { RootState } from "../../types/store";
 import Column from "./Column";
 import KanbanItem from "./KanbanItem";
 import { replaceAllKanbanItems } from "./kanbanSlice";
-
-export type ColumnType = {
-  id: string;
-  title: string;
-  color: string;
-};
-
-export type KanbanItemType = {
-  id: number;
-  title: string;
-  desc: string;
-  status: string;
-  members?: string[];
-  column?: string;
-  cover?: string;
-};
+import { ColumnType } from "./types/column.types";
+import { KanbanItemType } from "./types/kanban.types";
 
 export interface UseGetDataResult {
   data?: { kanban?: KanbanItemType[] };

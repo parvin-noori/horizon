@@ -35,9 +35,9 @@ import ThemeButton from "../features/theme/ThemeButton";
 import { useGetData } from "../hooks/useGetData";
 import { useItemTranslation } from "../hooks/useTranslation";
 import { RootState } from "../types/store";
-import { SidebarItems, UserInfo } from "./types";
 import getPro from "/imgs/GetPRO.svg";
 import darkGetPro from "/imgs/darkGetPRO.svg";
+import { SidebarItems, UserInfo } from "./types/mainLayout.types";
 
 export interface UseGetDataResult {
   data?: { userInfo?: UserInfo };

@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
+import { checkTable } from "../tables/types/checkTable.types";
 
 const columns = [
   {
@@ -33,13 +34,7 @@ const columns = [
   },
 ];
 
-export type checkTable = {
-  key: string;
-  name: string;
-  progress: number;
-  quantity: number;
-  date: string;
-};
+
 
 export interface UseGetDataResult {
   data?: { checkTable?: checkTable[] };

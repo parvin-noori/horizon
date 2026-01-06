@@ -1,5 +1,5 @@
-export type ApiResult<T> = {
-  data?: T;
+export type UseGetDataResult<TData> = {
+  data?: TData;
   isLoading: boolean;
-  error: Error | null;
+  error?: Error | null;
 };

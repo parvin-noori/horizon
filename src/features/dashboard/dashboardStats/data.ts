@@ -4,16 +4,7 @@ import { MdAddTask, MdBarChart } from "react-icons/md";
 import { PiCurrencyDollarSimpleBold } from "react-icons/pi";
 import { v4 as uuidv4 } from "uuid";
 
-export interface DashboardStatusType {
-  id: string;
-  title: string;
-  value: string;
-  icon?: ElementType;
-  change: number | null;
-  trend: string;
-}
-
-export const dashboardStats: DashboardStatusType[] = [
+export const dashboardStats = [
   {
     id: uuidv4(),
     title: "earning",

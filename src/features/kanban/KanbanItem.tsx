@@ -18,24 +18,15 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { IoMdTrash } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import MyButton from "../../components/ui/MyButtons";
-import { KanbanItemType } from "./Kanban";
 import { editKanban, removeKanban } from "./kanbanSlice";
 import Avatar1 from "/imgs/Avatar1.png";
 import Avatar2 from "/imgs/Avatar2.png";
 import Avatar3 from "/imgs/Avatar3.png";
+import { KanbanItemProps } from "./types/kanban.types";
 
-type KanbanItemProps = {
-  feature: KanbanItemType;
-  features: KanbanItemType[];
-  isEditng: boolean;
-  setEditngId: React.Dispatch<React.SetStateAction<number | null>>;
-};
 
-type FormData = {
-  title: string;
-  desc: string;
-  status: string;
-};
+
+
 export default function KanbanItem(props: KanbanItemProps) {
   const { feature, features, isEditng, setEditngId } = props;
   const { title, desc, status } = feature;

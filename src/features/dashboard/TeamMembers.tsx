@@ -3,12 +3,7 @@ import { Avatar, Card, Skeleton } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
-
-type Member = {
-  name: string;
-  role: string;
-  avatar: string;
-};
+import { Member } from "./types/teamMember.types";
 
 export interface UseGetDataResult {
   data?: { teamMembers?: Member[] };

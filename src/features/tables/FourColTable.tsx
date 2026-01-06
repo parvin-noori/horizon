@@ -10,6 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
+import { FourColTable } from "./types/fourColTable.types";
 
 const columns = [
   {
@@ -30,16 +31,8 @@ const columns = [
   },
 ];
 
-type Item = {
-  key: string;
-  name: string;
-  progress: number;
-  quantity: number;
-  date: string;
-};
-
 export interface UseGetDataResult {
-  data?: { fourColTable?: Item[] };
+  data?: { fourColTable?: FourColTable[] };
   isLoading: boolean;
   error?: Error | null;
 }

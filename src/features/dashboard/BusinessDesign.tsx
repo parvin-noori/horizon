@@ -3,12 +3,7 @@ import { useTranslation } from "react-i18next";
 import { MdSlowMotionVideo } from "react-icons/md";
 import { RiTimerLine } from "react-icons/ri";
 import { TbFlameFilled } from "react-icons/tb";
-
- export type Member = {
-  id: number;
-  img: string;
-  name: string;
-};
+import { Member } from "./types/businessDesign";
 
 const members: Member[] = [
   { id: 1, img: "/imgs/Avatar1.png", name: "user 1" },

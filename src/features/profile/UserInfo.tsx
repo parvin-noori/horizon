@@ -4,14 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
-import { UserInfoProps } from "../../pages/main/Profile";
 import { RootState } from "../../types/store";
 import banner from "/imgs/userInfoBanner.png";
+import { UserInfoType } from "./types/userInfo.types";
 
-export type UserInfoType = {
-  user?: UserInfoProps | undefined;
-  info?: UserInfoProps | undefined;
-};
 
 export default function UserInfo(props: UserInfoType) {
   const { user } = props;

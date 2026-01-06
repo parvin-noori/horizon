@@ -1,16 +1,9 @@
 import { Select, SelectItem } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { Cell, Legend, Pie, PieChart } from "recharts";
+import { DataType, SelectItemsType } from "./types/pieChart.types";
 
-type DataType = {
-  name: string;
-  value: number;
-};
 
-type SelectItemsType = {
-  key: string;
-  label: string;
-};
 const data: DataType[] = [
   { name: "yourFiles", value: 800 },
   { name: "system", value: 400 },

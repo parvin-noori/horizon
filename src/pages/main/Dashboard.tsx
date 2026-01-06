@@ -2,8 +2,6 @@ import Ads from "../../features/dashboard/Ads";
 import BusinessDesign from "../../features/dashboard/BusinessDesign";
 import Calender from "../../features/dashboard/Calender";
 import Cards from "../../features/dashboard/Cards";
-import CheckTable from "../../features/dashboard/CheckTable";
-import ComplexTable from "../../features/dashboard/ComplexTable";
 import DailyTraffic from "../../features/dashboard/DailyTraffic";
 import DashboardStats from "../../features/dashboard/dashboardStats/DashboardStats";
 import { dashboardStats } from "../../features/dashboard/dashboardStats/data";
@@ -12,6 +10,8 @@ import Tasks from "../../features/dashboard/tasks/Tasks";
 import TeamMembers from "../../features/dashboard/TeamMembers";
 import WeeklyRevenue from "../../features/dashboard/weeklyCharts/WeeklyRevenue";
 import WeeklySummary from "../../features/dashboard/weeklyCharts/WeeklySummary";
+import CheckTable from "../../features/tables/CheckTable";
+import ComplexTable from "../../features/tables/ComplexTable";
 
 export default function Dashboard() {
   return (

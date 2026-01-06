@@ -11,15 +11,11 @@ import {
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useItemTranslation } from "../../hooks/useTranslation";
+import { Creator } from "./types/creators.types";
 
-type Item = {
-  key: string;
-  name: string;
-  artworks: number;
-  rating: number;
-};
 
-const rows: Item[] = [
+
+const rows: Creator[] = [
   {
     key: "1",
     name: "maddison_c21",
@@ -90,7 +86,7 @@ export default function Creators() {
   const { translateItem } = useItemTranslation("pages.marketPlace.creatores");
 
   const renderCell = useCallback(
-    (item: Item, columnKey: string | number) => {
+    (item: Creator, columnKey: string | number) => {
       switch (columnKey) {
         case "name":
           return <span className="capitalize font-semibold">@{item.name}</span>;

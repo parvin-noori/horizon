@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router";
 import { supabase } from "../../lib/supabase";
-import { LoginFormData} from "./types";
+import { LoginFormData } from "./types/login.types";
 
 export default function LoginForm() {
   const navigate = useNavigate();

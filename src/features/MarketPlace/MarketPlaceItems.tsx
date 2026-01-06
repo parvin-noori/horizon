@@ -14,9 +14,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useGetData } from "../../hooks/useGetData";
-import { Item } from "../../pages/main/MarketPlace";
-import { Member } from "../dashboard/BusinessDesign";
+import { Member } from "../dashboard/types/businessDesign";
 import LoadingItems from "./LoadingItems";
+import { LikedItems, MarketPlaceItemsProps } from "./types/marketPlace.types";
 
 const members: Member[] = [
   { id: 1, img: "/imgs/Avatar1.png", name: "user 1" },
@@ -24,14 +24,6 @@ const members: Member[] = [
   { id: 1, img: "/imgs/Avatar3.png", name: "user 3" },
 ];
 
-interface MarketPlaceItemsProps {
-  items: Item[];
-  title: string;
-}
-
-type LikedItems = {
-  [id: number]: boolean;
-};
 
 export default function MarketPlaceItems(props: MarketPlaceItemsProps) {
   const { items, title } = props;

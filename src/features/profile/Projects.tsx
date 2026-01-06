@@ -3,11 +3,8 @@ import { useTranslation } from "react-i18next";
 import { FaPen } from "react-icons/fa6";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
-import { UserInfoProps } from "../../pages/main/Profile";
+import { ProjectsProps } from "./types/projects.types";
 
-type ProjectsProps = {
-  userInfo?: UserInfoProps;
-};
 
 export default function Projects({ userInfo }: ProjectsProps) {
   const projects = userInfo?.projects ?? [];

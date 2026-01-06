@@ -5,11 +5,7 @@ import { useSelector } from "react-redux";
 import { Bar, BarChart, XAxis } from "recharts";
 import { useGetData } from "../../hooks/useGetData";
 import { RootState } from "../../types/store";
-
-export type DailyTraffic = {
-  pv: number;
-  name: string;
-};
+import { DailyTraffic } from "./types/darilyTraffic.types";
 
 export interface UseGetDataResult {
   data?: { dailyTraffic?: DailyTraffic[] };

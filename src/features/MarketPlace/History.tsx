@@ -2,14 +2,14 @@ import { Button, Image, Skeleton } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { GiDiamonds } from "react-icons/gi";
 import { useGetData } from "../../hooks/useGetData";
-import { Item } from "../../pages/main/MarketPlace";
+import { MarkerPlaceItem } from "./types/marketPlace.types";
 
 interface HistoryProps {
-  items: Item[];
+  items: MarkerPlaceItem[];
 }
 
 export interface UseGetDataResult {
-  data?: { Items?: Item[] };
+  data?: { Items?: MarkerPlaceItem[] };
   isLoading: boolean;
   error?: Error | null;
 }

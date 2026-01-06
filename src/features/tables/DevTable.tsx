@@ -14,6 +14,7 @@ import { FaApple } from "react-icons/fa";
 import { IoLogoWindows } from "react-icons/io5";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
+import { DevTableItem } from "./types/devTable.types";
 
 const columns = [
   {
@@ -34,13 +35,7 @@ const columns = [
   },
 ];
 
-type DevTableItem = {
-  key: string;
-  name: string;
-  systems: string;
-  date: string;
-  progress: number;
-};
+
 
 export interface UseGetDataResult {
   data?: { devTable?: DevTableItem[] };

@@ -5,14 +5,9 @@ import { FaRegCalendar } from "react-icons/fa6";
 import { SiTicktick } from "react-icons/si";
 import { Line, LineChart, XAxis } from "recharts";
 import { useGetData } from "../../../hooks/useGetData";
+import { WeeklySummary } from "./types/chart.types";
 
-export type WeeklySummary = {
-  month: string;
-  name: string;
-  uv: number;
-  pv: number;
-  amt: number;
-};
+
 
 export interface UseGetDataResult {
   data?: { weeklySummary?: WeeklySummary[] };

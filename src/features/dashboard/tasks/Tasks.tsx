@@ -14,11 +14,9 @@ import { useTranslation } from "react-i18next";
 import { useGetData } from "../../../hooks/useGetData";
 import { useItemTranslation } from "../../../hooks/useTranslation";
 import TaskItem from "./TaskItem";
+import { Task } from "./types/task.types";
 
-export type Task = {
-  id: number;
-  title: string;
-};
+
 
 export interface UseGetDataResult {
   data?: { tasks?: Task[] };

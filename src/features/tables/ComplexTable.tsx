@@ -14,6 +14,7 @@ import { MdError } from "react-icons/md";
 import { RxCrossCircled } from "react-icons/rx";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
+import { ComplexTable,StatusIconType } from "../tables/types/complexTable.types";
 
 const columns = [
   {
@@ -33,19 +34,7 @@ const columns = [
     label: "PROGRESS",
   },
 ];
-type StatusIconType = {
-  approved: React.ReactNode;
-  disable: React.ReactNode;
-  error: React.ReactNode;
-};
 
-export type ComplexTable = {
-  key: string;
-  name: string;
-  status: string;
-  date: string;
-  progress: number;
-};
 
 export interface UseGetDataResult {
   data?: { complexTable?: ComplexTable[] };
