@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/react";
-import { useCallback } from "react";
+import { JSX, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { DiAndroid } from "react-icons/di";
 import { FaApple } from "react-icons/fa";
@@ -34,44 +34,60 @@ const columns = [
   },
 ];
 
+type DevTableItem = {
+  key: string;
+  name: string;
+  systems: string;
+  date: string;
+  progress: number;
+};
+
+export interface UseGetDataResult {
+  data?: { devTable?: DevTableItem[] };
+  isLoading: boolean;
+  error?: Error | null;
+}
+
 export default function DevTable() {
-  const { data, isLoading } = useGetData();
+  const { data, isLoading }: UseGetDataResult = useGetData();
+  const { t } = useTranslation();
   const { devTable } = data ?? {};
   const { translateItem } = useItemTranslation("pages.tables");
 
-  const systemIcon = {
+  const systemIcon: Record<string, JSX.Element> = {
     ios: <FaApple />,
     android: <DiAndroid />,
     windows: <IoLogoWindows />,
   };
 
-  const renderCell = useCallback((item, columnKey) => {
-    switch (columnKey) {
-      case "name":
-        return <span className="capitalize text-nowrap">{item.name}</span>;
-      case "systems":
-        return (
-          <div className="flex items-center gap-2">
-            {item?.systems.split(",").map((item) => (
-              <span key={item.key} className="text-slate-300">
-                {systemIcon[item]}
-              </span>
-            ))}
-          </div>
-        );
-      case "date":
-        return <span>{item.date}</span>;
-      case "progress":
-        return (
-          <div className="flex items-center gap-2">
-            <span>{item.progress}%</span>
-            <Progress size="sm" value={item.progress} />
-          </div>
-        );
-    }
-  });
-
-  const { t } = useTranslation();
+  const renderCell = useCallback(
+    (item: DevTableItem, columnKey: string | number) => {
+      switch (columnKey) {
+        case "name":
+          return <span className="capitalize text-nowrap">{item.name}</span>;
+        case "systems":
+          return (
+            <div className="flex items-center gap-2">
+              {item?.systems.split(",").map((item) => (
+                <span key={item} className="text-slate-300">
+                  {systemIcon[item]}
+                </span>
+              ))}
+            </div>
+          );
+        case "date":
+          return <span>{item.date}</span>;
+        case "progress":
+          return (
+            <div className="flex items-center gap-2">
+              <span>{item.progress}%</span>
+              <Progress size="sm" value={item.progress} />
+            </div>
+          );
+      }
+    },
+    [t]
+  );
 
   return (
     <div className="bg-white dark:bg-secondary rounded-2xl shadow  flex flex-col space-y-5">
@@ -90,7 +106,7 @@ export default function DevTable() {
           <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>
-                {translateItem(column.label)}
+                {String(translateItem(column.label))}
               </TableColumn>
             )}
           </TableHeader>
