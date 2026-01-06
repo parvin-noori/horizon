@@ -1,5 +1,4 @@
 import {
-  Button,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -10,12 +9,14 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { GrLanguage } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
+import MyButton from "../../components/ui/MyButtons";
+import { RootState } from "../../types/store";
 import { changeLang } from "./languageSlice";
 import en from "/imgs/en.svg";
 import fa from "/imgs/fa.svg";
 
-export default function LanguageButton({ className }) {
-  const language = useSelector((state) => state.lang.lang);
+export default function LanguageButton({ className }: { className: string }) {
+  const language = useSelector((state: RootState) => state.lang.lang);
   const dispatch = useDispatch();
   const { i18n } = useTranslation();
 
@@ -24,24 +25,23 @@ export default function LanguageButton({ className }) {
     document.body.dir = language === "fa" ? "rtl" : "ltr";
     document.body.dataset.sidebarPosition =
       language === "fa" ? "right" : "left";
-
   }, [language, i18n]);
 
-  const handleChangeLanguage = (lang) => {
+  const handleChangeLanguage = (lang: "en" | "fa") => {
     dispatch(changeLang(lang));
   };
 
   return (
     <Dropdown classNames={{ content: "p-0 rounded-lg overflow-hidden shadow" }}>
       <DropdownTrigger>
-        <Button
+        <MyButton
           isOnlyIcon
           variant="light"
           radius="none"
           className={`!min-w-auto shrink-0 p-0 !aspect-square ${className}`}
         >
           <GrLanguage />
-        </Button>
+        </MyButton>
       </DropdownTrigger>
       <DropdownMenu
         aria-label="Select language"

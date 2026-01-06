@@ -33,8 +33,8 @@ export type KanbanItemType = {
   title: string;
   desc: string;
   status: string;
-  members: string[];
-  column: string;
+  members?: string[];
+  column?: string;
   cover?: string;
 };
 
