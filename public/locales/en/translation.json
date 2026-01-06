@@ -127,7 +127,7 @@
       "creatores": {
         "title": "top creators",
         "name": "name",
-        "artWorks": "artworks",
+        "artworks": "artworks",
         "rating": "rating"
       }
     },
@@ -156,7 +156,7 @@
       "productDesigner": "product designer",
       "posts": "posts",
       "followers": "followers",
-      "follwings": "follwing",
+      "followings": "follwings",
       "Gb": "Gb",
       "storage": {
         "title": "Your storage",
@@ -206,7 +206,7 @@
     "discoverNow": "Discover now",
     "watchVideo": "Watch video",
     "placeBid": " place bid",
-    "SeeAll": "See all",
+    "seeAll": "See all",
     "pending": "pending",
     "updates": "updates",
     "errors": "errors",

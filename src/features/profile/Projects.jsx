@@ -45,7 +45,7 @@ export default function Projects({ userInfo }) {
               />
               <div className="flex flex-col gap-3">
                 <span className="text-sm font-semibold  capitalize line-clamp-1">
-                  {translateItem(project.name)}
+                  {String(translateItem(project.name))}
                 </span>
                 <p className="text-xs text-slate-400 dark:text-gray-400 capitalize">
                   {t("pages.profile.projects.project")} #{index + 1} .{" "}

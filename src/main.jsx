@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router";
 import "./core/i18next.js";
 import "./index.css";
-import { router } from "./router.jsx";
+import { router } from "./router.tsx";
 import { store } from "./store.js";
 
 const queryClient = new QueryClient();

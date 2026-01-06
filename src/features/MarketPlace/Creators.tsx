@@ -12,7 +12,14 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useItemTranslation } from "../../hooks/useTranslation";
 
-const rows = [
+type Item = {
+  key: string;
+  name: string;
+  artworks: number;
+  rating: number;
+};
+
+const rows: Item[] = [
   {
     key: "1",
     name: "maddison_c21",
@@ -82,16 +89,19 @@ export default function Creators() {
   const { t } = useTranslation();
   const { translateItem } = useItemTranslation("pages.marketPlace.creatores");
 
-  const renderCell = useCallback((item, columnKey) => {
-    switch (columnKey) {
-      case "name":
-        return <span className="capitalize  font-semibold">@{item.name}</span>;
-      case "artworks":
-        return <span className="text-slate-400"> {item.artworks}</span>;
-      case "rating":
-        return <Progress size="sm" value={item.rating} />;
-    }
-  });
+  const renderCell = useCallback(
+    (item: Item, columnKey: string | number) => {
+      switch (columnKey) {
+        case "name":
+          return <span className="capitalize font-semibold">@{item.name}</span>;
+        case "artworks":
+          return <span className="text-slate-400"> {item.artworks}</span>;
+        case "rating":
+          return <Progress size="sm" value={item.rating} />;
+      }
+    },
+    [t]
+  );
   return (
     <div className="bg-white dark:bg-secondary p-4 rounded-lg flex flex-col space-y-4">
       <div className="flex items-center justify-between">
@@ -114,7 +124,7 @@ export default function Creators() {
           <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>
-                {translateItem(column.label)}
+                {String(translateItem(column.label))}
               </TableColumn>
             )}
           </TableHeader>

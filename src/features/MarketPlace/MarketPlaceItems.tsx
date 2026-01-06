@@ -14,24 +14,35 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useGetData } from "../../hooks/useGetData";
+import { Item } from "../../pages/main/MarketPlace";
+import { Member } from "../dashboard/BusinessDesign";
 import LoadingItems from "./LoadingItems";
 
-const members = [
+const members: Member[] = [
   { id: 1, img: "/imgs/Avatar1.png", name: "user 1" },
   { id: 1, img: "/imgs/Avatar2.png", name: "user 2" },
   { id: 1, img: "/imgs/Avatar3.png", name: "user 3" },
 ];
 
-export default function MarketPlaceItems(props) {
+interface MarketPlaceItemsProps {
+  items: Item[];
+  title: string;
+}
+
+type LikedItems = {
+  [id: number]: boolean;
+};
+
+export default function MarketPlaceItems(props: MarketPlaceItemsProps) {
   const { items, title } = props;
   const { isLoading, error } = useGetData();
   const { t } = useTranslation();
-  const [likedItems, setLikedItems] = useState(() => {
+  const [likedItems, setLikedItems] = useState<LikedItems>(() => {
     const saved = localStorage.getItem("likedItems");
     return saved ? JSON.parse(saved) : {};
   });
 
-  const toggleLike = (id) => {
+  const toggleLike = (id: number) => {
     setLikedItems((prev) => {
       const newState = {
         ...prev,

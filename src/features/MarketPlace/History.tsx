@@ -2,10 +2,20 @@ import { Button, Image, Skeleton } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { GiDiamonds } from "react-icons/gi";
 import { useGetData } from "../../hooks/useGetData";
+import { Item } from "../../pages/main/MarketPlace";
 
-export default function History(props) {
+interface HistoryProps {
+  items: Item[];
+}
+
+export interface UseGetDataResult {
+  data?: { Items?: Item[] };
+  isLoading: boolean;
+  error?: Error | null;
+}
+export default function History(props: HistoryProps) {
   const { items } = props;
-  const { error, isLoading } = useGetData();
+  const { error, isLoading }: UseGetDataResult = useGetData();
   const { t } = useTranslation();
 
   return (

@@ -1,3 +1,4 @@
+import React from "react";
 import { createBrowserRouter, Navigate } from "react-router";
 import Kanban from "./features/kanban/Kanban";
 import IdentityLayout from "./layouts/IdentityLayout";
@@ -8,11 +9,15 @@ import MarketPlace from "./pages/main/MarketPlace";
 import Profile from "./pages/main/Profile";
 import Tables from "./pages/main/Tables";
 
+interface ProtectedRouteProps {
+  element: React.ReactElement;
+}
+
 export const isAuthenticated = () => {
   return localStorage.getItem("token") !== null;
 };
 
-const ProtectedRoute = ({ element }) => {
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
   return isAuthenticated() ? element : <Navigate to="/" />;
 };
 

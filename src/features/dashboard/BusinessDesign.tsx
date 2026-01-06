@@ -4,7 +4,7 @@ import { MdSlowMotionVideo } from "react-icons/md";
 import { RiTimerLine } from "react-icons/ri";
 import { TbFlameFilled } from "react-icons/tb";
 
- type Member = {
+ export type Member = {
   id: number;
   img: string;
   name: string;

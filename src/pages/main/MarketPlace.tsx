@@ -6,22 +6,34 @@ import MarketPlaceItems from "../../features/MarketPlace/MarketPlaceItems";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
 
+export type Item = {
+  id: number;
+  title: string;
+  banner: string;
+  by: string;
+  bid: number;
+};
+
+export interface UseGetDataResult {
+  data?: { trendingItems?: Item[]; recentlyItems: Item[] };
+  isLoading: boolean;
+  error?: Error | null;
+}
+
 export default function MarketPlace() {
-  const { data, isLoading } = useGetData();
+  const { data, isLoading }: UseGetDataResult = useGetData();
   const { trendingItems, recentlyItems } = data ?? {};
   const { t } = useTranslation();
-  const { translateItem } = useItemTranslation(
-    "pages.marketPlace.items"
-  );
+  const { translateItem } = useItemTranslation("pages.marketPlace.items");
 
   const translatedTrending = trendingItems?.map((item) => ({
     ...item,
-    title: translateItem(item.title),
+    title: String(translateItem(item.title)),
   }));
 
   const translatedRecent = recentlyItems?.map((item) => ({
     ...item,
-    title: translateItem(item.title),
+    title: String(translateItem(item.title)),
   }));
 
   const allItems = [...(translatedTrending ?? []), ...(translatedRecent ?? [])];
