@@ -72,7 +72,7 @@ export default function Notifications() {
               size="sm"
               defaultSelected={item.status === "enabled"}
             >
-              <span>{translateItem(item.title)}</span>
+              <span>{String(translateItem(item.title))}</span>
             </Switch>
           </li>
         ))}

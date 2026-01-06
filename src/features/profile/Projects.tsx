@@ -3,8 +3,13 @@ import { useTranslation } from "react-i18next";
 import { FaPen } from "react-icons/fa6";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
+import { UserInfo } from "../../pages/main/Profile";
 
-export default function Projects({ userInfo }) {
+type ProjectsProps = {
+  userInfo?: UserInfo;
+};
+
+export default function Projects({ userInfo }: ProjectsProps) {
   const projects = userInfo?.projects ?? [];
   const { isLoading, error } = useGetData();
   const { t } = useTranslation();
@@ -39,7 +44,7 @@ export default function Projects({ userInfo }) {
             >
               <Avatar
                 radius="sm"
-                size="xl"
+                size="lg"
                 src={project.img}
                 alt={project.name}
               />
@@ -51,7 +56,7 @@ export default function Projects({ userInfo }) {
                   {t("pages.profile.projects.project")} #{index + 1} .{" "}
                   <span className="text-xs text-slate-400 dark:text-gray-400 capitalize">
                     <Link
-                      to="#"
+                      href="#"
                       color="primary"
                       underline="always"
                       size="sm"
@@ -62,7 +67,7 @@ export default function Projects({ userInfo }) {
                   </span>
                 </p>
               </div>
-              <Button className="ms-auto !p-0 !min-w-fit" variant="fade">
+              <Button className="ms-auto !p-0 !min-w-fit" variant="faded">
                 <FaPen className="text-slate-400" />
               </Button>
             </li>

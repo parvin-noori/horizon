@@ -2,12 +2,17 @@ import { Skeleton } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
+import { UserInfoProps } from "./UserInfo";
 
-export default function GeneralInfo(props) {
+export interface UseGetDataResult {
+  isLoading: boolean;
+  error?: Error | null;
+}
+
+export default function GeneralInfo(props: UserInfoProps) {
   const { info } = props ?? {};
-  const { isLoading, error } = useGetData();
+  const { isLoading, error }: UseGetDataResult = useGetData();
   const { t } = useTranslation();
-  const { translateItem } = useItemTranslation("pages.profile.generalInfo");
 
   return (
     <div className="bg-white dark:bg-secondary p-5 rounded-xl flex flex-col space-y-4">
@@ -43,7 +48,7 @@ export default function GeneralInfo(props) {
                 <span className="text-slate-400 text-sm">
                   {t("pages.profile.generalInfo.languages")}
                 </span>
-                {info.Languages}
+                {info.languages}
               </li>
               <li className="capitalize shadow-md dark:bg-white/5 dark:shadow-none p-5 flex flex-col rounded-lg">
                 <span className="text-slate-400 text-sm">

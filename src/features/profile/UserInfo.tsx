@@ -4,14 +4,21 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
+import { UserInfo } from "../../pages/main/Profile";
+import { RootState } from "../../types/store";
 import banner from "/imgs/userInfoBanner.png";
 
-export default function UserInfo(props) {
+export type UserInfoProps = {
+  user?: UserInfo | undefined;
+  info?: UserInfo | undefined;
+};
+
+export default function UserInfo(props: UserInfoProps) {
   const { user } = props;
   const { isLoading, error } = useGetData();
   const { avatar, name, jobPosition, posts, followers, following } = user ?? {};
   const { t } = useTranslation();
-  const language = useSelector((state) => state.lang.lang);
+  const language = useSelector((state: RootState) => state.lang.lang);
 
   const { translateItem } = useItemTranslation("pages.profile");
 
@@ -21,7 +28,6 @@ export default function UserInfo(props) {
         <Image src={banner} alt="banner" width="100%" />
         <Avatar
           isBordered
-          color="white"
           classNames={{
             base: `absolute -bottom-0 ${
               language === "fa" ? "translate-x-1/2" : "-translate-x-1/2"
@@ -47,7 +53,7 @@ export default function UserInfo(props) {
               <>
                 <h3 className=" text-xl font-semibold">{name}</h3>
                 <span className="text-slate-400 text-sm ">
-                  {translateItem(jobPosition)}
+                  {String(translateItem(jobPosition))}
                 </span>
               </>
             )}
@@ -68,7 +74,9 @@ export default function UserInfo(props) {
               ) : (
                 <span className=" text-xl font-semibold">{followers}</span>
               )}
-              <span className="text-slate-400">{t("pages.profile.followers")}</span>
+              <span className="text-slate-400">
+                {t("pages.profile.followers")}
+              </span>
             </div>
             <div className="flex flex-col items-center text-sm">
               {isLoading ? (
@@ -76,7 +84,9 @@ export default function UserInfo(props) {
               ) : (
                 <span className=" text-xl font-semibold">{following}</span>
               )}
-              <span className="text-slate-400">{t("pages.profile.followings")}</span>
+              <span className="text-slate-400">
+                {t("pages.profile.followings")}
+              </span>
             </div>
           </div>
         </div>

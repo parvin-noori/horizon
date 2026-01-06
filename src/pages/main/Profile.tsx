@@ -6,8 +6,34 @@ import Uploader from "../../features/profile/Uploader";
 import UserInfo from "../../features/profile/UserInfo";
 import { useGetData } from "../../hooks/useGetData";
 
+export type Project = {
+  name: string;
+  img: string;
+};
+
+export type UserInfo = {
+  email: string;
+  avatar: string;
+  name: string;
+  jobPosition: string;
+  posts: number;
+  followers: number;
+  following: number;
+  education: string;
+  languages: string;
+  department: string;
+  workHistory: string;
+  organization: string;
+  birthday: string;
+  projects: Project[];
+};
+
+export interface UseGetDataResult {
+  data?: { userInfo?: UserInfo };
+}
+
 export default function Profile() {
-  const { data } = useGetData();
+  const { data }: UseGetDataResult = useGetData();
   const { userInfo } = data ?? {};
 
   return (
