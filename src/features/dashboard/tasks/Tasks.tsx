@@ -15,7 +15,7 @@ import { useGetData } from "../../../hooks/useGetData";
 import { useItemTranslation } from "../../../hooks/useTranslation";
 import TaskItem from "./TaskItem";
 
-type Task = {
+export type Task = {
   id: number;
   title: string;
 };

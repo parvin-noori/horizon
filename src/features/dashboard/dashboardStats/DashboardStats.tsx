@@ -1,19 +1,10 @@
 import { Card } from "@heroui/react";
-import { ElementType } from "react";
 import { useTranslation } from "react-i18next";
 import { useItemTranslation } from "../../../hooks/useTranslation";
-
-export type Item = {
-  id: string;
-  title: string;
-  value: string;
-  icon?: ElementType;
-  change: number | null;
-  trend: string;
-};
+import { DashboardStatusType } from "./data";
 
 type dashboardStatsProps = {
-  items: Item[];
+  items: DashboardStatusType[];
 };
 
 export default function DashboardStats(props: dashboardStatsProps) {
