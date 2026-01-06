@@ -62,6 +62,7 @@ well, when you successfully logged in, you'll face the dashboard layout which we
 - 📱 Fully responsive dashboard UI
 - 🔐 Authentication with **Supabase**
 - 🌐 Multi-language support with i18next
+- 🛠️ Full TypeScript support for better type safety and developer experience
 
 ---
 
@@ -78,6 +79,7 @@ well, when you successfully logged in, you'll face the dashboard layout which we
 - **React Hook Form**
 - **Vite**
 - i18next / react-i18next
+- TypeScript
 
 ---
 
