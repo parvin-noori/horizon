@@ -1,5 +1,6 @@
 import {
   getKeyValue,
+  Selection,
   Table,
   TableBody,
   TableCell,
@@ -7,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/react";
+import type { Key } from "@react-types/shared";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
@@ -45,7 +47,9 @@ export interface UseGetDataResult {
   error?: Error | null;
 }
 export default function CheckTable() {
-  const [selectedKeys, setSelectedKeys] = useState<string[]>(["2", "3", "4"]);
+  const [selectedKeys, setSelectedKeys] = useState<Selection>(
+    new Set<Key>(["2", "3", "4"])
+  );
   const { data, isLoading, error }: UseGetDataResult = useGetData();
   const { checkTable } = data ?? {};
   const { t } = useTranslation();

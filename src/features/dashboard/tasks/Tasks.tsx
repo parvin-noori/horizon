@@ -1,5 +1,6 @@
 import {
   DndContext,
+  DragEndEvent,
   MouseSensor,
   TouchSensor,
   useSensor,
@@ -8,15 +9,26 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { Checkbox, CheckboxGroup, cn, Skeleton } from "@heroui/react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../../hooks/useGetData";
 import { useItemTranslation } from "../../../hooks/useTranslation";
 import TaskItem from "./TaskItem";
 
+type Task = {
+  id: number;
+  title: string;
+};
+
+export interface UseGetDataResult {
+  data?: { tasks?: Task[] };
+  isLoading: boolean;
+  error?: Error | null;
+}
+
 export default function Tasks() {
-  const [items, setItems] = useState([]);
-  const { data, isLoading, error } = useGetData();
+  const [items, setItems] = useState<Task[]>([]);
+  const { data, isLoading, error }: UseGetDataResult = useGetData();
   const { tasks } = data ?? {};
   const { t } = useTranslation();
 
@@ -48,7 +60,7 @@ export default function Tasks() {
     "promotional LP",
   ]);
 
-  const toggleSelection = (e) => {
+  const toggleSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
     const checked = e.target.checked;
 
     if (checked) {
@@ -60,7 +72,7 @@ export default function Tasks() {
 
   const isAllSelected = selected.length === allTitles.length;
 
-  const handleDragEnd = (event) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {

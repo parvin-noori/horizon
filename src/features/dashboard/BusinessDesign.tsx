@@ -4,7 +4,13 @@ import { MdSlowMotionVideo } from "react-icons/md";
 import { RiTimerLine } from "react-icons/ri";
 import { TbFlameFilled } from "react-icons/tb";
 
-const members = [
+ type Member = {
+  id: number;
+  img: string;
+  name: string;
+};
+
+const members: Member[] = [
   { id: 1, img: "/imgs/Avatar1.png", name: "user 1" },
   { id: 1, img: "/imgs/Avatar2.png", name: "user 2" },
   { id: 1, img: "/imgs/Avatar3.png", name: "user 3" },
@@ -53,7 +59,7 @@ export default function BusinessDesign() {
             aria-label="start"
             className="capitalize bg-primary rounded-xl px-6 text-white"
           >
-            {t('getStarted')}
+            {t("getStarted")}
           </Button>
         </div>
       </div>
