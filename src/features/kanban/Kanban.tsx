@@ -1,6 +1,9 @@
 import {
   DndContext,
+  DragEndEvent,
+  DragOverEvent,
   DragOverlay,
+  DragStartEvent,
   MouseSensor,
   pointerWithin,
   TouchSensor,
@@ -14,18 +17,41 @@ import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
+import { RootState } from "../../types/store";
 import Column from "./Column";
 import KanbanItem from "./KanbanItem";
 import { replaceAllKanbanItems } from "./kanbanSlice";
 
+export type ColumnType = {
+  id: string;
+  title: string;
+  color: string;
+};
+
+export type KanbanItemType = {
+  id: number;
+  title: string;
+  desc: string;
+  status: string;
+  members: string[];
+  column: string;
+  cover?: string;
+};
+
+export interface UseGetDataResult {
+  data?: { kanban?: KanbanItemType[] };
+  isLoading: boolean;
+  error?: Error | null;
+}
+
 export default function Kanban() {
-  const { data, isLoading, error } = useGetData();
+  const { data, isLoading, error }: UseGetDataResult = useGetData();
   const { kanban: kanbanItems } = data ?? {};
-  const [activeColumn, setActiveColumn] = useState(null);
+  const [activeColumn, setActiveColumn] = useState<ColumnType | null>(null);
   const [activeItem, setActiveItem] = useState(null);
   const { t } = useTranslation();
 
-  const [columns, setColumns] = useState([
+  const [columns, setColumns] = useState<ColumnType[]>([
     {
       id: "backlog",
       title: t("pages.kanban.backlog"),
@@ -39,7 +65,9 @@ export default function Kanban() {
     { id: "Done", title: t("pages.kanban.done"), color: "#10B981" },
   ]);
 
-  const items = useSelector((state) => state.kanban.items);
+  const items: KanbanItemType[] = useSelector(
+    (state: RootState) => state.kanban.items
+  );
   const dispatch = useDispatch();
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
 
@@ -66,16 +94,7 @@ export default function Kanban() {
   });
   const sensors = useSensors(touchSensor, mouseSensor);
 
-  const createNewColumns = () => {
-    const columnToAdd = {
-      id: uuidv4(),
-      title: `columne ${columns.length}`,
-      // color:"#3B82F6"
-    };
-    return [...columns, columnToAdd];
-  };
-
-  const onDragStart = (event) => {
+  const onDragStart = (event: DragStartEvent) => {
     if (event.active.data.current?.type === "column") {
       setActiveColumn(event.active.data.current?.column);
       return;
@@ -86,7 +105,7 @@ export default function Kanban() {
     }
   };
 
-  const onDragEnd = (event) => {
+  const onDragEnd = (event: DragEndEvent) => {
     setActiveColumn(null);
     setActiveItem(null);
 
@@ -109,7 +128,7 @@ export default function Kanban() {
     dispatch(replaceAllKanbanItems(items));
   };
 
-  const onDragOver = (event) => {
+  const onDragOver = (event: DragOverEvent) => {
     const { active, over } = event;
 
     if (!over) return;
@@ -145,7 +164,7 @@ export default function Kanban() {
       const activeIndex = items.findIndex((t) => t.id === activeId);
 
       const newItems = items.map((item) => ({ ...item }));
-      newItems[activeIndex].column = overId;
+      newItems[activeIndex].column = String(overId);
 
       dispatch(replaceAllKanbanItems(newItems));
     }
@@ -193,7 +212,12 @@ export default function Kanban() {
             )}
             {activeItem && (
               <div>
-                <KanbanItem feature={activeItem} />
+                <KanbanItem
+                  feature={activeItem}
+                  features={items}
+                  isEditng={false}
+                  setEditngId={() => {}}
+                />
               </div>
             )}
           </DragOverlay>,

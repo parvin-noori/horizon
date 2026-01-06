@@ -3,12 +3,18 @@ import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
 import { MdOutlineDragIndicator } from "react-icons/md";
 import { useDispatch } from "react-redux";
+import { ColumnType, KanbanItemType } from "./Kanban";
 import KanbanItem from "./KanbanItem";
-import { addKanban } from "./kanbanSlice";
 
-export default function Column(props) {
+interface ColumnProps {
+  col: ColumnType;
+  items: KanbanItemType[];
+  features: KanbanItemType[];
+}
+
+export default function Column(props: ColumnProps) {
   const { col, items, features } = props;
-  const [editngId, setEditngId] = useState(false);
+  const [editngId, setEditngId] = useState<number | null>(null);
 
   const itemsId = useMemo(() => items.map((item) => item.id), [items]);
 
@@ -27,19 +33,6 @@ export default function Column(props) {
   };
 
   const dispatch = useDispatch();
-
-  function handleAdd(columnId) {
-    const newId = uuidv4();
-    setEditngId(newId);
-    dispatch(
-      addKanban({
-        id: newId,
-        title: "",
-        desc: "",
-        column: columnId,
-      })
-    );
-  }
 
   if (isDragging) {
     return (
@@ -67,7 +60,6 @@ export default function Column(props) {
         </span>
       </div>
 
-    
       <ul className="space-y-3 min-h-[400px]">
         <SortableContext items={itemsId}>
           {items?.map((item) => (

@@ -11,18 +11,32 @@ import {
   SelectItem,
   Textarea,
 } from "@heroui/react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { AiOutlineEdit } from "react-icons/ai";
 import { IoMdTrash } from "react-icons/io";
 import { useDispatch } from "react-redux";
+import MyButton from "../../components/ui/MyButtons";
+import { KanbanItemType } from "./Kanban";
 import { editKanban, removeKanban } from "./kanbanSlice";
 import Avatar1 from "/imgs/Avatar1.png";
 import Avatar2 from "/imgs/Avatar2.png";
 import Avatar3 from "/imgs/Avatar3.png";
 
-export default function KanbanItem(props) {
+type KanbanItemProps = {
+  feature: KanbanItemType;
+  features: KanbanItemType[];
+  isEditng: boolean;
+  setEditngId: React.Dispatch<React.SetStateAction<number | null>>;
+};
+
+type FormData = {
+  title: string;
+  desc: string;
+  status: string;
+};
+export default function KanbanItem(props: KanbanItemProps) {
   const { feature, features, isEditng, setEditngId } = props;
   const { title, desc, status } = feature;
   const [mouseIsOver, setMouseIsOver] = useState(false);
@@ -33,14 +47,14 @@ export default function KanbanItem(props) {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     defaultValues: {
       title: title,
       desc: desc,
       status: status,
     },
   });
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const {
     attributes,
     listeners,
@@ -58,17 +72,17 @@ export default function KanbanItem(props) {
   };
   const background = getButtonBackground(feature.status);
 
-  const avatarMap = {
-    Avatar1,
-    Avatar2,
-    Avatar3,
+  const avatarMap: Record<string, string> = {
+    Avatar1: Avatar1,
+    Avatar2: Avatar2,
+    Avatar3: Avatar3,
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: number) => {
     dispatch(removeKanban({ id }));
   };
 
-  function getButtonBackground(status) {
+  function getButtonBackground(status: string) {
     switch (status) {
       case "pending":
         return "warning";
@@ -94,7 +108,7 @@ export default function KanbanItem(props) {
     }
   }, [isEditng]);
 
-  const handleSaveEdit = (data) => {
+  const handleSaveEdit = (data: FormData) => {
     const isDuplicate = features.some(
       (item) => item.title === data.title && item.id !== feature.id
     );
@@ -110,17 +124,21 @@ export default function KanbanItem(props) {
     setEditngId(null);
     dispatch(
       editKanban({
-        id: feature.id,
         ...data,
+        id: feature.id,
       })
     );
   };
+
+  const { ref: registerRef, ...restRegister } = register("title", {
+    required: "title is required",
+  });
   if (isDragging) {
     return (
       <div
         ref={setNodeRef}
         style={style}
-        className="shadow-lg select-none min-h-[200px]   duration-300 bg-secondary/50   dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col"
+        className="shadow-lg select-none min-h-[200px] duration-300 bg-secondary/50 dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col"
       ></div>
     );
   }
@@ -128,7 +146,7 @@ export default function KanbanItem(props) {
     <div
       onMouseEnter={() => setMouseIsOver(true)}
       onMouseLeave={() => setMouseIsOver(false)}
-      className={`shadow-lg select-none transtion-border  duration-300 bg-white border border-transparent dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col ${
+      className={`shadow-lg select-none transtion-border duration-300 bg-white border border-transparent dark:bg-white/5 p-5 rounded-xl flex gap-5 flex-col ${
         isEditng
           ? ""
           : "cursor-grab hover:border-slate-300 dark:hover:border-slate-700"
@@ -147,9 +165,12 @@ export default function KanbanItem(props) {
         >
           <div className="flex flex-col gap-y-2">
             <Input
-              ref={inputRef}
+              ref={(el) => {
+                registerRef(el);
+                inputRef.current = el;
+              }}
+              {...restRegister}
               variant="bordered"
-              {...register("title", { required: "title is required" })}
               type="text"
               isInvalid={errors.title ? true : false}
             />
@@ -201,22 +222,22 @@ export default function KanbanItem(props) {
               </span>
               {mouseIsOver && (
                 <>
-                  <Button
+                  <MyButton
                     onPress={() => handleDelete(feature.id)}
                     isOnlyIcon
                     variant="light"
                     className="p-0 !shrink-0 ms-auto min-w-auto !size-8 rounded-lg text-slate-400"
                   >
                     <IoMdTrash />
-                  </Button>
-                  <Button
+                  </MyButton>
+                  <MyButton
                     onPress={() => setEditngId(feature.id)}
                     isOnlyIcon
                     variant="light"
                     className="p-0 !shrink-0 min-w-auto !size-8 rounded-lg text-slate-400"
                   >
                     <AiOutlineEdit />
-                  </Button>
+                  </MyButton>
                 </>
               )}
             </div>
