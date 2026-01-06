@@ -9,9 +9,15 @@ import "./index.css";
 import { router } from "./router.tsx";
 import { store } from "./store.js";
 
+const container = document.getElementById("root");
+
 const queryClient = new QueryClient();
 
-createRoot(document.getElementById("root")).render(
+if (!container) {
+  throw new Error("Root container not found");
+}
+
+createRoot(container).render(
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>
       <HeroUIProvider>
