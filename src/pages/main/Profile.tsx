@@ -11,7 +11,7 @@ export type Project = {
   img: string;
 };
 
-export type UserInfo = {
+export type UserInfoProps = {
   email: string;
   avatar: string;
   name: string;
@@ -29,7 +29,7 @@ export type UserInfo = {
 };
 
 export interface UseGetDataResult {
-  data?: { userInfo?: UserInfo };
+  data?: { userInfo?: UserInfoProps };
 }
 
 export default function Profile() {
