@@ -35,9 +35,14 @@ import ThemeButton from "../features/theme/ThemeButton";
 import { useGetData } from "../hooks/useGetData";
 import { useItemTranslation } from "../hooks/useTranslation";
 import { RootState } from "../types/store";
+import {
+  SidebarItems,
+  UserInfo,
+  UserInfoResponse,
+} from "./types/mainLayout.types";
+
 import getPro from "/imgs/GetPRO.svg";
 import darkGetPro from "/imgs/darkGetPRO.svg";
-import { SidebarItems, UserInfo } from "./types/mainLayout.types";
 
 export interface UseGetDataResult {
   data?: { userInfo?: UserInfo };
@@ -56,7 +61,7 @@ export default function MainLayout() {
 
   const sidebarRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { data, isLoading, error }: UseGetDataResult = useGetData();
+  const { data, isLoading, error } = useGetData<UserInfoResponse>();
   const userInfo = data?.userInfo;
   const theme = useSelector((state: RootState) => state.theme.theme);
   const { name, email, jobPosition, followers, following, avatar } =

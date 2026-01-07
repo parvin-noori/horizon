@@ -14,19 +14,11 @@ import { useTranslation } from "react-i18next";
 import { useGetData } from "../../../hooks/useGetData";
 import { useItemTranslation } from "../../../hooks/useTranslation";
 import TaskItem from "./TaskItem";
-import { Task } from "./types/task.types";
-
-
-
-export interface UseGetDataResult {
-  data?: { tasks?: Task[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
+import { Task, TaskResponse } from "./types/task.types";
 
 export default function Tasks() {
   const [items, setItems] = useState<Task[]>([]);
-  const { data, isLoading, error }: UseGetDataResult = useGetData();
+  const { data, isLoading, error } = useGetData<TaskResponse>();
   const { tasks } = data ?? {};
   const { t } = useTranslation();
 

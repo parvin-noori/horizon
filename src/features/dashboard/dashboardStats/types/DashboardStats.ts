@@ -8,3 +8,7 @@ export interface DashboardStatusType {
   change: number | null;
   trend: string;
 }
+
+export interface dashboardStatsProps  {
+  items: DashboardStatusType[];
+};

@@ -5,13 +5,12 @@ import { useSelector } from "react-redux";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
 import { RootState } from "../../types/store";
-import banner from "/imgs/userInfoBanner.png";
 import { UserInfoType } from "./types/userInfo.types";
-
+import banner from "/imgs/userInfoBanner.png";
 
 export default function UserInfo(props: UserInfoType) {
   const { user } = props;
-  const { isLoading, error } = useGetData();
+  const { isLoading, error } = useGetData<null>();
   const { avatar, name, jobPosition, posts, followers, following } = user ?? {};
   const { t } = useTranslation();
   const language = useSelector((state: RootState) => state.lang.lang);
@@ -49,7 +48,7 @@ export default function UserInfo(props: UserInfoType) {
               <>
                 <h3 className=" text-xl font-semibold">{name}</h3>
                 <span className="text-slate-400 text-sm ">
-                  {String(translateItem(jobPosition))}
+                  {String(translateItem(jobPosition!))}
                 </span>
               </>
             )}

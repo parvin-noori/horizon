@@ -1,6 +1,4 @@
-
-
-export type KanbanItemType = {
+export interface KanbanItemType  {
   id: number;
   title: string;
   desc: string;
@@ -17,8 +15,12 @@ export interface KanbanItemProps {
   setEditngId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-export interface FormData {
+export interface TaskFormData {
   title: string;
   desc: string;
   status: string;
-};
+}
+
+export interface KanbanResponse {
+  kanban?: KanbanItemType[];
+}

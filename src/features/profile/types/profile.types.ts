@@ -1,5 +1,5 @@
 import { UserInfoProps } from "./userInfo.types";
 
-export interface ProjectsProps {
+export interface ProfileResponse {
   userInfo?: UserInfoProps;
-};
+}

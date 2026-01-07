@@ -2,11 +2,8 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Checkbox, cn } from "@heroui/react";
 import { MdOutlineDragIndicator } from "react-icons/md";
-import { Task } from "./types/task.types";
+import { Task, TaskItemProps } from "./types/task.types";
 
-type TaskItemProps = {
-  item: Task;
-};
 
 export default function TaskItem(props: TaskItemProps) {
   const { item } = props;

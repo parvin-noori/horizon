@@ -14,7 +14,11 @@ import { MdError } from "react-icons/md";
 import { RxCrossCircled } from "react-icons/rx";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
-import { ComplexTable,StatusIconType } from "../tables/types/complexTable.types";
+import {
+  ComplexTableResponse,
+  ComplexTable as ComplexTableType,
+  StatusIconType,
+} from "../tables/types/complexTable.types";
 
 const columns = [
   {
@@ -35,20 +39,14 @@ const columns = [
   },
 ];
 
-
-export interface UseGetDataResult {
-  data?: { complexTable?: ComplexTable[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
 export default function ComplexTable() {
-  const { data, isLoading, error }: UseGetDataResult = useGetData();
+  const { data, isLoading, error } = useGetData<ComplexTableResponse>();
   const { complexTable } = data ?? {};
   const { t } = useTranslation();
   const { translateItem } = useItemTranslation("pages.tables");
 
   const renderCell = useCallback(
-    (item: ComplexTable, columnKey: string | number): React.ReactNode => {
+    (item: ComplexTableType, columnKey: string | number): React.ReactNode => {
       switch (columnKey) {
         case "name":
           return <span className="capitalize text-nowrap">{item.name}</span>;

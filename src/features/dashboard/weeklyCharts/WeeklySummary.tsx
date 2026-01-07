@@ -5,18 +5,10 @@ import { FaRegCalendar } from "react-icons/fa6";
 import { SiTicktick } from "react-icons/si";
 import { Line, LineChart, XAxis } from "recharts";
 import { useGetData } from "../../../hooks/useGetData";
-import { WeeklySummary } from "./types/chart.types";
-
-
-
-export interface UseGetDataResult {
-  data?: { weeklySummary?: WeeklySummary[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
+import { WeeklySummaryResponse } from "./types/chart.types";
 
 export default function WeeklySummary() {
-  const { data, isLoading, error }: UseGetDataResult = useGetData();
+  const { data, isLoading, error } = useGetData<WeeklySummaryResponse>();
   const { weeklySummary } = data ?? {};
   const { t } = useTranslation();
   return (

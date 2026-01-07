@@ -11,7 +11,7 @@ import {
   SelectItem,
   Textarea,
 } from "@heroui/react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -19,13 +19,10 @@ import { IoMdTrash } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import MyButton from "../../components/ui/MyButtons";
 import { editKanban, removeKanban } from "./kanbanSlice";
+import { KanbanItemProps, TaskFormData } from "./types/kanban.types";
 import Avatar1 from "/imgs/Avatar1.png";
 import Avatar2 from "/imgs/Avatar2.png";
 import Avatar3 from "/imgs/Avatar3.png";
-import { KanbanItemProps } from "./types/kanban.types";
-
-
-
 
 export default function KanbanItem(props: KanbanItemProps) {
   const { feature, features, isEditng, setEditngId } = props;
@@ -38,12 +35,12 @@ export default function KanbanItem(props: KanbanItemProps) {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<TaskFormData>({
     defaultValues: {
-      title: title,
-      desc: desc,
-      status: status,
-    },
+      title,
+      desc,
+      status,
+    } as TaskFormData,
   });
   const inputRef = useRef<HTMLInputElement>(null);
   const {
@@ -99,7 +96,7 @@ export default function KanbanItem(props: KanbanItemProps) {
     }
   }, [isEditng]);
 
-  const handleSaveEdit = (data: FormData) => {
+  const handleSaveEdit = (data: TaskFormData) => {
     const isDuplicate = features.some(
       (item) => item.title === data.title && item.id !== feature.id
     );

@@ -3,21 +3,12 @@ import Banner from "../../features/MarketPlace/Banner";
 import Creators from "../../features/MarketPlace/Creators";
 import History from "../../features/MarketPlace/History";
 import MarketPlaceItems from "../../features/MarketPlace/MarketPlaceItems";
-import { MarkerPlaceItem } from "../../features/MarketPlace/types/marketPlace.types";
+import { MarkerPlaceResponse } from "../../features/MarketPlace/types/marketPlace.types";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
 
-export interface UseGetDataResult {
-  data?: {
-    trendingItems?: MarkerPlaceItem[];
-    recentlyItems: MarkerPlaceItem[];
-  };
-  isLoading: boolean;
-  error?: Error | null;
-}
-
 export default function MarketPlace() {
-  const { data }: UseGetDataResult = useGetData();
+  const { data } = useGetData<MarkerPlaceResponse>();
   const { trendingItems, recentlyItems } = data ?? {};
   const { t } = useTranslation();
   const { translateItem } = useItemTranslation("pages.marketPlace.items");

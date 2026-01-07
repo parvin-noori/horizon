@@ -14,7 +14,7 @@ import { FaApple } from "react-icons/fa";
 import { IoLogoWindows } from "react-icons/io5";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
-import { DevTableItem } from "./types/devTable.types";
+import { DevTableItem, DevTableResponse } from "./types/devTable.types";
 
 const columns = [
   {
@@ -35,16 +35,8 @@ const columns = [
   },
 ];
 
-
-
-export interface UseGetDataResult {
-  data?: { devTable?: DevTableItem[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
-
 export default function DevTable() {
-  const { data, isLoading }: UseGetDataResult = useGetData();
+  const { data, isLoading } = useGetData<DevTableResponse>();
   const { t } = useTranslation();
   const { devTable } = data ?? {};
   const { translateItem } = useItemTranslation("pages.tables");

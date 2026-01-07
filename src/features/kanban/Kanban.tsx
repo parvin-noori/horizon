@@ -22,16 +22,10 @@ import Column from "./Column";
 import KanbanItem from "./KanbanItem";
 import { replaceAllKanbanItems } from "./kanbanSlice";
 import { ColumnType } from "./types/column.types";
-import { KanbanItemType } from "./types/kanban.types";
-
-export interface UseGetDataResult {
-  data?: { kanban?: KanbanItemType[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
+import { KanbanItemType, KanbanResponse } from "./types/kanban.types";
 
 export default function Kanban() {
-  const { data, isLoading, error }: UseGetDataResult = useGetData();
+  const { data, isLoading, error } = useGetData<KanbanResponse>();
   const { kanban: kanbanItems } = data ?? {};
   const [activeColumn, setActiveColumn] = useState<ColumnType | null>(null);
   const [activeItem, setActiveItem] = useState(null);

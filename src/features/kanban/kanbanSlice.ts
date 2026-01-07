@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { KanbanItemType } from "./Kanban";
+import { KanbanItemType } from "./types/kanban.types";
 
 const savedItems = localStorage.getItem("kanbanItems");
 

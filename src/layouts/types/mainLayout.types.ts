@@ -13,5 +13,9 @@ export interface UserInfo {
   followers: number;
   posts: number;
   following: number;
-  avatar:string
+  avatar: string;
+}
+
+export interface UserInfoResponse {
+  userInfo?: UserInfo;
 }

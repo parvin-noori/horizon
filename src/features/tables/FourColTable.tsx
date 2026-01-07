@@ -10,7 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
-import { FourColTable } from "./types/fourColTable.types";
+import { FourColTableResponse } from "./types/fourColTable.types";
 
 const columns = [
   {
@@ -31,13 +31,8 @@ const columns = [
   },
 ];
 
-export interface UseGetDataResult {
-  data?: { fourColTable?: FourColTable[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
 export default function FourColTable() {
-  const { data, isLoading }: UseGetDataResult = useGetData();
+  const { data, isLoading } = useGetData<FourColTableResponse>();
   const { fourColTable } = data ?? {};
   const { translateItem } = useItemTranslation("pages.tables");
   const { t } = useTranslation();

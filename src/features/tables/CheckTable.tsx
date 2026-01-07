@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
-import { checkTable } from "../tables/types/checkTable.types";
+import { CheckTableResponse } from "../tables/types/checkTable.types";
 
 const columns = [
   {
@@ -34,18 +34,11 @@ const columns = [
   },
 ];
 
-
-
-export interface UseGetDataResult {
-  data?: { checkTable?: checkTable[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
 export default function CheckTable() {
   const [selectedKeys, setSelectedKeys] = useState<Selection>(
     new Set<Key>(["2", "3", "4"])
   );
-  const { data, isLoading, error }: UseGetDataResult = useGetData();
+  const { data, isLoading, error } = useGetData<CheckTableResponse>();
   const { checkTable } = data ?? {};
   const { t } = useTranslation();
   const { translateItem } = useItemTranslation("pages.tables");

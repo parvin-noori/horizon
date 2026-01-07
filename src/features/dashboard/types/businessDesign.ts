@@ -1,4 +1,4 @@
- export type Member = {
+ export interface Member  {
   id: number;
   img: string;
   name: string;

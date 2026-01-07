@@ -1,9 +1,9 @@
-export type Project = {
+export interface Project {
   name: string;
   img: string;
-};
+}
 
-export type UserInfoProps = {
+export interface UserInfoProps {
   email: string;
   avatar: string;
   name: string;
@@ -18,8 +18,8 @@ export type UserInfoProps = {
   organization: string;
   birthday: string;
   projects: Project[];
-};
-export type UserInfoType = {
+}
+export interface UserInfoType {
   user?: UserInfoProps | undefined;
   info?: UserInfoProps | undefined;
-};
+}

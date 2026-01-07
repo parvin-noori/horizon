@@ -3,16 +3,10 @@ import { Avatar, Card, Skeleton } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
 import { useItemTranslation } from "../../hooks/useTranslation";
-import { Member } from "./types/teamMember.types";
-
-export interface UseGetDataResult {
-  data?: { teamMembers?: Member[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
+import { TeamMembersResponse } from "./types/teamMember.types";
 
 export default function TeamMembers() {
-  const { data, isLoading, error }: UseGetDataResult = useGetData();
+  const { data, isLoading, error } = useGetData<TeamMembersResponse>();
   const { teamMembers } = data ?? {};
   const { t } = useTranslation();
   const { translateItem } = useItemTranslation(

@@ -1,9 +1,9 @@
-export type DataType = {
+export interface DataType  {
   name: string;
   value: number;
 };
 
-export type SelectItemsType = {
+export interface SelectItemsType  {
   key: string;
   label: string;
 };

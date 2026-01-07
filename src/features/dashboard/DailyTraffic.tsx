@@ -5,17 +5,11 @@ import { useSelector } from "react-redux";
 import { Bar, BarChart, XAxis } from "recharts";
 import { useGetData } from "../../hooks/useGetData";
 import { RootState } from "../../types/store";
-import { DailyTraffic } from "./types/darilyTraffic.types";
-
-export interface UseGetDataResult {
-  data?: { dailyTraffic?: DailyTraffic[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
+import { DailyTrafficResponse } from "./types/darilyTraffic.types";
 
 export default function DailyTraffic() {
   const theme = useSelector((state: RootState) => state.theme.theme);
-  const { data, isLoading, error }: UseGetDataResult = useGetData();
+  const { data, isLoading, error } = useGetData<DailyTrafficResponse>();
   const { dailyTraffic } = data ?? {};
   const whiteStopOpacity = theme === "dark" ? 1 : 0.1;
   const { t } = useTranslation();

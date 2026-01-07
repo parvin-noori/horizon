@@ -2,10 +2,8 @@ import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useMemo, useState } from "react";
 import { MdOutlineDragIndicator } from "react-icons/md";
-import { useDispatch } from "react-redux";
 import KanbanItem from "./KanbanItem";
 import { ColumnProps } from "./types/column.types";
-
 
 export default function Column(props: ColumnProps) {
   const { col, items, features } = props;
@@ -26,8 +24,6 @@ export default function Column(props: ColumnProps) {
     transform: CSS.Transform.toString(transform),
     transition,
   };
-
-  const dispatch = useDispatch();
 
   if (isDragging) {
     return (

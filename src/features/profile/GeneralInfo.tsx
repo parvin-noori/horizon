@@ -1,17 +1,11 @@
 import { Skeleton } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { useGetData } from "../../hooks/useGetData";
-import { useItemTranslation } from "../../hooks/useTranslation";
-import { UserInfoProps, UserInfoType } from "./types/userInfo.types";
-
-export interface UseGetDataResult {
-  isLoading: boolean;
-  error?: Error | null;
-}
+import { UserInfoType } from "./types/userInfo.types";
 
 export default function GeneralInfo(props: UserInfoType) {
   const { info } = props ?? {};
-  const { isLoading, error }: UseGetDataResult = useGetData();
+  const { isLoading, error } = useGetData<null>();
   const { t } = useTranslation();
 
   return (

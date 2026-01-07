@@ -1,5 +1,5 @@
-export type UseGetDataResult<TData> = {
-  data?: TData;
+export interface UseGetDataResult<T> {
+  data?: T;
   isLoading: boolean;
   error?: Error | null;
-};
+}

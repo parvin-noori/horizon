@@ -8,7 +8,7 @@ import { ProjectsProps } from "./types/projects.types";
 
 export default function Projects({ userInfo }: ProjectsProps) {
   const projects = userInfo?.projects ?? [];
-  const { isLoading, error } = useGetData();
+  const { isLoading, error } = useGetData<null>();
   const { t } = useTranslation();
   const { translateItem } = useItemTranslation("pages.profile.projects");
 

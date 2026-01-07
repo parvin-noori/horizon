@@ -2,20 +2,11 @@ import { Button, Image, Skeleton } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { GiDiamonds } from "react-icons/gi";
 import { useGetData } from "../../hooks/useGetData";
-import { MarkerPlaceItem } from "./types/marketPlace.types";
+import { HistoryProps, HistoryResponse } from "./types/history.types";
 
-interface HistoryProps {
-  items: MarkerPlaceItem[];
-}
-
-export interface UseGetDataResult {
-  data?: { Items?: MarkerPlaceItem[] };
-  isLoading: boolean;
-  error?: Error | null;
-}
 export default function History(props: HistoryProps) {
   const { items } = props;
-  const { error, isLoading }: UseGetDataResult = useGetData();
+  const { error, isLoading } = useGetData<HistoryResponse>();
   const { t } = useTranslation();
 
   return (
