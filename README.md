@@ -19,6 +19,8 @@ This dashboard uses **Supabase Auth** to simulate a real-world authentication fl
 - The token is stored in **LocalStorage** (demo purpose)
 - Protected routes prevent unauthorized access
 
+> ⚠️ Note: Due to Supabase access restrictions, a VPN may be required to use the authentication features in some regions
+
 > ⚠️ This authentication flow is implemented **for demo purposes only**.
 
 ### 🧪 Demo Credentials
