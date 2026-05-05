@@ -5,7 +5,7 @@
 ## 🔗 Live Demo
 
 👉 **Vercel Preview:**  
-[https://your-vercel-link.vercel.app](https://horizon-hazel-delta.vercel.app/)
+[preview](https://horizon-hazel-delta.vercel.app/)
 
 ---
 
