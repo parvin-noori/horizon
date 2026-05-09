@@ -54,17 +54,17 @@ export default function Projects({ userInfo }: ProjectsProps) {
                   <span className="text-xs text-slate-400 dark:text-gray-400 capitalize">
                     <Link
                       href="#"
-                      // color="primary"
+                      color="primary"
                       underline="always"
                       size="sm"
-                      className="cursor-pointer text-primary dark:text-gray-400"
+                      className="cursor-pointer"
                     >
                       {t("pages.profile.projects.seeProjectDetail")}
                     </Link>
                   </span>
                 </p>
               </div>
-              <Button className="ms-auto !p-0 !min-w-4 !w-10 aspect-square" variant="faded">
+              <Button className="ms-auto !p-0 !min-w-fit" variant="faded">
                 <FaPen className="text-slate-400" />
               </Button>
             </li>
